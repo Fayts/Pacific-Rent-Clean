@@ -1,807 +1,1154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pacific Rent&Clean, location de machines de nettoyage a Tahiti</title>
-<meta name="description" content="Louez une machine de nettoyage professionnelle a Tahiti, ou confiez-nous vos tapis, matelas et canapes. Injection extraction, 7j/7, sans acompte.">
-<meta name="theme-color" content="#07141B">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3C16 3 7 14 7 20a9 9 0 0 0 18 0c0-6-9-17-9-17z' fill='%2322D3C5'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pacific Rent&amp;Clean · Nettoyage textile et location de machines, Tahiti</title>
+<meta name="description" content="Nettoyage textile par injection extraction à domicile à Tahiti. Matelas, canapés, tapis, sièges auto. Et la machine professionnelle en location si vous préférez le faire vous même.">
+<meta name="theme-color" content="#082F35">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23082F35'/%3E%3Cpath d='M8 40 L14 30 L20 38 L26 26 L32 36 L38 24 L44 34 L50 28 L56 36' stroke='%23E87961' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pacific Rent&Clean, location de machines de nettoyage a Tahiti">
-<meta property="og:description" content="Le propre commence sous la surface. Louez la machine, ou on vient le faire chez vous.">
-<meta property="og:url" content="https://pacific-rent-clean.vercel.app/">
-<meta property="og:image" content="https://pacific-rent-clean.vercel.app/assets/hero-ending.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Pacific Rent&amp;Clean · Le propre se voit.">
+<meta property="og:description" content="Nettoyage textile par injection extraction à domicile à Tahiti. Et la machine professionnelle en location.">
+<meta property="og:url" content="REPLACE_AT_DEPLOY/">
+<meta property="og:image" content="REPLACE_AT_DEPLOY/assets/hero-ending.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Karla:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Instrument+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
 <style>
 /* ============================================================
-   1. JETONS
+   PACIFIC RENT&CLEAN · Une seule chose sépare le sale du propre.
+   Un passage.
    ============================================================ */
+
 :root{
-  --canvas:#07141B;
-  --canvas-2:#0A1C25;
-  --panel:#0D222C;
-  --panel-2:#112C38;
-  --deep:#124A6E;
-  --accent:#22D3C5;
-  --accent-hover:#5AE7DC;
-  --accent-muted:rgba(34,211,197,.12);
-  --accent-line:rgba(34,211,197,.45);
-  --text-primary:#EAF6F5;
-  --text-secondary:#9DB4B8;
-  --hair:rgba(154,200,205,.16);      /* separateurs decoratifs uniquement */
-  --edge:#46767E;                    /* bordures d'elements interactifs : 3,4:1 mesure */
-  --border-strong:rgba(34,211,197,.5);
-  --display:"Bricolage Grotesque",Georgia,serif;
-  --body:"Karla",system-ui,sans-serif;
-  --mono:"DM Mono",ui-monospace,monospace;
+  --deep:#082F35;
+  --deep-2:#0A3B42;
+  --deep-3:#0C464E;
+  --lagoon:#0E6670;
+  --foam:#F4F1E8;
+  --foam-2:#EAE5D8;
+  --sand:#D8C6A5;
+  --coral:#E87961;
+  --coral-hover:#F08E78;
+  --basalt:#202524;
+  --leaf:#47715B;
+  --edge:#4E858E;                 /* bordures interactives, mesuré 3,45:1 sur deep */
+  --on-deep:#F4F1E8;              /* 12,66:1 */
+  --on-deep-2:#9FB6B9;            /* 6,72:1 */
+  --on-foam:#202524;              /* 13,75:1 */
+  --on-foam-2:#5C6B66;            /* 4,96:1 */
+
+  --tshadow:0 1px 2px rgba(4,18,20,.95),0 3px 12px rgba(4,18,20,.78),0 10px 44px rgba(4,18,20,.8);
   --ease:cubic-bezier(.22,.61,.36,1);
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --tshadow:0 1px 2px rgba(5,5,10,.95),0 3px 12px rgba(5,5,10,.78),0 10px 44px rgba(5,5,10,.8);
-  --rail-w:64px;
+  --ease-soft:cubic-bezier(.33,.02,.2,1);
+
+  --pad:clamp(20px,5vw,88px);
+  --fibre:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 52'%3E%3Cpath d='M0,0 H300 V18 L292,18 L284,19 L275,24 L266,31 L257,29 L248,25 L239,30 L230,38 L221,31 L212,21 L203,26 L194,34 L185,31 L176,24 L167,29 L158,36 L149,30 L140,20 L131,25 L122,33 L113,30 L104,23 L96,27 L88,37 L79,32 L70,22 L61,26 L52,35 L44,30 L36,19 L27,21 L18,32 L9,30 L0,18 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+  --fibre-line:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 52'%3E%3Cpath d='M0,18 L9,30 L18,32 L27,21 L36,19 L44,30 L52,35 L61,26 L70,22 L79,32 L88,37 L96,27 L104,23 L113,30 L122,33 L131,25 L140,20 L149,30 L158,36 L167,29 L176,24 L185,31 L194,34 L203,26 L212,21 L221,31 L230,38 L239,30 L248,25 L257,29 L266,31 L275,24 L284,19 L292,18 L300,18' fill='none' stroke='%23E87961' stroke-width='2.6' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
+
 *{box-sizing:border-box}
 html,body{overflow-x:hidden;overflow-x:clip}
-html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--canvas);color:var(--text-primary);
-  font-family:var(--body);font-size:17px;line-height:1.65;
+  margin:0;background:var(--deep);color:var(--on-deep);
+  font-family:"Instrument Sans",system-ui,sans-serif;font-weight:400;
+  font-size:clamp(16px,1.05vw,18px);line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.02em;margin:0}
-p{margin:0}
+img{max-width:100%;display:block}
 a{color:inherit}
-img,svg{max-width:100%;display:block}
-.mono{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:500}
-.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--accent);color:#04222B;padding:12px 18px;border-radius:0 0 10px 0;font-weight:700}
-.skip:focus{left:0}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+button{font:inherit;color:inherit}
 
-/* ============================================================
-   2. ENVIRONNEMENT FIXE
-   ============================================================ */
-.env{position:fixed;inset:0;z-index:0;pointer-events:none;background:
-  radial-gradient(ellipse 90% 60% at 18% 8%,rgba(18,74,110,.30),transparent 62%),
-  radial-gradient(ellipse 80% 70% at 84% 88%,rgba(34,211,197,.10),transparent 60%),
-  var(--canvas);}
-.env::after{content:"";position:absolute;inset:-20%;opacity:.5;
-  background:radial-gradient(ellipse 40% 34% at 50% 50%,rgba(34,211,197,.09),transparent 70%);
-  animation:drift 78s var(--ease) -22s infinite alternate}
-@keyframes drift{
-  0%{transform:translate3d(-8%,-4%,0) scale(1)}
-  100%{transform:translate3d(9%,6%,0) scale(1.18)}
-}
-.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+.d{font-family:Archivo,system-ui,sans-serif;font-weight:800;font-variation-settings:"wdth" 118;
+   line-height:.92;letter-spacing:-.022em;text-transform:uppercase}
+.mono{font-family:"DM Mono",ui-monospace,monospace;font-weight:400;
+      font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
 
-/* ============================================================
-   3. LA LIGNE DE PROFONDEUR (element signature)
-   ============================================================ */
-.rail{position:fixed;left:26px;top:0;bottom:0;width:var(--rail-w);z-index:40;pointer-events:none;
-  display:flex;flex-direction:column;justify-content:center}
-/* les petites etiquettes passent sur une image chargee : elles ont leur propre fond */
-.rail::before{content:"";position:absolute;left:-26px;top:0;bottom:0;width:168px;pointer-events:none;
-  background:linear-gradient(90deg,rgba(4,11,16,.58) 0%,rgba(4,11,16,.30) 46%,rgba(4,11,16,0) 100%)}
-.rail-track{position:absolute;left:9px;top:14vh;bottom:14vh;width:1px;background:var(--hair)}
-.rail-fill{position:absolute;left:0;top:0;width:1px;background:linear-gradient(180deg,rgba(34,211,197,.15),var(--accent));
-  height:0;box-shadow:0 0 12px rgba(34,211,197,.6)}
-.rail-head{position:absolute;left:-3px;width:7px;height:7px;border-radius:50%;background:var(--accent);
-  box-shadow:0 0 14px rgba(34,211,197,.9);top:0;transform:translateY(-50%);opacity:0;transition:opacity .5s var(--ease)}
-.rail.armed .rail-head{opacity:1}
-.rail-marks{position:absolute;left:0;top:14vh;bottom:14vh;width:100%}
-.rail-mark{position:absolute;left:0;display:flex;align-items:center;gap:8px;transform:translateY(-50%)}
-.rail-mark i{display:block;width:9px;height:1px;background:var(--hair)}
-.rail-mark span{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--text-secondary);
-  opacity:.68;transition:opacity .5s var(--ease),color .5s var(--ease);
-  text-shadow:0 1px 3px rgba(4,11,16,.9)}
-.rail-mark.on span{opacity:1;color:var(--accent)}
-.rail-mark.on i{background:var(--accent-line)}
-@media (max-width:1180px){.rail{display:none}}
-@media (max-height:620px){.rail{display:none}}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--coral);color:var(--basalt);
+      padding:12px 20px;border-radius:2px;font-weight:500}
+.skip:focus{left:12px;top:12px}
 
-/* ============================================================
-   4. NAVIGATION
-   ============================================================ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:28px;
-  padding:16px clamp(18px,4vw,44px);
-  background:linear-gradient(180deg,rgba(7,20,27,.72),rgba(7,20,27,0));
-  transition:background .5s var(--ease),backdrop-filter .5s var(--ease),border-color .5s var(--ease);
-  border-bottom:1px solid transparent}
-.nav.solid{background:rgba(7,20,27,.86);backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
-.brand{display:flex;align-items:baseline;gap:9px;text-decoration:none;font-family:var(--display);
-  font-weight:800;font-size:18px;letter-spacing:-.02em}
-.brand em{font-style:normal;color:var(--accent)}
-.nav-links{display:flex;gap:26px;margin-left:auto;align-items:baseline}
-.nav-links a{text-decoration:none;color:var(--text-secondary);font-size:14.5px;font-weight:500;
-  transition:color .35s var(--ease)}
-.nav-links a:hover{color:var(--text-primary)}
-@media (max-width:860px){.nav-links{display:none}}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:2px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:13px 24px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;
-  background:var(--accent);color:#04222B;border:1px solid var(--accent);
-  transition:background .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease)}
-.btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,211,197,.24)}
-.btn.ghost{background:transparent;color:var(--text-primary);border-color:var(--border-strong)}
-.btn.ghost:hover{background:var(--accent-muted);box-shadow:none}
-.nav .btn{padding:10px 20px;font-size:14px}
-/* au doigt, toute cible cliquable fait au moins 44px de haut, sans bouger la mise en page */
+/* ---------- la couche d'environnement fixe ---------- */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.env-glow{position:absolute;inset:-20%;
+  background:radial-gradient(46% 38% at 22% 28%,rgba(14,102,112,.34),transparent 70%),
+             radial-gradient(40% 34% at 82% 74%,rgba(71,113,91,.22),transparent 72%);
+  animation:drift 96s var(--ease-soft) -22s infinite alternate}
+@keyframes drift{0%{transform:translate3d(-2%,-1.5%,0) scale(1.02)}100%{transform:translate3d(2.5%,2%,0) scale(1.1)}}
+.env-grain{position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+.drop{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(244,241,232,.5);
+      animation:fall 26s linear infinite}
+@keyframes fall{0%{transform:translate3d(0,-8vh,0);opacity:0}
+  12%{opacity:.7}88%{opacity:.5}100%{transform:translate3d(14px,108vh,0);opacity:0}}
+
+/* ---------- navigation ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:clamp(14px,2.4vw,36px);
+     padding:14px var(--pad);transition:background .5s var(--ease),backdrop-filter .5s var(--ease),
+     border-color .5s var(--ease);border-bottom:1px solid transparent}
+.nav.solid{background:rgba(8,47,53,.86);backdrop-filter:blur(14px);border-bottom-color:rgba(78,133,142,.34)}
+.brand{display:flex;align-items:baseline;gap:.5ch;font-family:Archivo,sans-serif;font-weight:800;
+       font-variation-settings:"wdth" 112;font-size:clamp(15px,1.12vw,18px);letter-spacing:-.01em;
+       text-decoration:none;text-transform:uppercase;padding:6px 0}
+.brand i{font-style:normal;color:var(--coral)}
+.nav-links{display:flex;gap:clamp(12px,1.7vw,26px);margin-left:auto;align-items:center}
+.nav-links a{text-decoration:none;font-size:.86rem;color:var(--on-deep-2);padding:8px 2px;position:relative;
+             transition:color .35s var(--ease)}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--coral);
+                    transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.nav-links a:hover{color:var(--on-deep)}
+.nav-links a:hover::after{transform:scaleX(1)}
+@media (max-width:900px){.nav-links{display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6ch;text-decoration:none;
+     padding:13px 26px;font-weight:500;font-size:.9rem;letter-spacing:.01em;border-radius:2px;
+     border:1px solid transparent;cursor:pointer;position:relative;
+     transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease),transform .4s var(--ease)}
+.btn-a{background:var(--coral);color:var(--basalt);border-color:var(--coral);text-shadow:none}
+.btn-a:hover{background:var(--coral-hover);border-color:var(--coral-hover);transform:translateY(-2px)}
+.btn-b{background:transparent;color:var(--on-deep);border-color:var(--edge);text-shadow:none}
+.btn-b:hover{border-color:var(--foam);background:rgba(244,241,232,.07);transform:translateY(-2px)}
+.btn-c{background:var(--deep);color:var(--foam);border-color:var(--deep)}
+.btn-c:hover{background:var(--lagoon);border-color:var(--lagoon);transform:translateY(-2px)}
+.nav .btn{padding:10px 18px;font-size:.82rem}
 @media (pointer:coarse){
-  .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
-  .fnav a,.contactline a{min-height:44px;display:inline-flex;align-items:center}
-  .brand{padding-top:9px;padding-bottom:9px}
-  .q h3{padding:2px 0}
+  .btn{min-height:44px}
+  .brand{padding:10px 0}
+  .svc-link{min-height:44px}
+  .foot ul{gap:0}
+  .foot ul li a{min-height:44px;min-width:44px;display:inline-flex;align-items:center}
+  .contact a{min-height:44px;display:inline-flex;align-items:center}
 }
 
-/* ============================================================
-   5. LE HEROS DEFILANT
-   ============================================================ */
-#hero{position:relative;height:1000vh;z-index:2}
-.stage{position:sticky;top:0;height:100svh;overflow:hidden;background:#0A1218}
+/* ---------- le héros ---------- */
+.hero{position:relative;height:1000vh;z-index:1}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--deep)}
 .poster{position:absolute;inset:0;background-size:cover;background-position:center;
-  transform:scale(1.02);transition:opacity .8s var(--ease)}
-#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity .9s var(--ease);will-change:transform;transform:translateZ(0)}
-.stage.video-ready #hero-video{opacity:1}
+        transform:scale(1.03);transition:opacity .9s var(--ease)}
+#heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+           opacity:0;transition:opacity .9s var(--ease);will-change:transform;transform:translateZ(0)}
+.stage.video-ready #heroVideo{opacity:1}
 .stage.video-ready .poster{opacity:0}
-.stage.video-failed #hero-video{display:none}
 .scrim{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(6,14,20,0) 34%,rgba(6,14,20,.64) 100%)}
+  background:radial-gradient(ellipse 122% 92% at 50% 46%,rgba(4,18,20,0) 33%,rgba(4,18,20,.66) 100%)}
+.vig{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,18,20,.55) 0%,rgba(4,18,20,0) 22%,rgba(4,18,20,0) 74%,rgba(4,18,20,.52) 100%)}
 
-.ring{position:absolute;left:50%;bottom:38px;transform:translateX(-50%);width:44px;height:44px;
-  color:var(--accent);opacity:.85;z-index:5}
-.ring circle{transition:stroke-dashoffset .25s linear;transform:rotate(-90deg);transform-origin:50% 50%}
-.cue{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:5;
-  display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--text-secondary)}
-.cue span{font-family:var(--mono);font-size:10px;letter-spacing:.24em}
-.cue svg{width:16px;height:16px;animation:bob 2.8s var(--ease) -.6s infinite}
-@keyframes bob{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
-@media (max-height:560px){.ring,.cue{display:none}}
+.ring{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);width:44px;height:44px;
+      color:var(--foam);opacity:.75;z-index:6}
+.ring circle{transition:stroke-dashoffset .16s linear}
+.chev{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);z-index:6;color:var(--foam);opacity:.6;
+      animation:bob 2.8s var(--ease-soft) infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
-/* --- les bandes --- */
-.band{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  padding:0 clamp(22px,7vw,120px);opacity:0;pointer-events:none;text-shadow:var(--tshadow);z-index:4}
-.band::before{content:"";position:absolute;inset:-4%;pointer-events:none;
-  opacity:calc(.25 + .75*var(--k,1));
-  background:radial-gradient(ellipse 76% 58% at 50% 50%,rgba(4,10,14,.70) 0%,rgba(4,10,14,.46) 46%,rgba(4,10,14,0) 76%)}
-/* chaque voile est centre sur SON texte, et son alpha est regle sur la pire image
-   de sa bande, mesuree au pixel. b1 et b5 tombent sur du tissu clair : ils tapent plus fort. */
-.band.b1::before{background:radial-gradient(ellipse 80% 46% at 50% 22%,rgba(4,10,14,.86) 0%,rgba(4,10,14,.60) 50%,rgba(4,10,14,0) 78%)}
-.band.b4::before{background:radial-gradient(ellipse 76% 46% at 50% 26%,rgba(4,10,14,.74) 0%,rgba(4,10,14,.50) 48%,rgba(4,10,14,0) 78%)}
-.band.b5::before{background:radial-gradient(ellipse 88% 62% at 50% 50%,rgba(4,10,14,.86) 0%,rgba(4,10,14,.62) 50%,rgba(4,10,14,0) 84%)}
-.band .inner{position:relative;z-index:1;max-width:min(94vw,1180px);text-align:center}
-.band .line{font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.02;
-  font-size:clamp(30px,6.4vw,86px);max-width:19ch;margin:0 auto}
-.band .line.small{font-size:clamp(24px,4.4vw,54px);max-width:24ch}
-.band.b1{align-items:flex-start;padding-top:clamp(96px,17vh,190px)}
-.band.b4{align-items:flex-start;padding-top:clamp(110px,20vh,220px)}
+.bands{position:absolute;inset:0;z-index:5;pointer-events:none}
+.band{position:absolute;inset:0;opacity:0;text-shadow:var(--tshadow);display:grid;
+      padding:clamp(84px,11vh,140px) var(--pad) clamp(84px,12vh,150px)}
+.band::before{content:"";position:absolute;inset:-6%;pointer-events:none;
+  opacity:calc(.28 + .72*var(--k,1));z-index:-1}
+.band h2,.band p{margin:0}
+.band .line{font-size:clamp(2.15rem,6.4vw,6.4rem)}
 .band .btn{text-shadow:none}
 
+/* placement par bande, et voile centré sur son propre texte */
+.b1 .in-b{max-width:min(74vw,1040px)}
+.b2 .in-b{max-width:min(86vw,1260px)}
+.b3 .in-b{max-width:min(80vw,1120px)}
+.b4 .in-b{max-width:min(58vw,820px)}
+.b5 .in-b{max-width:min(88vw,1180px)}
+.b1{align-content:end;justify-items:start;text-align:left}
+.b1::before{background:linear-gradient(to top,rgba(4,18,20,.88) 0%,rgba(4,18,20,.70) 26%,rgba(4,18,20,.30) 50%,rgba(4,18,20,0) 72%),linear-gradient(to right,rgba(4,18,20,.50) 0%,rgba(4,18,20,0) 62%)}
+.b2{align-content:start;justify-items:start;text-align:left}
+.b2::before{background:linear-gradient(to bottom,rgba(4,18,20,.90) 0%,rgba(4,18,20,.80) 30%,rgba(4,18,20,.56) 50%,rgba(4,18,20,.18) 68%,rgba(4,18,20,0) 84%),linear-gradient(to right,rgba(4,18,20,.44) 0%,rgba(4,18,20,0) 66%)}
+.b3{align-content:center;justify-items:center;text-align:center}
+.b3::before{background:radial-gradient(ellipse 80% 56% at 50% 50%,rgba(4,18,20,.88) 0%,rgba(4,18,20,.64) 42%,rgba(4,18,20,0) 80%)}
+.b4{align-content:center;justify-items:end;text-align:right}
+.b4::before{background:linear-gradient(to left,rgba(4,18,20,.92) 0%,rgba(4,18,20,.80) 30%,rgba(4,18,20,.52) 56%,rgba(4,18,20,0) 86%),radial-gradient(ellipse 66% 48% at 72% 50%,rgba(4,18,20,.56) 0%,rgba(4,18,20,0) 80%)}
+.b5{align-content:center;justify-items:center;text-align:center}
+.b5::before{background:radial-gradient(ellipse 94% 76% at 50% 50%,rgba(4,18,20,.90) 0%,rgba(4,18,20,.72) 44%,rgba(4,18,20,.30) 66%,rgba(4,18,20,0) 88%)}
+
+.kick{color:var(--sand);margin-bottom:1.1rem;display:block}
+.b5 .sub{margin:1.5rem auto 0;font-size:clamp(1rem,1.32vw,1.2rem);color:var(--foam);max-width:46ch;line-height:1.55}
+.b5 .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:2rem}
+
+/* --- moteurs de texte : transform et opacity seulement --- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .w{display:inline-block;white-space:pre}
 .c{display:inline-block;will-change:transform,opacity}
 
-/* (a) derive vers le bas : bande 1 */
+/* (a) descente : bande 1 */
 .e-drift .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);
   transform:translateY(calc((1 - var(--kc)) * -26px))}
 /* (c) flou vers net : bande 2 */
-.e-blur .dual{position:relative;display:block}
-.e-blur .soft{position:absolute;inset:0;filter:blur(11px);opacity:calc(1 - var(--k,0))}
+.e-blur{position:relative}
+.e-blur .soft{position:absolute;inset:0;filter:blur(11px);opacity:calc(1 - var(--k,0));pointer-events:none}
 .e-blur .sharp{opacity:var(--k,0)}
-/* (a) dispersion : bande 3 */
-.e-scatter .c{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);
-  transform:translate(calc((1 - var(--kc))*var(--jx,0px)),calc((1 - var(--kc))*var(--jy,0px)))
-            rotate(calc((1 - var(--kc))*var(--jr,0deg)))}
-.e-scatter .l2{--kl:clamp(0,(var(--k,0) - .42)*2.2,1);opacity:var(--kl);
-  transform:translateY(calc((1 - var(--kl)) * 18px));display:block;margin-top:.14em}
-/* (d) coup de mot : bande 4 */
+/* (d) coup de mot : bande 3 */
 .e-punch .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);
   --ks:clamp(0,(var(--k,0) - var(--th,0) - var(--sd,.1))*var(--ss,3.2),1);
   opacity:var(--kc);
-  transform:scale(calc(0.62 + (0.38 + var(--ov,.12))*var(--kc) - var(--ov,.12)*var(--ks)))}
-.e-punch .w.em{--ov:.24;--sd:.16;--ss:2.6}
-/* (e) montee mot a mot en trois temps : bande 5 */
+  transform:scale(calc(.62 + (.38 + var(--ov,.12))*var(--kc) - var(--ov,.12)*var(--ks)))}
+.e-punch .w.em{--ov:.24;--sd:.16;--ss:2.6;color:var(--coral)}
+/* (i) tissage : bande 4 */
+.e-weave .c{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc)) * var(--jy,0px)))}
+/* (e) montée mot à mot en trois temps : bande 5 */
 .e-rise .w{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);
   transform:translateY(calc((1 - var(--kc)) * 30px))}
-.e-rise .sub{--ks:clamp(0,(var(--k,0) - .66)*4,1);opacity:var(--ks);
-  transform:translateY(calc((1 - var(--ks)) * 16px));
-  margin:22px auto 0;max-width:46ch;font-size:clamp(15px,2vw,19px);color:#D3E7E6;font-family:var(--body);
-  font-weight:400;line-height:1.55;letter-spacing:0}
-.e-rise .ctarow{--kb:clamp(0,(var(--k,0) - .78)*5,1);opacity:var(--kb);
-  transform:translateY(calc((1 - var(--kb)) * 14px));
-  margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;pointer-events:none}
-.band.live .ctarow{pointer-events:auto}
+.b5 .sub{--ks:clamp(0,(var(--k,0) - .60)*3.4,1);opacity:var(--ks);
+  transform:translateY(calc((1 - var(--ks)) * 16px))}
+.b5 .cta-row{--kb:clamp(0,(var(--k,0) - .76)*4.4,1);opacity:var(--kb);
+  transform:translateY(calc((1 - var(--kb)) * 16px))}
 
-/* --- le heros fixe --- */
-.static-hero{display:none;position:absolute;inset:0;flex-direction:column;justify-content:flex-end;
-  padding:0 clamp(22px,7vw,90px) clamp(56px,11vh,110px);z-index:4;text-shadow:var(--tshadow);
-  background:url('assets/hero-still.jpg') center/cover no-repeat}
-.static-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,14,20,.60) 0%,rgba(6,14,20,.26) 26%,
-    rgba(6,14,20,.80) 62%,rgba(6,14,20,.94) 100%)}
-.static-hero .in2{position:relative;z-index:1}
-.static-hero h1{font-size:clamp(34px,8.6vw,58px);max-width:15ch;letter-spacing:-.03em}
-.static-hero p{margin-top:16px;max-width:34ch;color:#D3E7E6;font-size:16px}
-.static-hero .btn{margin-top:26px;text-shadow:none}
+/* ---------- la ligne de passage : l'élément signature ---------- */
+.pass{position:absolute;left:0;right:0;top:0;height:52px;z-index:3;pointer-events:none}
+.pass .fill{position:absolute;inset:0;background:var(--from,var(--deep));
+  -webkit-mask-image:var(--fibre);mask-image:var(--fibre);
+  -webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:300px 52px;mask-size:300px 52px}
+.pass .edge{position:absolute;inset:0;background-image:var(--fibre-line);
+  background-repeat:repeat-x;background-size:300px 52px;opacity:.92;
+  clip-path:inset(0 100% 0 0);transition:clip-path 1.6s var(--ease)}
+.pass.in .edge{clip-path:inset(0 0 0 0)}
 
+/* ---------- sections ---------- */
+.sec{position:relative;z-index:2;padding:clamp(76px,10vw,150px) var(--pad)}
+.sec-deep{background:var(--deep)}
+.sec-deep2{background:var(--deep-2)}
+.sec-foam{background:var(--foam);color:var(--on-foam)}
+.sec-sand{background:var(--sand);color:var(--basalt)}
+.sec-lagoon{background:var(--lagoon)}
+.wrap{max-width:1360px;margin:0 auto}
+
+.sec-foam .mono,.sec-sand .mono{color:var(--on-foam-2)}
+.sec-foam .lede,.sec-sand .lede{color:var(--on-foam-2)}
+.lede{color:var(--on-deep-2);font-size:clamp(1rem,1.28vw,1.16rem);max-width:56ch;line-height:1.62}
+
+h2.title{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 118;
+  text-transform:uppercase;letter-spacing:-.022em;line-height:.9;margin:0;
+  font-size:clamp(2.1rem,5.6vw,5.2rem)}
+h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 110;
+  text-transform:uppercase;letter-spacing:-.015em;line-height:1;margin:0;
+  font-size:clamp(1.28rem,2.2vw,2rem)}
+
+/* entrées chorégraphiées */
+.rev{opacity:0;transform:translateY(26px);
+     transition:opacity .95s var(--ease),transform .95s var(--ease)}
+.rev.in{opacity:1;transform:none}
+.stag>*{opacity:0;transform:translateY(22px);
+        transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.stag.in>*{opacity:1;transform:none}
+.stag.in>*:nth-child(1){transition-delay:0s}
+.stag.in>*:nth-child(2){transition-delay:.09s}
+.stag.in>*:nth-child(3){transition-delay:.18s}
+.stag.in>*:nth-child(4){transition-delay:.27s}
+.stag.in>*:nth-child(5){transition-delay:.36s}
+.stag.in>*:nth-child(6){transition-delay:.45s}
+.stag.done>*:nth-child(1),.stag.done>*:nth-child(2),.stag.done>*:nth-child(3),
+.stag.done>*:nth-child(4),.stag.done>*:nth-child(5),.stag.done>*:nth-child(6){transition-delay:0s}
+
+/* ---------- le bandeau d'instrument ---------- */
+.strip{background:var(--basalt);color:var(--foam);padding:16px 0;overflow:hidden;position:relative;z-index:2;
+       border-top:1px solid rgba(78,133,142,.3);border-bottom:1px solid rgba(78,133,142,.3)}
+.track{display:flex;width:max-content;animation:slide 46s linear infinite}
+.track span{padding:0 26px;white-space:nowrap;color:var(--sand)}
+.track span::after{content:"·";margin-left:26px;color:var(--coral)}
+@keyframes slide{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* ---------- services : empilement éditorial ---------- */
+.svc{display:grid;gap:clamp(20px,3vw,46px);align-items:center;
+     padding:clamp(38px,5.4vw,74px) 0;border-top:1px solid rgba(92,107,102,.26)}
+.svc:first-of-type{border-top:0}
+.svc-fig{position:relative;overflow:hidden;border-radius:3px;background:var(--deep-2)}
+.svc-fig img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);
+             transition:transform 1.4s var(--ease)}
+.svc:hover .svc-fig img{transform:scale(1.09)}
+.svc-num{font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.2em;color:var(--coral)}
+.svc-word{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 122;
+  text-transform:uppercase;line-height:.86;letter-spacing:-.03em;margin:.5rem 0 1rem;
+  font-size:clamp(2.3rem,7vw,6.2rem)}
+.svc-txt{max-width:42ch;line-height:1.6}
+.svc-price{margin-top:1.1rem;font-family:"DM Mono",monospace;font-size:.8rem;letter-spacing:.1em;
+  color:var(--basalt);background:var(--sand);display:inline-block;padding:7px 13px;border-radius:2px}
+.svc-link{display:inline-flex;align-items:center;gap:.6ch;margin-top:1.4rem;text-decoration:none;
+  font-weight:500;font-size:.92rem;border-bottom:1px solid var(--edge);padding-bottom:4px;
+  transition:border-color .4s var(--ease),gap .4s var(--ease)}
+.svc-link:hover{border-color:var(--coral);gap:1.2ch}
+/* quatre charpentes différentes */
+.svc-1{grid-template-columns:1.05fr .95fr}
+.svc-2{grid-template-columns:.95fr 1.05fr}
+.svc-2 .svc-fig{order:-1}
+.svc-3{grid-template-columns:1fr}
+.svc-3 .svc-fig{aspect-ratio:21/8}
+.svc-4{grid-template-columns:.8fr 1.2fr}
+.svc-4 .svc-fig{order:-1}
+.svc-1 .svc-fig,.svc-2 .svc-fig,.svc-4 .svc-fig{aspect-ratio:4/3}
+@media (max-width:700px){.svc-3 .svc-txt+*,.svc-3 > div:last-child{grid-template-columns:1fr!important;text-align:left!important}}
+@media (max-width:860px){
+  .svc,.svc-1,.svc-2,.svc-3,.svc-4{grid-template-columns:1fr}
+  .svc-2 .svc-fig,.svc-4 .svc-fig{order:0}
+  .svc-1 .svc-fig,.svc-2 .svc-fig,.svc-4 .svc-fig,.svc-3 .svc-fig{aspect-ratio:16/10}
+}
+
+/* ---------- le comparateur : le moment interactif ---------- */
+.cmp-head{display:grid;gap:18px;margin-bottom:clamp(26px,3.4vw,46px);max-width:64ch}
+.cmp{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:3px;
+     cursor:ew-resize;touch-action:pan-y;background:var(--deep-2);user-select:none}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cmp .after{clip-path:inset(0 0 0 var(--x,50%))}
+.cmp-handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--coral);
+            transform:translateX(-1px);pointer-events:none;z-index:3}
+.cmp-handle::before{content:"";position:absolute;top:0;bottom:0;left:-9px;width:20px;
+  background-image:repeating-linear-gradient(180deg,rgba(232,121,97,.55) 0 7px,rgba(232,121,97,0) 7px 15px);
+  filter:blur(1px)}
+.cmp-grip{position:absolute;top:50%;left:var(--x,50%);transform:translate(-50%,-50%);z-index:4;
+  width:56px;height:56px;border-radius:50%;background:var(--coral);color:var(--basalt);
+  display:grid;place-items:center;pointer-events:none;
+  box-shadow:0 10px 34px rgba(4,18,20,.5)}
+.cmp-tag{position:absolute;top:16px;z-index:3;background:rgba(8,47,53,.7);color:var(--foam);
+  border:1px solid rgba(78,133,142,.4);border-radius:10px;padding:6px 11px;backdrop-filter:blur(10px);
+  text-shadow:0 1px 3px rgba(4,18,20,.85)}
+.cmp-tag.l{left:16px}.cmp-tag.r{right:16px}
+.cmp-note{margin-top:16px;max-width:74ch;line-height:1.55;font-size:.86rem;color:var(--on-deep-2)}
+.cmp-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:4;
+  background:rgba(8,47,53,.7);color:var(--foam);border:1px solid rgba(78,133,142,.4);border-radius:10px;
+  padding:6px 11px;backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(4,18,20,.85);
+  transition:opacity .6s var(--ease)}
+.cmp.touched .cmp-hint{opacity:0}
+
+/* ---------- la machine ---------- */
+.mach{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4vw,64px);align-items:center}
+@media (max-width:980px){.mach{grid-template-columns:1fr}}
+.mach-stage{background:var(--deep-2);border:1px solid rgba(78,133,142,.3);
+            border-radius:3px;padding:clamp(14px,2.2vw,30px)}
+.mach-canvas{position:relative}
+.mach-svg{width:100%;height:auto;display:block;overflow:visible}
+.mach-svg .solid{fill:rgba(78,133,142,.13);transition:fill .5s var(--ease)}
+.mach-svg .dash{stroke-dasharray:5 6}
+.mach-svg .dim{opacity:.42}
+.mach-svg .dim-t{fill:var(--on-deep-2);font-family:"DM Mono",monospace;font-size:15px;letter-spacing:.1em;opacity:.7}
+.mach-svg g.on .solid{fill:rgba(232,121,97,.16)}
+.mach-svg g.on .dim{opacity:.85}
+.mach-svg g.on .dim-t{fill:var(--coral);opacity:1}
+.mach-svg .part{fill:none;stroke:var(--on-deep-2);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round;
+  transition:stroke .5s var(--ease),stroke-width .5s var(--ease),opacity .5s var(--ease)}
+.mach-svg .thin{stroke-width:1.5;opacity:.55}
+.mach-svg g.on .part{stroke:var(--coral);stroke-width:3.4;opacity:1}
+.mach-svg g.on .thin{stroke-width:2.2}
+.hot{position:absolute;width:30px;height:30px;border-radius:50%;padding:0;cursor:pointer;
+  background:rgba(8,47,53,.72);border:1px solid var(--edge);color:var(--foam);display:grid;place-items:center;
+  transform:translate(-50%,-50%);transition:background .4s var(--ease),border-color .4s var(--ease),transform .4s var(--ease)}
+.hot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--on-deep-2);
+  transition:background .4s var(--ease)}
+.hot:hover,.hot[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);transform:translate(-50%,-50%) scale(1.18)}
+.hot:hover::after,.hot[aria-pressed="true"]::after{background:var(--basalt)}
+@media (pointer:coarse){.hot{width:44px;height:44px}}
+.mach-list{display:grid;gap:0}
+.mach-item{border-top:1px solid rgba(78,133,142,.28);padding:14px 0;cursor:pointer;background:none;
+  border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%;
+  transition:padding-left .45s var(--ease)}
+.mach-item:last-child{border-bottom:1px solid rgba(78,133,142,.28)}
+.mach-item .lab{display:flex;align-items:baseline;gap:10px;color:var(--on-deep)}
+.mach-item .lab b{font-family:"DM Mono",monospace;font-weight:400;font-size:.74rem;letter-spacing:.14em;
+  color:var(--on-deep-2);transition:color .4s var(--ease)}
+.mach-item .val{color:var(--on-deep-2);font-size:.92rem;line-height:1.5;max-height:0;overflow:hidden;
+  opacity:0;transition:max-height .55s var(--ease),opacity .45s var(--ease),margin .55s var(--ease)}
+.mach-item[aria-pressed="true"]{padding-left:14px}
+.mach-item[aria-pressed="true"] .lab b{color:var(--coral)}
+.mach-item[aria-pressed="true"] .val{max-height:9em;opacity:1;margin-top:8px}
+.mach-note{margin-top:20px;font-size:.82rem;color:var(--on-deep-2);max-width:64ch;line-height:1.55}
+
+/* ---------- le procédé ---------- */
+.proc{position:relative}
+.proc-line{position:absolute;left:0;right:0;top:38px;height:2px;overflow:visible}
+.proc-line path{fill:none;stroke:var(--edge);stroke-width:2;
+  stroke-dasharray:var(--len,1200);stroke-dashoffset:var(--len,1200);
+  transition:stroke-dashoffset 2.2s var(--ease)}
+.proc.in .proc-line path{stroke-dashoffset:0}
+.proc-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative}
+@media (max-width:900px){.proc-steps{grid-template-columns:repeat(2,1fr);gap:26px}.proc-line{display:none}}
+.proc-step{position:relative;padding-top:64px}
+.proc-dot{position:absolute;top:28px;left:0;width:22px;height:22px;border-radius:50%;
+  background:var(--deep);border:2px solid var(--edge);display:grid;place-items:center}
+.proc-dot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);
+  opacity:0;transition:opacity .6s var(--ease)}
+.proc.in .proc-step:nth-child(1) .proc-dot::after{opacity:1;transition-delay:.25s}
+.proc.in .proc-step:nth-child(2) .proc-dot::after{opacity:1;transition-delay:.55s}
+.proc.in .proc-step:nth-child(3) .proc-dot::after{opacity:1;transition-delay:.85s}
+.proc.in .proc-step:nth-child(4) .proc-dot::after{opacity:1;transition-delay:1.15s}
+.proc.in .proc-step:nth-child(5) .proc-dot::after{opacity:1;transition-delay:1.45s}
+.proc.in .proc-step:nth-child(6) .proc-dot::after{opacity:1;transition-delay:1.75s}
+.proc-step h4{margin:0 0 6px;font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 108;
+  text-transform:uppercase;font-size:clamp(.86rem,1.06vw,1rem);letter-spacing:-.005em;line-height:1.08}
+.proc-step p{margin:0;font-size:.85rem;color:var(--on-deep-2);line-height:1.5}
+
+/* ---------- la fourche ---------- */
+.fork-head{text-align:center;margin-bottom:clamp(30px,4.4vw,64px)}
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,28px)}
+@media (max-width:860px){.fork{grid-template-columns:1fr}}
+.voie{position:relative;overflow:hidden;border-radius:3px;background:var(--deep-2);
+  display:flex;flex-direction:column;min-height:clamp(400px,54vh,560px);
+  border:1px solid rgba(78,133,142,.3);transition:border-color .5s var(--ease)}
+.voie:hover{border-color:var(--edge)}
+.voie-fig{position:absolute;inset:0}
+.voie-fig img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+.voie:hover .voie-fig img{transform:scale(1.1)}
+.voie-fig::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,18,20,.36) 0%,rgba(4,18,20,.72) 52%,rgba(6,34,38,.94) 100%)}
+.voie-body{position:relative;margin-top:auto;padding:clamp(22px,2.8vw,38px)}
+.voie h3{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 116;
+  text-transform:uppercase;letter-spacing:-.022em;line-height:.92;margin:.6rem 0 .9rem;
+  font-size:clamp(1.7rem,3.3vw,2.9rem);color:var(--foam)}
+.voie p{margin:0 0 1.5rem;color:var(--foam);opacity:.88;max-width:34ch;line-height:1.55}
+
+/* ---------- location ---------- */
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3.4vw,56px);align-items:start}
+@media (max-width:900px){.loc{grid-template-columns:1fr}}
+.kit{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:0}
+.kit li{display:flex;gap:14px;align-items:baseline;padding:13px 0;
+  border-top:1px solid rgba(92,107,102,.26)}
+.kit li:last-child{border-bottom:1px solid rgba(92,107,102,.26)}
+.kit li i{font-style:normal;color:var(--coral);font-family:"DM Mono",monospace;font-size:.72rem}
+.plans{display:grid;gap:14px}
+.plan{border:1px solid rgba(92,107,102,.3);border-radius:3px;padding:clamp(18px,2.2vw,28px);
+  background:rgba(244,241,232,.5);transition:border-color .5s var(--ease),transform .5s var(--ease)}
+.plan:hover{border-color:var(--basalt);transform:translateY(-3px)}
+.plan-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:.8rem}
+.plan-price{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 112;
+  font-size:clamp(1.4rem,2.4vw,2rem);letter-spacing:-.02em;white-space:nowrap}
+.plan ul{margin:0;padding-left:1.1em;color:var(--on-foam-2);font-size:.92rem;line-height:1.65}
+.deliv{margin-top:16px;font-size:.88rem;color:var(--on-foam-2)}
+
+/* ---------- comment ça marche ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,44px)}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.step{border-top:2px solid var(--coral);padding-top:20px}
+.step b{display:block;font-family:"DM Mono",monospace;font-size:.74rem;letter-spacing:.2em;
+  color:var(--on-foam-2);margin-bottom:.7rem}
+.step h4{margin:0 0 .6rem;font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 112;
+  text-transform:uppercase;letter-spacing:-.015em;font-size:clamp(1.15rem,1.9vw,1.6rem);line-height:1}
+.step p{margin:0;color:var(--on-foam-2);line-height:1.6;max-width:34ch}
+.steps-tag{margin-top:clamp(30px,4vw,56px);text-align:center;
+  font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 120;
+  text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.2rem,3.2vw,2.4rem);color:var(--basalt)}
+
+/* ---------- tarifs ---------- */
+.tar{display:grid;grid-template-columns:1.4fr .6fr;gap:clamp(22px,3.4vw,56px);align-items:start}
+@media (max-width:900px){.tar{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;font-size:.95rem}
+.tbl caption{text-align:left;padding-bottom:12px;color:var(--on-deep-2)}
+.tbl th,.tbl td{text-align:left;padding:12px 8px;border-top:1px solid rgba(78,133,142,.26)}
+.tbl th{font-weight:400;color:var(--on-deep)}
+.tbl td{text-align:right;font-family:"DM Mono",monospace;font-size:.86rem;white-space:nowrap;color:var(--sand)}
+.tbl tr:last-child th,.tbl tr:last-child td{border-bottom:1px solid rgba(78,133,142,.26)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:900px;margin:0 auto}
+.q{border-top:1px solid rgba(78,133,142,.28)}
+.q:last-of-type{border-bottom:1px solid rgba(78,133,142,.28)}
+.q button{width:100%;background:none;border:0;padding:22px 40px 22px 0;text-align:left;cursor:pointer;
+  position:relative;font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 106;
+  font-size:clamp(1.02rem,1.6vw,1.3rem);line-height:1.25;letter-spacing:-.01em;color:var(--on-deep);
+  transition:color .4s var(--ease)}
+.q button:hover{color:var(--coral)}
+.q button::after{content:"";position:absolute;right:6px;top:50%;width:13px;height:2px;background:currentColor;
+  transform:translateY(-50%)}
+.q button::before{content:"";position:absolute;right:11.5px;top:50%;width:2px;height:13px;background:currentColor;
+  transform:translateY(-50%) scaleY(1);transition:transform .5s var(--ease)}
+.q[open] button::before{transform:translateY(-50%) scaleY(0)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease),opacity .5s var(--ease);opacity:0}
+.q[open] .a{max-height:32em;opacity:1}
+.q .a p{margin:0 0 22px;color:var(--on-deep-2);max-width:66ch;line-height:1.65}
+.todo{display:inline-block;font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.1em;
+  color:var(--basalt);background:var(--sand);padding:4px 9px;border-radius:2px}
+
+/* ---------- clôture ---------- */
+.close{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;
+  padding:clamp(90px,12vw,150px) var(--pad);overflow:hidden;z-index:2}
+.close-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.close-bg::after{content:"";position:absolute;inset:0;background:rgba(6,34,38,.74)}
+.close-in{position:relative;max-width:1100px;width:100%}
+.close h2{font-size:clamp(2.2rem,6.4vw,5.8rem)}
+.close .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:2.2rem}
+.contact{margin-top:2.6rem;display:flex;gap:26px;justify-content:center;flex-wrap:wrap;
+  color:var(--on-deep-2);font-size:.92rem}
+.contact a{color:var(--on-deep);text-decoration:none;border-bottom:1px solid var(--edge);padding-bottom:2px}
+.contact a:hover{border-color:var(--coral)}
+.form{margin:clamp(40px,5vw,70px) auto 0;max-width:660px;text-align:left;
+  border:1px solid rgba(78,133,142,.32);border-radius:3px;padding:clamp(20px,3vw,34px);
+  background:rgba(8,47,53,.62);backdrop-filter:blur(8px)}
+.form .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:620px){.form .grid{grid-template-columns:1fr}}
+.field{display:grid;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--on-deep-2)}
+.field input,.field textarea{background:rgba(6,34,38,.7);border:1px solid var(--edge);color:var(--on-deep);
+  border-radius:2px;padding:12px 13px;font:inherit;font-size:.94rem;
+  transition:border-color .4s var(--ease)}
+.field input:focus,.field textarea:focus{border-color:var(--coral);outline:none}
+.field textarea{min-height:110px;resize:vertical}
+.form .btn{margin-top:16px;width:100%}
+.form-msg{margin-top:14px;font-size:.88rem;color:var(--sand);min-height:1.4em}
+
+/* ---------- pied de page ---------- */
+.foot{background:var(--basalt);color:var(--foam);padding:clamp(56px,7vw,96px) var(--pad) 40px;
+  position:relative;z-index:2}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:clamp(20px,3vw,44px);
+  padding-bottom:clamp(34px,4.4vw,60px);border-bottom:1px solid rgba(159,182,185,.22)}
+@media (max-width:860px){.foot-top{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-top{grid-template-columns:1fr}}
+.foot h5{margin:0 0 14px;font-family:"DM Mono",monospace;font-weight:400;font-size:.7rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--sand)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot a{color:rgba(244,241,232,.76);text-decoration:none;font-size:.92rem;transition:color .35s var(--ease)}
+.foot a:hover{color:var(--coral)}
+.foot-mark{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 118;
+  text-transform:uppercase;font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.025em;line-height:.95;margin:0 0 14px}
+.foot-mark i{font-style:normal;color:var(--coral)}
+.foot-bot{padding-top:26px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  color:rgba(244,241,232,.55);font-size:.82rem}
+
+/* ---------- petits écrans : le héros fixe ---------- */
+.static-hero{display:none}
 @media (max-width:720px),
        (orientation:portrait) and (max-width:1024px),
        (orientation:portrait) and (pointer:coarse),
        (orientation:landscape) and (pointer:coarse) and (max-height:560px),
        (prefers-reduced-motion:reduce){
-  #hero{height:100svh}
-  .band,.ring,.cue,#hero-video{display:none}
-  .static-hero{display:flex}
+  .hero{height:auto}
+  .stage{position:relative;height:auto;min-height:100svh}
+  #heroVideo,.bands,.ring,.chev{display:none!important}
+  .poster{position:absolute;inset:0;opacity:1!important;transform:none}
+  .static-hero{display:grid;position:relative;min-height:100svh;align-content:end;
+    padding:clamp(100px,16vh,180px) var(--pad) clamp(46px,8vh,80px);text-shadow:var(--tshadow)}
+  .static-hero::before{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(4,18,20,.5) 0%,rgba(4,18,20,.2) 32%,rgba(4,18,20,.9) 100%)}
+  .static-hero>*{position:relative}
+  .static-hero h1{margin:0;font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 116;
+    text-transform:uppercase;letter-spacing:-.025em;line-height:.92;font-size:clamp(2.4rem,12vw,4rem)}
+  .static-hero p{margin:1.1rem 0 0;max-width:36ch;color:var(--foam);line-height:1.55}
+  .static-hero .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.9rem}
+  .static-hero .btn{text-shadow:none}
 }
+@media (max-height:560px){.chev,.ring{display:none}}
 
-/* ============================================================
-   6. SECTIONS
-   ============================================================ */
-main{position:relative;z-index:2}
-section.blk{position:relative;padding:clamp(78px,12vh,148px) clamp(22px,6vw,72px);max-width:1240px;margin:0 auto}
-.kicker{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
-.kicker i{display:block;width:34px;height:1px;background:var(--accent-line)}
-h2{font-size:clamp(30px,5vw,58px);max-width:17ch}
-.lede{margin-top:18px;max-width:52ch;color:var(--text-secondary);font-size:clamp(16px,1.9vw,19px)}
-
-/* aucune section voisine ne partage la meme charpente d'en-tete */
-.hd-split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:baseline}
-.hd-split .kicker{grid-column:1/-1}
-.hd-split .lede{margin-top:0;max-width:38ch}
-@media (max-width:880px){.hd-split{grid-template-columns:1fr}.hd-split .lede{margin-top:14px}}
-.hd-center{text-align:center}
-.hd-center .kicker{justify-content:center}
-.hd-center h2{margin:0 auto;max-width:20ch}
-.hd-center .lede{margin-left:auto;margin-right:auto}
-.hd-right{text-align:right}
-.hd-right .kicker{justify-content:flex-start;flex-direction:row-reverse}
-.hd-right h2{margin-left:auto}
-.hd-right .lede{margin-left:auto}
-@media (max-width:700px){.hd-right{text-align:left}
-  .hd-right .kicker{justify-content:flex-start;flex-direction:row}
-  .hd-right h2,.hd-right .lede{margin-left:0}}
-
-/* entrees choregraphiees */
-.reveal>*{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
-.reveal.in>*{opacity:1;transform:none}
-.reveal.in>*:nth-child(2){transition-delay:.09s}
-.reveal.in>*:nth-child(3){transition-delay:.18s}
-.reveal.in>*:nth-child(4){transition-delay:.27s}
-.reveal.in>*:nth-child(5){transition-delay:.36s}
-.reveal.in>*:nth-child(6){transition-delay:.45s}
-.reveal.in.settled>*:nth-child(n){transition-delay:0s !important}
-
-/* --- 6.1 la fourche --- */
-.fork{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:52px}
-@media (max-width:880px){.fork{grid-template-columns:1fr}}
-.card{position:relative;border:1px solid var(--hair);border-radius:20px;overflow:hidden;background:var(--panel);
-  transition:border-color .5s var(--ease),transform .5s var(--ease)}
-.card:hover{border-color:var(--border-strong);transform:translateY(-4px)}
-.card .ph{aspect-ratio:16/10;background:#0A1C25 center/cover no-repeat;position:relative}
-.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(13,34,44,.9))}
-.card .body{padding:26px 26px 30px}
-.card h3{font-size:clamp(22px,2.8vw,30px);margin-bottom:12px}
-.card p{color:var(--text-secondary);font-size:16px}
-.card .from{margin-top:18px;font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.06em}
-.card .glow{position:absolute;inset:0;pointer-events:none;opacity:0;
-  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(34,211,197,.14),transparent 70%);
-  transition:opacity .6s var(--ease)}
-.card:hover .glow{opacity:1}
-
-/* --- 6.2 le parc --- */
-.parc{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,5vw,64px);align-items:stretch;margin-top:48px}
-@media (max-width:920px){.parc{grid-template-columns:1fr}}
-.parc-img{border-radius:20px;overflow:hidden;border:1px solid var(--hair);min-height:min(560px,58vh);
-  background:#0A1C25 center/cover no-repeat;position:relative}
-@media (max-width:920px){.parc-img{min-height:0;aspect-ratio:4/3}}
-.parc-img::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(200deg,rgba(34,211,197,.10),transparent 55%)}
-.specs{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid var(--hair)}
-.specs li{display:flex;justify-content:space-between;gap:20px;align-items:baseline;
-  padding:13px 0;border-bottom:1px solid var(--hair);font-size:15.5px}
-.specs li span:first-child{color:var(--text-secondary)}
-.specs li span:last-child{font-family:var(--mono);font-size:13.5px;text-align:right}
-.forfaits{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
-@media (max-width:560px){.forfaits{grid-template-columns:1fr}}
-.forfait{border:1px solid var(--hair);border-radius:16px;padding:20px;background:var(--panel)}
-.forfait.hi{border-color:var(--border-strong);background:var(--panel-2)}
-.forfait h4{margin:0;font-family:var(--display);font-size:18px;font-weight:700}
-.forfait .p{font-family:var(--mono);color:var(--accent);font-size:20px;margin:8px 0 12px}
-.forfait ul{margin:0;padding-left:17px;color:var(--text-secondary);font-size:14.5px;line-height:1.7}
-.slot{margin-top:26px;border:1px dashed var(--hair);border-radius:16px;padding:18px 20px;
-  display:flex;align-items:center;gap:14px;color:var(--text-secondary);font-size:14.5px}
-.slot .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.45;flex:none;
-  animation:pulse 5.5s var(--ease) -1.4s infinite}
-@keyframes pulse{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:.7;transform:scale(1.15)}}
-
-/* --- 6.3 le moment interactif --- */
-.hold-wrap{margin-top:44px;border:1px solid var(--hair);border-radius:24px;background:var(--panel);
-  padding:clamp(26px,5vw,54px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
-@media (max-width:880px){.hold-wrap{grid-template-columns:1fr}}
-.fibre{width:100%;aspect-ratio:21/16;touch-action:none;cursor:pointer;user-select:none;-webkit-user-select:none}
-.fibre .strand{stroke:#8A7358;stroke-width:11;stroke-linecap:round;fill:none;
-  transition:stroke 1s var(--ease)}
-.fibre .weaveline path{stroke:#8A7358;stroke-width:9;stroke-linecap:round;fill:none;
-  transition:stroke 1s var(--ease)}
-.hold-on .fibre .strand,.hold-on .fibre .weaveline path{stroke:#C2DBD8}
-.fibre .grime{fill:#3F3125}
-.fibre .dot{--kc:clamp(0,(var(--hold,0) - var(--d,0))*2.4,1);
-  opacity:calc(1 - var(--kc));
-  transform:translateY(calc(var(--kc) * -270px));
-  transform-box:fill-box;transform-origin:50% 50%}
-.hold-txt h3{font-size:clamp(24px,3.4vw,38px)}
-.hold-txt p{margin-top:14px;color:var(--text-secondary)}
-.holdbtn{margin-top:26px;display:inline-flex;align-items:center;gap:14px;padding:15px 26px;border-radius:999px;
-  border:1px solid var(--border-strong);background:transparent;color:var(--text-primary);
-  font-family:var(--body);font-weight:700;font-size:15px;cursor:pointer;position:relative;overflow:hidden;
-  transition:background .4s var(--ease)}
-.holdbtn:hover{background:var(--accent-muted)}
-.holdbtn .fill{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--accent-muted);
-  transform-origin:left;transform:scaleX(var(--hold,0))}
-.holdbtn span{position:relative}
-.gains{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-wrap:wrap;gap:10px}
-.gains li{--kg:clamp(0,(var(--hold,0) - var(--g,0))*6,1);
-  border:1px solid;border-color:rgba(154,200,205,calc(.22 + .38*var(--kg)));
-  border-radius:999px;padding:8px 16px;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(224,240,239,calc(.62 + .38*var(--kg)));
-  background:rgba(34,211,197,calc(.05*var(--kg)))}
-
-/* --- 6.4 tarifs --- */
-.tarifs{margin-top:46px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media (max-width:900px){.tarifs{grid-template-columns:1fr}}
-.tcol h3{font-family:var(--display);font-size:20px;font-weight:700;padding-bottom:12px;
-  border-bottom:1px solid var(--accent-line)}
-.tcol ul{list-style:none;margin:0;padding:0}
-.tcol li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:12px 0;
-  border-bottom:1px solid var(--hair);font-size:15.5px}
-.tcol li b{font-family:var(--mono);font-weight:500;font-size:14.5px;white-space:nowrap}
-.tnote{margin-top:26px;color:var(--text-secondary);font-size:14.5px}
-
-/* --- 6.5 questions --- */
-.qa{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,52px)}
-@media (max-width:880px){.qa{grid-template-columns:1fr}}
-.q{padding:22px 0;border-top:1px solid var(--hair)}
-.q h3{font-family:var(--display);font-size:clamp(19px,2.3vw,24px);font-weight:700;color:var(--text-primary)}
-.q p{margin-top:11px;color:var(--text-secondary);font-size:16px}
-.todo{color:var(--accent);font-family:var(--mono);font-size:12.5px;letter-spacing:.08em}
-
-/* --- 6.6 reserver --- */
-#reserver{scroll-margin-top:90px}
-.res{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
-@media (max-width:820px){.res{grid-template-columns:1fr}}
-.res a.big{display:flex;flex-direction:column;justify-content:space-between;gap:36px;
-  border:1px solid var(--edge);border-radius:20px;padding:28px;text-decoration:none;background:var(--panel);
-  transition:border-color .5s var(--ease),background .5s var(--ease),transform .5s var(--ease)}
-.res a.big:hover{border-color:var(--border-strong);background:var(--panel-2);transform:translateY(-4px)}
-.res a.big strong{font-family:var(--display);font-size:clamp(22px,3vw,30px);font-weight:800}
-.res a.big em{font-style:normal;color:var(--text-secondary);font-size:15.5px;display:block;margin-top:10px}
-.res a.big .go{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-weight:700;font-size:15px}
-.res a.big .go svg{width:17px;height:17px;transition:transform .4s var(--ease)}
-.res a.big:hover .go svg{transform:translateX(5px)}
-.contactline{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px 34px;align-items:baseline;
-  border-top:1px solid var(--hair);padding-top:26px}
-.contactline a{color:var(--accent);text-decoration:none;font-family:var(--mono);font-size:15px}
-.contactline a:hover{text-decoration:underline}
-
-form{margin-top:38px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:680px){form{grid-template-columns:1fr}}
-form .full{grid-column:1/-1}
-label{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--text-secondary);margin-bottom:8px}
-input,textarea{width:100%;background:var(--canvas-2);border:1px solid var(--edge);border-radius:12px;
-  padding:14px 16px;color:var(--text-primary);font-family:var(--body);font-size:16px;
-  transition:border-color .35s var(--ease)}
-input:focus,textarea:focus{border-color:var(--border-strong);outline:none}
-textarea{min-height:118px;resize:vertical}
-.formnote{grid-column:1/-1;color:var(--text-secondary);font-size:14px;margin-top:-4px}
-.sent{grid-column:1/-1;display:none;border:1px solid var(--border-strong);background:var(--accent-muted);
-  border-radius:14px;padding:16px 18px;font-size:15px}
-form.done .sent{display:block}
-
-/* --- separateur tissage --- */
-.weave{display:block;width:100%;height:46px;margin:0 auto;opacity:.5}
-.weave path{fill:none;stroke:var(--accent-line);stroke-width:1.3;
-  stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);
-  transition:stroke-dashoffset 1.9s var(--ease-out)}
-.weave.in path{stroke-dashoffset:0}
-.weave.in path:nth-child(2){transition-delay:.22s}
-
-/* --- pied de page --- */
-footer{position:relative;z-index:2;border-top:1px solid var(--hair);margin-top:40px;
-  padding:52px clamp(22px,6vw,72px) 46px;max-width:1240px;margin-left:auto;margin-right:auto}
-.fgrid{display:flex;flex-wrap:wrap;gap:26px 48px;align-items:baseline;justify-content:space-between}
-footer a{color:var(--text-secondary);text-decoration:none;font-size:14.5px}
-footer a:hover{color:var(--text-primary)}
-.fnav{display:flex;flex-wrap:wrap;gap:22px}
-.fine{margin-top:34px;color:var(--text-secondary);font-size:13px;opacity:.8}
-
-/* ============================================================
-   7. MOUVEMENT REDUIT
-   ============================================================ */
+/* ---------- mouvement réduit ---------- */
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none !important;transition:none !important;transition-delay:0s !important}
-  .reveal>*{opacity:1 !important;transform:none !important}
-  .weave path{stroke-dashoffset:0 !important}
-  .card:hover,.res a.big:hover{transform:none !important}
-  .rail-mark span{opacity:1}
+  *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
+  .rev,.stag>*{opacity:1!important;transform:none!important}
+  .pass .edge{clip-path:inset(0 0 0 0)!important}
+  .proc-line path{stroke-dashoffset:0!important}
+  .proc-dot::after{opacity:1!important}
 }
-body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused !important}
+body.rm .rev,body.rm .stag>*{opacity:1!important;transform:none!important}
+body.rm .pass .edge{clip-path:inset(0 0 0 0)!important}
+body.rm .proc-line path{stroke-dashoffset:0!important}
+body.rm .proc-dot::after{opacity:1!important}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Aller au contenu</a>
-<div class="env" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
 
-<div class="rail" id="rail" aria-hidden="true">
-  <div class="rail-track"><div class="rail-fill" id="railFill"></div></div>
-  <div class="rail-head" id="railHead"></div>
-  <div class="rail-marks" id="railMarks">
-    <div class="rail-mark" data-at="0"><i></i><span>SURFACE</span></div>
-    <div class="rail-mark" data-at="34"><i></i><span>FIBRE</span></div>
-    <div class="rail-mark" data-at="68"><i></i><span>FOND</span></div>
-    <div class="rail-mark" data-at="100"><i></i><span>PROPRE</span></div>
-  </div>
+<a class="skip" href="#main">Aller au contenu</a>
+
+<div class="env" aria-hidden="true">
+  <div class="env-glow"></div>
+  <div class="env-grain"></div>
+  <div class="drop" style="left:12%;animation-delay:-4s"></div>
+  <div class="drop" style="left:31%;animation-delay:-14s"></div>
+  <div class="drop" style="left:57%;animation-delay:-9s"></div>
+  <div class="drop" style="left:74%;animation-delay:-19s"></div>
+  <div class="drop" style="left:88%;animation-delay:-2s"></div>
 </div>
 
 <nav class="nav" id="nav">
-  <a class="brand" href="#top">Pacific <em>Rent&amp;Clean</em></a>
+  <a class="brand" href="#top">Pacific Rent<i>&amp;</i>Clean</a>
   <div class="nav-links">
-    <a href="#machines">Louer une machine</a>
-    <a href="#fourche">Prestation</a>
-    <a href="#tarifs">Tarifs</a>
+    <a href="#services">Services</a>
+    <a href="#location">Location</a>
+    <a href="#marche">Comment ça marche</a>
+    <a href="#resultats">Résultats</a>
+    <a href="#faq">FAQ</a>
   </div>
-  <a class="btn" href="#reserver">Réserver</a>
+  <a class="btn btn-a" href="#reserver" style="margin-left:14px">Réserver</a>
 </nav>
 
 <main id="main" tabindex="-1">
-<span id="top"></span>
+<span id="top" style="display:block;height:1px"></span>
 
-<!-- ========== HEROS ========== -->
-<section id="hero" aria-label="Pacific Rent and Clean">
+<!-- ========== ACTE 1 · LE PASSAGE ========== -->
+<section class="hero" id="hero" aria-label="Le passage">
   <div class="stage" id="stage">
     <div class="poster" id="poster" aria-hidden="true"></div>
-    <video id="hero-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <video id="heroVideo" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
     <div class="scrim" aria-hidden="true"></div>
+    <div class="vig" aria-hidden="true"></div>
 
     <svg class="ring" id="ring" viewBox="0 0 48 48" aria-hidden="true">
-      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"></circle>
+      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"
+              transform="rotate(-90 24 24)"/>
     </svg>
 
-    <div class="band b1 e-drift" data-a="0" data-b="0.13">
-      <div class="inner"><p class="line" data-split="words">L'aspirateur s'arrête ici.</p></div>
-    </div>
-
-    <div class="band b2 e-blur" data-a="0.16" data-b="0.34">
-      <div class="inner"><p class="line small" data-split="dual">La saleté, elle, est déjà plus bas.</p></div>
-    </div>
-
-    <div class="band b3 e-scatter" data-a="0.38" data-b="0.56" data-spread="0.5">
-      <div class="inner">
-        <p class="line" data-split="chars">L'eau descend jusqu'au fond.</p>
-        <p class="line small l2">Et remonte tout avec elle.</p>
+    <div class="bands" id="bands">
+      <div class="band b1" data-a="0" data-b="0.16">
+        <div class="in-b">
+          <span class="mono kick">01 / La surface</span>
+          <h2 class="d line e-drift" data-split="word" data-seed="11">Vous ne voyez que le dessus.</h2>
+        </div>
       </div>
-    </div>
-
-    <div class="band b4 e-punch" data-a="0.6" data-b="0.76">
-      <div class="inner"><p class="line" data-split="words" data-em="2">Il ne reste rien.</p></div>
-    </div>
-
-    <div class="band b5 e-rise" data-a="0.8" data-b="1">
-      <div class="inner">
-        <p class="line" data-split="words">À vous de descendre. Ou à nous.</p>
-        <p class="sub">Vous louez la machine et vous le faites vous même. Ou on vient le faire chez vous.</p>
-        <div class="ctarow">
-          <a class="btn" href="#reserver">Réserver une date</a>
-          <a class="btn ghost" href="#tarifs">Voir les tarifs</a>
+      <div class="band b2" data-a="0.19" data-b="0.37">
+        <div class="in-b">
+          <span class="mono kick">02 / Sous la surface</span>
+          <h2 class="d line e-blur">
+            <span class="soft" aria-hidden="true">Dessous, tout ce que l’aspirateur laisse.</span>
+            <span class="sharp">Dessous, tout ce que l’aspirateur laisse.</span>
+          </h2>
+        </div>
+      </div>
+      <div class="band b3" data-a="0.41" data-b="0.585">
+        <div class="in-b">
+          <span class="mono kick">03 / L’injection</span>
+          <h2 class="d line e-punch" data-split="word" data-em="1" data-seed="23">Un passage suffit.</h2>
+        </div>
+      </div>
+      <div class="band b4" data-a="0.615" data-b="0.775">
+        <div class="in-b">
+          <span class="mono kick">04 / L’extraction</span>
+          <h2 class="d line e-weave" data-split="char" data-seed="37">La fibre se relève.</h2>
+        </div>
+      </div>
+      <div class="band b5" data-a="0.8" data-b="1">
+        <div class="in-b">
+          <h2 class="d line e-rise" data-split="word" data-seed="53">À vous de passer. Ou à nous.</h2>
+          <p class="sub">Nettoyage à domicile par injection extraction. Ou vous louez la machine et vous le faites vous même.</p>
+          <div class="cta-row">
+            <a class="btn btn-a" href="#reserver">Réserver un nettoyage</a>
+            <a class="btn btn-b" href="#location">Louer la machine</a>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- le héros fixe : téléphones, tablettes en portrait, mouvement réduit -->
     <div class="static-hero">
-      <div class="in2">
-        <h1>Le propre commence sous la surface.</h1>
-        <p>Location de machines de nettoyage professionnelles et prestation à domicile. Tahiti, 7j/7.</p>
-        <a class="btn" href="#reserver">Réserver une date</a>
+      <h1>Le propre se voit.</h1>
+      <p>Nettoyage textile par injection extraction, à domicile. Et la machine en location si vous préférez le faire vous même. Tahiti, 7j/7.</p>
+      <div class="cta-row">
+        <a class="btn btn-a" href="#reserver">Réserver un nettoyage</a>
+        <a class="btn btn-b" href="#location">Louer la machine</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== LA FOURCHE ========== -->
-<section class="blk" id="fourche">
-  <div class="reveal">
-    <div class="kicker"><i></i><span class="mono">01 / Deux façons de faire</span></div>
-    <h2>Vous descendez. Ou on descend.</h2>
-    <p class="lede">Le même geste, la même machine, la même eau. La seule question est de savoir qui tient la buse.</p>
-  </div>
-  <div class="fork reveal">
-    <article class="card">
-      <div class="ph" style="background-image:url('assets/still-machine.jpg')" role="img"
-           aria-label="Illustration : une machine d'injection extraction, tuyau enroulé, prête à partir"></div>
-      <div class="glow" aria-hidden="true"></div>
-      <div class="body">
-        <h3>Vous le faites vous même</h3>
-        <p>La machine arrive chez vous. Vous avez 24 heures à partir de la livraison.</p>
-        <div class="from">À partir de 6 390 F</div>
-      </div>
-    </article>
-    <article class="card">
-      <div class="ph" style="background-image:url('assets/still-prestation.jpg')" role="img"
-           aria-label="Illustration : un coussin en tissu clair, fine brume et gouttes de nettoyage"></div>
-      <div class="glow" aria-hidden="true"></div>
-      <div class="body">
-        <h3>On le fait chez vous</h3>
-        <p>Un prestataire vient, sur rendez vous, 7 jours sur 7.</p>
-        <div class="from">À partir de 2 000 F</div>
-      </div>
-    </article>
-  </div>
-</section>
+<!-- ========== le bandeau d'instrument ========== -->
+<div class="strip" aria-label="En bref">
+  <div class="track mono" id="track" aria-hidden="true"></div>
+  <p class="sr">Injection extraction. Matériel professionnel. Intervention à domicile. Location disponible. Produits professionnels. Tahiti. Ouvert 7j/7.</p>
+</div>
 
-<svg class="weave" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M0 23 C 100 2, 200 44, 300 23 S 500 2, 600 23 S 800 44, 900 23 S 1100 2, 1200 23"></path>
-  <path d="M0 23 C 100 44, 200 2, 300 23 S 500 44, 600 23 S 800 2, 900 23 S 1100 44, 1200 23"></path>
-</svg>
+<!-- ========== ACTE 2 · CE QU'ON REMET À NEUF ========== -->
+<section class="sec sec-foam" id="services">
+  <div class="pass" style="--from:var(--basalt)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="max-width:60ch;margin-bottom:clamp(30px,4vw,60px)">
+      <span class="mono" style="display:block;margin-bottom:1rem">Acte 2 / Les surfaces</span>
+      <h2 class="title">Ce qu’on remet à neuf.</h2>
+      <p class="lede" style="margin-top:1.4rem">Quatre familles de textile, une seule méthode. On injecte la solution au fond de la fibre, et on la reprend dans le même geste.</p>
+    </div>
 
-<!-- ========== LE PARC ========== -->
-<section class="blk" id="machines">
-  <div class="reveal hd-split">
-    <div class="kicker"><i></i><span class="mono">02 / Nos machines</span></div>
-    <h2>Aujourd'hui, une machine.</h2>
-    <p class="lede">Celle qui sert le plus, et qu'on connaît par cœur. Les suivantes arrivent.</p>
-  </div>
-  <div class="parc">
-    <div class="parc-img" style="background-image:url('assets/still-location.jpg')" role="img"
-         aria-label="Une buse d'injection extraction pulvérise et réaspire dans la même passe"></div>
-    <div class="reveal">
-      <h3 style="font-size:clamp(22px,3vw,32px)">Kärcher Puzzi 10/1</h3>
-      <p style="color:var(--text-secondary);margin-top:12px">Injecteur extracteur professionnel. Il pulvérise la solution au fond de la fibre et la réaspire dans le même geste.</p>
-      <ul class="specs">
-        <li><span>Réservoirs</span><span>10 L propre / 9 L sale</span></li>
-        <li><span>Injection</span><span>1 L/min à 1 bar</span></li>
-        <li><span>Poids</span><span>10,5 kg</span></li>
-        <li><span>Embouts fournis</span><span>sol + fauteuil</span></li>
-        <li><span>Durée de location</span><span>24 h dès la livraison</span></li>
-      </ul>
-      <div class="forfaits">
-        <div class="forfait">
-          <h4>Standard</h4>
-          <div class="p">6 390 F</div>
-          <ul><li>2 pastilles détergentes RM 760</li></ul>
+    <article class="svc svc-1 rev">
+      <div>
+        <span class="svc-num">01</span>
+        <h3 class="svc-word">Matelas</h3>
+        <p class="svc-txt">Vous y passez un tiers de votre vie. La transpiration, elle, descend dans la mousse et n’en ressort pas toute seule.</p>
+        <span class="svc-price">À partir de 5 000 F</span><br>
+        <a class="svc-link" href="#reserver">Réserver un matelas <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="svc-fig"><img src="assets/svc-matelas.jpg" alt="Macrophotographie d’une fibre textile propre et redressée après extraction." loading="lazy" decoding="async" width="1500" height="844"></div>
+    </article>
+
+    <article class="svc svc-2 rev">
+      <div>
+        <span class="svc-num">02</span>
+        <h3 class="svc-word">Canapés</h3>
+        <p class="svc-txt">Le tissu d’un canapé encaisse tout : les repas, les enfants, le sel, le sable. L’extraction va rechercher ce que l’aspirateur laisse au fond.</p>
+        <span class="svc-price">À partir de 5 000 F</span><br>
+        <a class="svc-link" href="#reserver">Réserver un canapé <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="svc-fig"><img src="assets/svc-canape.jpg" alt="Macrophotographie d’un tissage d’ameublement encrassé, avant nettoyage." loading="lazy" decoding="async" width="1500" height="844"></div>
+    </article>
+
+    <article class="svc svc-3 rev">
+      <div class="svc-fig"><img src="assets/svc-auto.jpg" alt="Macrophotographie de l’intérieur d’une fibre dense, vue en profondeur." loading="lazy" decoding="async" width="1500" height="844"></div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-top:26px">
+        <div>
+          <span class="svc-num">03</span>
+          <h3 class="svc-word">Auto</h3>
+          <p class="svc-txt">Sièges, moquettes, sièges enfant. Un habitacle qui a vécu l’humidité de Tahiti se nettoie en profondeur, pas en surface.</p>
         </div>
-        <div class="forfait hi">
-          <h4>Auto Home</h4>
-          <div class="p">7 990 F</div>
-          <ul>
-            <li>2 pastilles RM 760</li>
-            <li>1 brosse rotative et perceuse à batterie</li>
-            <li>1 bouteille de TASKI Tapi Extract</li>
-          </ul>
+        <div style="text-align:right">
+          <span class="svc-price">Sur devis</span><br>
+          <a class="svc-link" href="#reserver">Demander un devis <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="slot"><span class="dot" aria-hidden="true"></span>
-        <span>Livraison 1 500 F sur Punaauia, Faa'a et Papenoo. Le manuel part avec la machine.</span></div>
+    </article>
+
+    <article class="svc svc-4 rev">
+      <div class="svc-fig"><img src="assets/svc-tapis.jpg" alt="Macrophotographie de la solution de nettoyage traversant le poil d’un tapis." loading="lazy" decoding="async" width="1500" height="844"></div>
+      <div>
+        <span class="svc-num">04</span>
+        <h3 class="svc-word">Tapis</h3>
+        <p class="svc-txt">Le poil long garde tout. C’est aussi ce qui rend le passage si visible.</p>
+        <span class="svc-price">À partir de 2 000 F</span><br>
+        <a class="svc-link" href="#reserver">Réserver un tapis <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== ACTE 3 · LE COMPARATEUR ========== -->
+<section class="sec sec-deep" id="resultats">
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="cmp-head rev">
+      <span class="mono">Acte 3 / La preuve</span>
+      <h2 class="title">Faites le passage<br>vous même.</h2>
+      <p class="lede">Tirez la ligne en travers de l’image. À gauche la fibre encrassée, à droite la même fibre après extraction. C’est tout le métier en un geste.</p>
+    </div>
+
+    <div class="cmp rev" id="cmp" role="slider" tabindex="0"
+         aria-label="Comparateur avant après. Flèches gauche et droite pour déplacer la ligne."
+         aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 pour cent">
+      <img class="before" src="assets/comparateur-avant.jpg" alt="La fibre encrassée : terne, grisée, aplatie." width="1500" height="844">
+      <img class="after" src="assets/comparateur-apres.jpg" alt="La même fibre après extraction : claire, redressée, saturée." width="1500" height="844">
+      <span class="cmp-tag l mono">Avant</span>
+      <span class="cmp-tag r mono">Après</span>
+      <span class="cmp-handle" aria-hidden="true"></span>
+      <span class="cmp-grip" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 4 12l5 6M15 6l5 6-5 6"/></svg>
+      </span>
+      <span class="cmp-hint mono">Glissez</span>
+    </div>
+    <p class="cmp-note">Démonstration du procédé, images générées. Ce ne sont pas les photos d’un chantier client. Elles seront remplacées par de vrais avant après.</p>
+  </div>
+</section>
+
+<!-- ========== ACTE 4 · LA MACHINE ========== -->
+<section class="sec sec-deep2" id="machine">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="max-width:64ch;margin-bottom:clamp(30px,4vw,58px)">
+      <span class="mono" style="display:block;margin-bottom:1rem">Acte 4 / L’outil</span>
+      <h2 class="title">La puissance professionnelle,<br>entre vos mains.</h2>
+      <p class="lede" style="margin-top:1.4rem">Le Kärcher Puzzi 10/1. Deux réservoirs, une gâchette, une turbine. Touchez une pièce pour savoir ce qu’elle fait.</p>
+    </div>
+
+    <div class="mach">
+      <div class="mach-stage rev" id="machStage">
+       <div class="mach-canvas">
+        <svg class="mach-svg" viewBox="60 46 800 540" role="img"
+             aria-label="Schéma du Kärcher Puzzi 10 barre 1 : corps avec réservoir d’eau propre de 10 litres, réservoir d’eau sale amovible de 9 litres, flexible de 2,5 mètres, pistolet, suceur sol de 240 millimètres et suceur fauteuil de 110 millimètres.">
+
+          <!-- réservoir d'eau sale, amovible, sur le dessus -->
+          <g data-part="sale">
+            <path class="part" d="M288 104C288 60 412 60 412 104"/>
+            <rect class="part solid" x="250" y="104" width="200" height="104" rx="18"/>
+            <path class="part thin" d="M262 134h176"/>
+            <rect class="part thin" x="336" y="94" width="28" height="14" rx="4"/>
+          </g>
+
+          <!-- corps et réservoir d'eau propre -->
+          <g data-part="propre">
+            <rect class="part solid" x="238" y="208" width="224" height="180" rx="14"/>
+            <rect class="part thin dash" x="258" y="246" width="184" height="126" rx="10"/>
+            <path class="part thin" d="M272 286h156M272 316h156M272 346h116"/>
+          </g>
+
+          <!-- châssis, ouïes, roues -->
+          <g>
+            <path class="part solid" d="M232 388h236l-12 118H244z"/>
+            <path class="part thin" d="M258 414h62M258 432h62M258 450h44"/>
+            <circle class="part thin" cx="418" cy="428" r="13"/>
+            <circle class="part thin" cx="268" cy="522" r="17"/>
+            <circle class="part thin" cx="432" cy="522" r="17"/>
+          </g>
+
+          <!-- injection : la solution part vers l'outil -->
+          <g data-part="injection">
+            <circle class="part" cx="478" cy="250" r="15"/>
+            <path class="part thin" d="M478 240v20M470 250h16"/>
+          </g>
+
+          <!-- extraction : la bouche d'aspiration -->
+          <g data-part="extraction">
+            <circle class="part" cx="478" cy="340" r="24"/>
+            <circle class="part thin" cx="478" cy="340" r="12"/>
+          </g>
+
+          <!-- flexible injection extraction -->
+          <g data-part="flexible">
+            <path class="part" d="M500 348c86 22 106-48 166-66 32-10 46-16 64-24"/>
+            <path class="part thin" d="M500 362c86 22 108-42 168-60 32-10 44-14 62-22"/>
+          </g>
+
+          <!-- pistolet -->
+          <g data-part="pistolet">
+            <path class="part solid" d="M718 250l82-32 14 28-82 32z"/>
+            <path class="part" d="M742 278l-12 44 22 8 14-44"/>
+            <path class="part thin" d="M814 246l24-10"/>
+          </g>
+
+          <!-- suceur sol, 240 mm -->
+          <g data-part="sol">
+            <path class="part thin" d="M143 412v22"/>
+            <path class="part solid" d="M66 474l70-40 84 40v42H66z"/>
+            <path class="part thin" d="M78 504h130"/>
+            <path class="part thin dim" d="M66 542h154M66 534v16M220 534v16"/>
+            <text class="dim-t" x="143" y="568" text-anchor="middle">240 mm</text>
+          </g>
+
+          <!-- suceur fauteuil, 110 mm -->
+          <g data-part="fauteuil">
+            <path class="part thin" d="M645 424v26"/>
+            <path class="part solid" d="M604 480l41-30 41 30v34h-82z"/>
+            <path class="part thin" d="M614 504h62"/>
+            <path class="part thin dim" d="M604 542h82M604 534v16M686 534v16"/>
+            <text class="dim-t" x="645" y="568" text-anchor="middle">110 mm</text>
+          </g>
+
+          <!-- cotes -->
+          <g class="cotes" aria-hidden="true">
+            <path class="part thin dim" d="M466 156h32"/>
+            <text class="dim-t" x="506" y="161">9 L</text>
+            <path class="part thin dim" d="M234 300h-30"/>
+            <text class="dim-t" x="196" y="305" text-anchor="end">10 L</text>
+            <text class="dim-t" x="596" y="372">2,5 m</text>
+          </g>
+        </svg>
+
+        <button class="hot" data-hot="sale"       style="left:36.3%;top:20.4%" aria-pressed="false" aria-label="Réservoir eau sale, 9 litres"></button>
+        <button class="hot" data-hot="propre"     style="left:36.3%;top:46.7%" aria-pressed="false" aria-label="Réservoir eau propre, 10 litres"></button>
+        <button class="hot" data-hot="injection"  style="left:52.3%;top:37.8%" aria-pressed="false" aria-label="Injection, 1 bar"></button>
+        <button class="hot" data-hot="extraction" style="left:52.3%;top:54.4%" aria-pressed="false" aria-label="Extraction"></button>
+        <button class="hot" data-hot="flexible"   style="left:67.5%;top:51.9%" aria-pressed="false" aria-label="Flexible injection extraction, 2,5 mètres"></button>
+        <button class="hot" data-hot="pistolet"   style="left:88.5%;top:37.0%" aria-pressed="false" aria-label="Pistolet injection extraction"></button>
+        <button class="hot" data-hot="fauteuil"   style="left:73.1%;top:80.4%" aria-pressed="false" aria-label="Suceur fauteuil, 110 millimètres"></button>
+        <button class="hot" data-hot="sol"        style="left:10.4%;top:79.3%" aria-pressed="false" aria-label="Suceur sol, 240 millimètres"></button>
+       </div>
+      </div>
+
+      <div class="rev">
+        <div class="mach-list" id="machList">
+          <button class="mach-item" data-hot="propre" aria-pressed="false">
+            <span class="lab"><b>Réservoir eau propre · 10 L</b></span>
+            <span class="val">La solution de nettoyage qui part dans la fibre.</span>
+          </button>
+          <button class="mach-item" data-hot="sale" aria-pressed="false">
+            <span class="lab"><b>Réservoir eau sale · 9 L</b></span>
+            <span class="val">Ce qui remonte de la fibre. Amovible, on le vide à l’évier.</span>
+          </button>
+          <button class="mach-item" data-hot="flexible" aria-pressed="false">
+            <span class="lab"><b>Flexible injection / extraction · 2,5 m</b></span>
+            <span class="val">Relie la machine à l’outil. De quoi faire un canapé sans déplacer la cuve.</span>
+          </button>
+          <button class="mach-item" data-hot="pistolet" aria-pressed="false">
+            <span class="lab"><b>Pistolet injection / extraction</b></span>
+            <span class="val">Vous appuyez, ça injecte. Vous relâchez, ça reprend.</span>
+          </button>
+          <button class="mach-item" data-hot="fauteuil" aria-pressed="false">
+            <span class="lab"><b>Suceur fauteuil · 110 mm</b></span>
+            <span class="val">Canapés, matelas, sièges de voiture.</span>
+          </button>
+          <button class="mach-item" data-hot="sol" aria-pressed="false">
+            <span class="lab"><b>Suceur sol · 240 mm</b></span>
+            <span class="val">Tapis, moquettes, sols textiles.</span>
+          </button>
+          <button class="mach-item" data-hot="injection" aria-pressed="false">
+            <span class="lab"><b>Injection · 1 bar</b></span>
+            <span class="val">La solution est poussée dans la fibre, pas posée dessus. Débit d’un litre par minute.</span>
+          </button>
+          <button class="mach-item" data-hot="extraction" aria-pressed="false">
+            <span class="lab"><b>Extraction</b></span>
+            <span class="val">La turbine reprend l’eau et la saleté décollée, dans le même geste.</span>
+          </button>
+        </div>
+        <p class="mach-note">Ce schéma est un dessin, pas une photo. Il sera accompagné de vraies photos de la machine.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ========== LE MOMENT INTERACTIF ========== -->
-<section class="blk" id="geste">
-  <div class="reveal hd-center">
-    <div class="kicker"><i></i><span class="mono">03 / Le geste</span></div>
-    <h2>Maintenez. C'est exactement ce que fait la machine.</h2>
-  </div>
-  <div class="hold-wrap" id="holdWrap">
-    <svg class="fibre" id="fibre" viewBox="0 0 420 320" role="img"
-         aria-label="Coupe d'un tissu : en maintenant, l'eau descend jusqu'au fond et la saleté remonte">
-      <defs>
-        <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#22D3C5" stop-opacity=".26"></stop>
-          <stop offset="70%" stop-color="#22D3C5" stop-opacity=".13"></stop>
-          <stop offset="100%" stop-color="#22D3C5" stop-opacity="0"></stop>
-        </linearGradient>
-      </defs>
-      <!-- la surface, le tissage vu de profil -->
-      <g class="weaveline">
-        <path d="M8 40 q 17 -20 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0"></path>
-        <path d="M8 52 q 17 20 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0 t 34 0"></path>
-      </g>
-      <!-- les brins qui descendent -->
-      <g class="strands">
-        <path class="strand" d="M42 54 C 52 118, 34 192, 46 306"></path>
-        <path class="strand" d="M96 54 C 86 124, 106 196, 92 306"></path>
-        <path class="strand" d="M150 54 C 160 116, 142 188, 154 306"></path>
-        <path class="strand" d="M204 54 C 194 126, 214 198, 200 306"></path>
-        <path class="strand" d="M258 54 C 268 118, 250 190, 262 306"></path>
-        <path class="strand" d="M312 54 C 302 124, 322 196, 308 306"></path>
-        <path class="strand" d="M366 54 C 376 116, 358 188, 370 306"></path>
-      </g>
-      <rect id="waterRect" x="6" y="8" width="408" height="0" rx="10" fill="url(#wg)"></rect>
-      <rect id="waterLine" x="6" y="8" width="408" height="2.5" rx="1.25" fill="#22D3C5" opacity="0"></rect>
-      <g id="grimeDots">
-        <circle class="dot grime" cx="66" cy="258" r="7" style="--d:.06"></circle>
-        <circle class="dot grime" cx="120" cy="276" r="5" style="--d:.20"></circle>
-        <circle class="dot grime" cx="176" cy="246" r="8" style="--d:.11"></circle>
-        <circle class="dot grime" cx="232" cy="282" r="6" style="--d:.31"></circle>
-        <circle class="dot grime" cx="286" cy="252" r="7" style="--d:.23"></circle>
-        <circle class="dot grime" cx="340" cy="272" r="5" style="--d:.41"></circle>
-        <circle class="dot grime" cx="150" cy="232" r="4" style="--d:.47"></circle>
-        <circle class="dot grime" cx="258" cy="236" r="4" style="--d:.37"></circle>
-        <circle class="dot grime" cx="96" cy="240" r="4.5" style="--d:.15"></circle>
-        <circle class="dot grime" cx="312" cy="240" r="4" style="--d:.29"></circle>
-      </g>
-    </svg>
-    <div class="hold-txt">
-      <h3>L'eau descend, la saleté remonte.</h3>
-      <p>Un aspirateur passe sur le dessus. L'injection extraction envoie la solution jusqu'au fond de la fibre et la reprend aussitôt, avec ce qu'elle a décollé. Appuyez et gardez le doigt appuyé.</p>
-      <button class="holdbtn" id="holdBtn" type="button" aria-describedby="holdHelp">
-        <span class="fill" aria-hidden="true"></span>
-        <span>Appuyez et maintenez</span>
-      </button>
-      <p id="holdHelp" class="sr">Maintenez le bouton enfoncé pour lancer l'extraction.</p>
-      <ul class="gains" id="gains">
-        <li style="--g:.30">acariens</li>
-        <li style="--g:.50">taches</li>
-        <li style="--g:.70">odeurs</li>
-        <li style="--g:.88">allergènes</li>
-      </ul>
+<!-- ========== ACTE 5 · LE PROCÉDÉ ========== -->
+<section class="sec sec-lagoon" id="procede">
+  <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="max-width:58ch;margin-bottom:clamp(30px,4vw,58px)">
+      <span class="mono" style="display:block;margin-bottom:1rem;color:var(--sand)">Acte 5 / La méthode</span>
+      <h2 class="title">Six temps,<br>un seul geste.</h2>
     </div>
+
+    <div class="proc" id="proc">
+      <svg class="proc-line" viewBox="0 0 1200 4" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M6 2 H1194"/>
+      </svg>
+      <div class="proc-steps">
+        <div class="proc-step"><span class="proc-dot"></span><h4>Préparation</h4><p>On dégage, on aspire le sec, on repère les zones marquées.</p></div>
+        <div class="proc-step"><span class="proc-dot"></span><h4>Injection</h4><p>La solution part sous pression jusqu’au fond de la fibre.</p></div>
+        <div class="proc-step"><span class="proc-dot"></span><h4>Action</h4><p>Elle décroche la salissure grasse au lieu de l’étaler.</p></div>
+        <div class="proc-step"><span class="proc-dot"></span><h4>Extraction</h4><p>La turbine reprend l’eau et la saleté dans le même passage.</p></div>
+        <div class="proc-step"><span class="proc-dot"></span><h4>Séchage</h4><p>Peu d’eau reste dans la fibre, donc l’attente est courte.</p></div>
+        <div class="proc-step"><span class="proc-dot"></span><h4>Textile propre</h4><p>Le poil se relève, la couleur revient, l’odeur part avec l’eau.</p></div>
+      </div>
+    </div>
+
+    <p class="lede rev" style="margin-top:clamp(30px,4vw,52px);color:var(--foam);max-width:64ch">L’aspirateur prend ce qui est posé. L’injection extraction va chercher ce qui est incrusté, et le remonte au lieu de le noyer.</p>
+  </div>
+</section>
+
+<!-- ========== ACTE 6 · LA FOURCHE ========== -->
+<section class="sec sec-deep" id="fourche">
+  <div class="pass" style="--from:var(--lagoon)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="fork-head rev">
+      <span class="mono" style="display:block;margin-bottom:1.2rem">Acte 6 / Votre choix</span>
+      <h2 class="title">Deux façons<br>de retrouver le propre.</h2>
+    </div>
+    <div class="fork stag">
+      <article class="voie">
+        <div class="voie-fig"><img src="assets/voie-domicile.jpg" alt="Buse d’extraction en action sur l’assise d’un canapé en tissu." loading="lazy" decoding="async" width="1500" height="844"></div>
+        <div class="voie-body">
+          <span class="mono" style="color:var(--sand)">Option A</span>
+          <h3>On s’en occupe.</h3>
+          <p>Un professionnel vient chez vous, sur rendez vous, 7 jours sur 7. Vous ne touchez à rien.</p>
+          <a class="btn btn-a" href="#reserver">Réserver une prestation</a>
+        </div>
+      </article>
+      <article class="voie">
+        <div class="voie-fig"><img src="assets/voie-location.jpg" alt="Suceur sol en cours de passage sur une moquette, laissant une bande propre derrière lui." loading="lazy" decoding="async" width="1500" height="844"></div>
+        <div class="voie-body">
+          <span class="mono" style="color:var(--sand)">Option B</span>
+          <h3>À vous de jouer.</h3>
+          <p>La machine arrive chez vous avec tout ce qu’il faut. Vous avez 24 heures à partir de la livraison.</p>
+          <a class="btn btn-b" href="#location">Louer le Kärcher</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LA LOCATION ========== -->
+<section class="sec sec-foam" id="location">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="margin-bottom:clamp(30px,4vw,58px)">
+      <span class="mono" style="display:block;margin-bottom:1rem">La location</span>
+      <h2 class="title" style="font-size:clamp(2rem,4.6vw,4.3rem)">Tout ce qu’il vous faut<br>pour nettoyer vous même.</h2>
+    </div>
+    <div class="loc">
+      <div class="rev">
+        <ul class="kit" style="margin-top:0">
+          <li><i>01</i><span>Kärcher Puzzi 10/1, injecteur extracteur professionnel</span></li>
+          <li><i>02</i><span>Flexible 2,5 m, suceur sol 240 mm, suceur fauteuil</span></li>
+          <li><i>03</i><span>Pastilles Kärcher CarpetPro RM 760</span></li>
+          <li><i>04</i><span>Manuel d’utilisation en PDF</span></li>
+        </ul>
+        <p class="lede" style="margin-top:1.6rem;max-width:50ch">Les pastilles RM 760 sont conçues pour l’injection extraction. Elles encapsulent la salissure grasse au lieu de la diluer, ce qui raccourcit le séchage.</p>
+      </div>
+
+      <div class="rev">
+        <div class="plans">
+          <div class="plan">
+            <div class="plan-top"><h3 class="sub-t">Standard</h3><span class="plan-price">6 390 F</span></div>
+            <ul><li>2 pastilles RM 760</li><li>Suceur sol et suceur fauteuil</li><li>24 heures à partir de la livraison</li></ul>
+          </div>
+          <div class="plan">
+            <div class="plan-top"><h3 class="sub-t">Auto Home</h3><span class="plan-price">7 990 F</span></div>
+            <ul><li>2 pastilles RM 760</li><li>1 brosse rotative et perceuse à batterie</li><li>1 bouteille de TASKI Tapi Extract</li><li>24 heures à partir de la livraison</li></ul>
+          </div>
+        </div>
+        <p class="deliv">Livraison 1 500 F sur Punaauia, Faa’a et Papenoo.</p>
+        <a class="btn btn-c" href="#reserver" style="margin-top:20px">Louer le Kärcher Puzzi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMMENT ÇA MARCHE ========== -->
+<section class="sec sec-sand" id="marche">
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="margin-bottom:clamp(30px,4vw,58px);max-width:56ch">
+      <span class="mono" style="display:block;margin-bottom:1rem">Acte 7 / Sans friction</span>
+      <h2 class="title">Comment ça marche.</h2>
+    </div>
+    <div class="steps stag">
+      <div class="step"><b>01</b><h4>Choisissez</h4><p>Une prestation à domicile, ou la machine en location.</p></div>
+      <div class="step"><b>02</b><h4>Réservez</h4><p>Vous choisissez l’option, la date, et vous laissez vos coordonnées.</p></div>
+      <div class="step"><b>03</b><h4>On s’occupe du reste</h4><p>On vient, ou on livre. Selon ce que vous avez choisi.</p></div>
+    </div>
+    <p class="steps-tag rev">Simple. Rapide. Clair.</p>
   </div>
 </section>
 
 <!-- ========== TARIFS ========== -->
-<section class="blk" id="tarifs">
-  <div class="reveal">
-    <div class="kicker"><i></i><span class="mono">04 / Tarifs</span></div>
-    <h2>Les prix, en clair.</h2>
-    <p class="lede">Pas de devis à demander pour savoir combien ça coûte. Le devis, c'est pour les cas particuliers.</p>
-  </div>
-  <div class="tarifs reveal">
-    <div class="tcol">
-      <h3>Tapis</h3>
-      <ul>
-        <li><span>Petit, 80 x 150</span><b>2 000 F</b></li>
-        <li><span>Moyen, 160 x 230</span><b>4 000 F</b></li>
-        <li><span>Grand, 240 x 330</span><b>6 000 F</b></li>
-      </ul>
+<section class="sec sec-deep" id="tarifs">
+  <div class="pass" style="--from:var(--sand)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="margin-bottom:clamp(28px,3.6vw,52px);max-width:56ch;text-align:right;margin-left:auto">
+      <span class="mono" style="display:block;margin-bottom:1rem">Les prix</span>
+      <h2 class="title">Affichés.</h2>
+      <p class="lede" style="margin-top:1.2rem;margin-left:auto">Pas de « contactez nous pour un devis » sur des prestations dont le prix existe déjà.</p>
     </div>
-    <div class="tcol">
-      <h3>Matelas</h3>
-      <ul>
-        <li><span>1 place, 90 x 190</span><b>5 000 F</b></li>
-        <li><span>Double, 140 x 190</span><b>10 000 F</b></li>
-        <li><span>Queen, 160 x 200</span><b>11 000 F</b></li>
-        <li><span>King, 180 x 200</span><b>12 000 F</b></li>
-      </ul>
-    </div>
-    <div class="tcol">
-      <h3>Canapé</h3>
-      <ul>
-        <li><span>Fauteuil</span><b>5 000 F</b></li>
-        <li><span>2 places</span><b>10 000 F</b></li>
-        <li><span>3 places</span><b>12 000 F</b></li>
-        <li><span>Angle</span><b>15 000 F</b></li>
-        <li><span>Clic clac</span><b>20 000 F</b></li>
-      </ul>
-    </div>
-  </div>
-  <p class="tnote">Location de la machine : 6 390 F le forfait Standard, 7 990 F le forfait Auto Home, 24 heures.
-     Livraison 1 500 F sur Punaauia, Faa'a et Papenoo. Pastille RM 760 : 500 F. Buse à crevasse : 500 F.</p>
-</section>
-
-<!-- ========== QUESTIONS ========== -->
-<section class="blk" id="questions">
-  <div class="reveal hd-right">
-    <div class="kicker"><i></i><span class="mono">05 / Ce qui vous retient</span></div>
-    <h2>Les questions qu'on nous pose vraiment.</h2>
-  </div>
-  <div class="qa reveal">
-    <div>
-      <div class="q">
-        <h3>J'ai peur d'abîmer mon canapé.</h3>
-        <p>C'est la bonne question. Le vrai risque n'est pas le produit, c'est l'eau laissée dans la fibre :
-           trop d'eau injectée, pas assez réaspirée, et la mousse reste au fond. Un injecteur extracteur
-           aspire dans le même geste qu'il injecte. Le manuel part avec la machine, et on répond au téléphone.</p>
-      </div>
-      <div class="q">
-        <h3>Ça sèche en combien de temps ?</h3>
-        <p><span class="todo">[à compléter par Tamatoa : délai réellement constaté]</span></p>
-      </div>
-      <div class="q">
-        <h3>Est ce que les taches partent vraiment ?</h3>
-        <p><span class="todo">[à compléter par Tamatoa : ce qui est garanti, et ce qui ne l'est pas]</span></p>
-      </div>
-    </div>
-    <div>
-      <div class="q">
-        <h3>Vous venez jusqu'où ?</h3>
-        <p>La livraison est facturée 1 500 F sur Punaauia, Faa'a et Papenoo.
-           <span class="todo">[à compléter par Tamatoa : le reste de l'île]</span></p>
-      </div>
-      <div class="q">
-        <h3>Il faut avancer de l'argent ?</h3>
-        <p>Non. Réservation immédiate, sans acompte. Vous choisissez votre date et vous payez la location.</p>
-      </div>
-      <div class="q">
-        <h3>Et pour un hôtel ou une pension ?</h3>
-        <p>Volume régulier, plusieurs chambres, entre deux séjours : demandez un devis, le formulaire est
-           juste en dessous.</p>
-      </div>
+    <div class="tar rev">
+      <table class="tbl">
+        <caption class="mono">Prestation à domicile</caption>
+        <tbody>
+          <tr><th scope="row">Tapis petit (80x150)</th><td>2 000 F</td></tr>
+          <tr><th scope="row">Tapis moyen (160x230)</th><td>4 000 F</td></tr>
+          <tr><th scope="row">Tapis grand (240x330)</th><td>6 000 F</td></tr>
+          <tr><th scope="row">Matelas 1 place (90x190)</th><td>5 000 F</td></tr>
+          <tr><th scope="row">Matelas double (140x190)</th><td>10 000 F</td></tr>
+          <tr><th scope="row">Matelas queen (160x200)</th><td>11 000 F</td></tr>
+          <tr><th scope="row">Matelas king (180x200)</th><td>12 000 F</td></tr>
+          <tr><th scope="row">Fauteuil</th><td>5 000 F</td></tr>
+          <tr><th scope="row">Canapé 2 places</th><td>10 000 F</td></tr>
+          <tr><th scope="row">Canapé 3 places</th><td>12 000 F</td></tr>
+          <tr><th scope="row">Canapé d’angle</th><td>15 000 F</td></tr>
+          <tr><th scope="row">Canapé clic clac</th><td>20 000 F</td></tr>
+        </tbody>
+      </table>
+      <table class="tbl">
+        <caption class="mono">Consommables</caption>
+        <tbody>
+          <tr><th scope="row">Pastille Kärcher RM 760</th><td>500 F</td></tr>
+          <tr><th scope="row">Buse à crevasse</th><td>500 F</td></tr>
+          <tr><th scope="row">Livraison de la machine</th><td>1 500 F</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<!-- ========== RESERVER ========== -->
-<section class="blk" id="reserver">
-  <div class="reveal hd-center">
-    <div class="kicker"><i></i><span class="mono">06 / Réserver</span></div>
-    <h2>Choisissez votre date.</h2>
-    <p class="lede">La réservation et le paiement se font sur notre boutique, en quelques clics.</p>
-  </div>
-  <div class="res reveal">
-    <a class="big" href="https://pacificrentclean.com/products/location-karcher-puzzi-10-2">
-      <span>
-        <strong>Je loue la machine</strong>
-        <em>24 heures chez vous, livrée. À partir de 6 390 F.</em>
-      </span>
-      <span class="go">Choisir une date
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-    </a>
-    <a class="big" href="https://pacificrentclean.com/pages/prestation">
-      <span>
-        <strong>Je veux qu'on vienne</strong>
-        <em>Tapis, matelas, canapé. Sur rendez vous, 7j/7. À partir de 2 000 F.</em>
-      </span>
-      <span class="go">Voir les prestations
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-    </a>
-  </div>
-
-  <div class="contactline">
-    <span class="mono" style="color:var(--text-secondary)">Nous joindre</span>
-    <a href="tel:REMPLACER" id="telLink">[téléphone à compléter]</a>
-    <a href="mailto:REMPLACER" id="mailLink">[courriel à compléter]</a>
-  </div>
-
-  <form id="devis" novalidate>
-    <div class="full">
-      <h3 style="font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:700">
-        Hôtel, pension, gros volume ?</h3>
-      <p style="color:var(--text-secondary);margin-top:10px">Dites-nous ce qu'il y a à nettoyer, on revient vers vous avec un prix.</p>
+<!-- ========== FAQ ========== -->
+<section class="sec sec-deep2" id="faq">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap faq">
+    <div class="rev" style="margin-bottom:clamp(26px,3.4vw,48px);text-align:center">
+      <span class="mono" style="display:block;margin-bottom:1rem">Les questions qui bloquent</span>
+      <h2 class="title">Avant de réserver.</h2>
     </div>
-    <div><label for="nom">Nom</label><input id="nom" name="nom" type="text" autocomplete="name"></div>
-    <div><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
-    <div class="full"><label for="mail">Courriel</label><input id="mail" name="mail" type="email" autocomplete="email" required></div>
-    <div class="full"><label for="besoin">Ce qu'il y a à nettoyer</label>
-      <textarea id="besoin" name="besoin" placeholder="Par exemple : 8 matelas queen et 3 canapés d'angle, à Punaauia."></textarea></div>
-    <div class="full"><button class="btn" type="submit">Demander un prix</button></div>
-    <p class="formnote">Votre messagerie s'ouvre avec le message prêt. Il ne part qu'une fois envoyé.</p>
-    <div class="sent" role="status">Votre messagerie s'est ouverte avec le message préparé. Si rien ne s'est passé,
-      écrivez-nous directement à l'adresse ci-dessus.</div>
-  </form>
+
+    <div id="faqList">
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a1">Ça sèche en combien de temps ?</button>
+        <div class="a" id="a1" role="region"><p><span class="todo">À remplir</span> Le délai réel constaté sur tes chantiers. Aucun chiffre n’est inventé ici.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a2">J’ai peur d’abîmer mon canapé.</button>
+        <div class="a" id="a2" role="region"><p>C’est la bonne question. Le vrai risque n’est pas le produit, c’est l’eau laissée dans la fibre : trop injectée, pas assez reprise, et la mousse reste humide au fond. Un injecteur extracteur reprend dans le même geste qu’il injecte, et c’est exactement ce qui le sépare d’une shampouineuse.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a3">Est ce que les taches partent vraiment ?</button>
+        <div class="a" id="a3" role="region"><p><span class="todo">À remplir</span> Ce que tu garantis, et ce que tu ne garantis pas.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a4">Peut on nettoyer tous les tissus ?</button>
+        <div class="a" id="a4" role="region"><p>Non, et personne de sérieux ne vous dira le contraire. L’injection extraction est faite pour les textiles qui supportent l’eau. Le velours, la soie et les tissus marqués « nettoyage à sec » demandent un avis avant de commencer. Envoyez une photo de l’étiquette, on vous répond.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a5">Dois je préparer mon canapé ou mon matelas ?</button>
+        <div class="a" id="a5" role="region"><p>Videz ce qui traîne dessus et dégagez un mètre autour. Le reste, c’est notre travail.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a6">Comment fonctionne la location ?</button>
+        <div class="a" id="a6" role="region"><p>Vous réservez une date, la machine est livrée chez vous, vous l’avez 24 heures à partir de la livraison. Les pastilles partent avec.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a7">Je ne saurai pas m’en servir.</button>
+        <div class="a" id="a7" role="region"><p>Elle a deux réservoirs et une gâchette. Le manuel part avec la machine, et on répond au téléphone pendant la location.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a8">Livrez vous la machine ?</button>
+        <div class="a" id="a8" role="region"><p>Oui. 1 500 F sur Punaauia, Faa’a et Papenoo.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a9">Quelle zone desservez vous ?</button>
+        <div class="a" id="a9" role="region"><p><span class="todo">À remplir</span> La zone réelle, au delà de Punaauia, Faa’a et Papenoo.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="a10">Il faut avancer de l’argent ?</button>
+        <div class="a" id="a10" role="region"><p>Non. Vous choisissez votre date et vous payez la prestation ou la location.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ACTE 8 · LA CLÔTURE ========== -->
+<section class="close" id="reserver">
+  <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="close-bg" style="background-image:url('assets/hero-ending.jpg')" aria-hidden="true"></div>
+  <div class="close-in">
+    <div class="rev">
+      <span class="mono" style="display:block;margin-bottom:1.4rem;color:var(--sand)">Acte 8 / À vous</span>
+      <h2 class="title">Prêt à voir<br><span style="white-space:nowrap">la différence ?</span></h2>
+      <div class="cta-row">
+        <a class="btn btn-a" href="#" data-shop="prestation">Réserver un nettoyage</a>
+        <a class="btn btn-b" href="#" data-shop="location">Louer la machine</a>
+      </div>
+      <p class="mono" style="margin-top:1.4rem;color:var(--on-deep-2)">Les deux boutons partiront vers la boutique. <span class="todo">Liens à brancher</span></p>
+      <div class="contact">
+        <span>Tahiti, 7j/7</span>
+        <span><span class="todo">Téléphone à remplir</span></span>
+        <span><span class="todo">Courriel à remplir</span></span>
+      </div>
+    </div>
+
+    <form class="form rev" id="devis" novalidate>
+      <h3 class="sub-t" style="margin-bottom:.5rem">Hôtel ou location saisonnière ?</h3>
+      <p class="lede" style="margin:0 0 1.4rem;font-size:.95rem">Dites nous le volume, on revient vers vous avec un prix.</p>
+      <div class="grid">
+        <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+        <div class="field full"><label for="f-mail">Courriel</label><input id="f-mail" name="mail" type="email" autocomplete="email" required></div>
+        <div class="field full"><label for="f-msg">Votre besoin</label><textarea id="f-msg" name="msg" required></textarea></div>
+      </div>
+      <button class="btn btn-a" type="submit">Envoyer la demande</button>
+      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
 </section>
 </main>
 
-<footer>
-  <div class="fgrid">
-    <a class="brand" href="#top" style="text-decoration:none">Pacific <em>Rent&amp;Clean</em></a>
-    <div class="fnav">
-      <a href="#machines">Louer une machine</a>
-      <a href="#fourche">Prestation</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#reserver">Réserver</a>
-      <a href="https://pacificrentclean.com/policies/privacy-policy">Politique de confidentialité</a>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-mark">Pacific Rent<i>&amp;</i>Clean</p>
+        <p style="margin:0;color:rgba(244,241,232,.7);max-width:32ch;font-size:.92rem;line-height:1.6">Nettoyage textile par injection extraction et location de machines professionnelles. Tahiti, Polynésie française.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Matelas</a></li>
+          <li><a href="#services">Canapés et fauteuils</a></li>
+          <li><a href="#services">Auto</a></li>
+          <li><a href="#services">Tapis et moquettes</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Location</h5>
+        <ul>
+          <li><a href="#location">Kärcher Puzzi 10/1</a></li>
+          <li><a href="#machine">La machine en détail</a></li>
+          <li><a href="#procede">Le procédé</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#reserver">Réserver</a></li>
+          <li><span style="color:rgba(244,241,232,.55);font-size:.92rem">Punaauia, Faa’a, Papenoo</span></li>
+          <li><span style="color:rgba(244,241,232,.55);font-size:.92rem">Ouvert 7j/7</span></li>
+          <li><span class="todo">Réseaux à brancher</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Pacific Rent&amp;Clean</span>
+      <span>Mentions légales · Politique de confidentialité</span>
     </div>
   </div>
-  <p class="fine">© 2026 Pacific Rent&amp;Clean. Location de machines de nettoyage et prestation à domicile, Tahiti.</p>
 </footer>
 
 <script>
@@ -809,448 +1156,392 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 "use strict";
 
 /* ============================================================
-   A. OUTILS
+   0. utilitaires
    ============================================================ */
-var clamp=function(v,lo,hi){return Math.min(hi,Math.max(lo,v));};
-var smoothstep=function(p,e0,e1){var t=clamp((p-e0)/(e1-e0),0,1);return t*t*(3-2*t);};
-function rng(seed){var s=seed>>>0;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
-
-var stage=document.getElementById('stage');
-var hero=document.getElementById('hero');
-var video=document.getElementById('hero-video');
-var poster=document.getElementById('poster');
-var ring=document.getElementById('ring');
-var nav=document.getElementById('nav');
-
-var VIDEO_URL='assets/hero-scrub.mp4';
-var VIDEO_BYTES=9119852;              /* taille reelle de assets/hero-scrub.mp4 */
-var POSTER_URL='assets/hero-poster.jpg';
+const clamp=(v,lo,hi)=>Math.min(hi,Math.max(lo,v));
+const smoothstep=(p,e0,e1)=>{const t=clamp((p-e0)/(e1-e0),0,1);return t*t*(3-2*t);};
+function rng(seed){let s=seed>>>0;return()=>(s=(s*1664525+1013904223)>>>0)/4294967296;}
 
 /* ============================================================
-   B. DECOUPE DU TEXTE (une fois au chargement)
+   1. le bandeau d'instrument
    ============================================================ */
-var bands=[].map.call(document.querySelectorAll('.band'),function(el,i){
-  return {el:el,a:parseFloat(el.dataset.a),b:parseFloat(el.dataset.b),op:-1,k:-1,live:null};
-});
+(function(){
+  const track=document.getElementById('track');
+  const items=['Injection extraction','Matériel professionnel','Intervention à domicile',
+               'Location disponible','Produits professionnels','Tahiti','Ouvert 7j/7'];
+  let html='';
+  for(let r=0;r<6;r++) html+=items.map(t=>'<span>'+t+'</span>').join('');
+  track.innerHTML=html;
+})();
 
-function splitLine(p,mode,seedBase,spread){
-  var text=p.textContent;
-  var r=rng(seedBase);
-  var sr=document.createElement('span');
-  sr.className='sr';sr.textContent=text;
-  var vis=document.createElement('span');
-  vis.setAttribute('aria-hidden','true');
-  if(mode==='dual'){
-    var wrap=document.createElement('span');wrap.className='dual';
-    var soft=document.createElement('span');soft.className='soft';soft.textContent=text;
-    var sharp=document.createElement('span');sharp.className='sharp';sharp.textContent=text;
-    wrap.appendChild(soft);wrap.appendChild(sharp);
-    vis.appendChild(wrap);
-    p.textContent='';p.appendChild(sr);p.appendChild(vis);return;
-  }
-  var words=text.split(' ');
-  var totalChars=text.replace(/ /g,'').length,ci=0;
-  words.forEach(function(word,wi){
-    var w=document.createElement('span');w.className='w';
-    if(mode==='words'){
-      w.style.setProperty('--th',(wi/Math.max(1,words.length))*0.42+r()*0.06);
+/* ============================================================
+   2. découpage du texte, fait une fois au chargement
+   ============================================================ */
+function splitText(el){
+  const mode=el.dataset.split;
+  if(!mode) return;
+  const text=el.textContent.trim();
+  const r=rng(parseInt(el.dataset.seed||'7',10));
+  const words=text.split(' ');
+  const emIndex=el.dataset.em?parseInt(el.dataset.em,10):-1;
+  let total=0; words.forEach(w=>total+=w.length);
+  el.innerHTML='';
+  const sr=document.createElement('span'); sr.className='sr'; sr.textContent=text; el.appendChild(sr);
+  const vis=document.createElement('span'); vis.setAttribute('aria-hidden','true'); el.appendChild(vis);
+  let ci=0;
+  words.forEach((word,wi)=>{
+    const w=document.createElement('span'); w.className='w';
+    if(wi===emIndex) w.classList.add('em');
+    if(mode==='word'){
+      w.style.setProperty('--th',(wi/Math.max(1,words.length))*0.5+r()*0.06);
       w.textContent=word;
     }else{
-      for(var i=0;i<word.length;i++){
-        var c=document.createElement('span');c.className='c';
-        c.textContent=word[i];
-        c.style.setProperty('--th',(ci/Math.max(1,totalChars))*(spread||0.5)+r()*0.06);
-        c.style.setProperty('--jx',((r()*2-1)*54).toFixed(1)+'px');
-        c.style.setProperty('--jy',((r()*2-1)*44).toFixed(1)+'px');
-        c.style.setProperty('--jr',((r()*2-1)*22).toFixed(1)+'deg');
-        w.appendChild(c);ci++;
+      for(const ch of word){
+        const c=document.createElement('span'); c.className='c'; c.textContent=ch;
+        c.style.setProperty('--th',(ci/Math.max(1,total))*0.5+r()*0.05);
+        c.style.setProperty('--jy',((ci%2===0)?-1:1)*(22+r()*16)+'px');
+        w.appendChild(c); ci++;
       }
     }
     vis.appendChild(w);
     if(wi<words.length-1) vis.appendChild(document.createTextNode(' '));
   });
-  p.textContent='';p.appendChild(sr);p.appendChild(vis);
 }
-
-bands.forEach(function(b,bi){
-  var spread=parseFloat(b.el.dataset.spread||'0.5');
-  [].forEach.call(b.el.querySelectorAll('.line[data-split]'),function(p){
-    splitLine(p,p.dataset.split,1234+bi*97,spread);
-  });
-  var em=b.el.querySelector('.line[data-em]');
-  if(em){
-    var idx=parseInt(em.dataset.em,10);
-    var ws=em.querySelectorAll('.w');
-    if(ws[idx]) ws[idx].classList.add('em');
-  }
-});
+document.querySelectorAll('[data-split]').forEach(splitText);
 
 /* ============================================================
-   C. LES CINQ PORTES DU HEROS FIXE
+   3. le héros défilé
    ============================================================ */
-var GATES=[
+const VIDEO_URL='assets/hero-scrub.mp4';
+const VIDEO_BYTES=7124073;
+const POSTER_URL='assets/hero-poster.jpg';
+
+const hero=document.getElementById('hero');
+const stage=document.getElementById('stage');
+const video=document.getElementById('heroVideo');
+const ring=document.getElementById('ring');
+const posterLayer=document.getElementById('poster');
+
+const bands=[...document.querySelectorAll('.band')].map(el=>({
+  el, a:parseFloat(el.dataset.a), b:parseFloat(el.dataset.b), op:-1, k:-1
+}));
+
+let target=0, shown=0, rafId=null, lastTick=0;
+let seekBusy=false, pendingTime=null;
+let heroOnScreen=true, scrubOn=false, heroInit=false;
+let loadK=0, loadStart=0, loadRunning=false;
+
+function heroProgress(){
+  const range=hero.offsetHeight-window.innerHeight;
+  if(range<=0) return 0;
+  return clamp((-hero.getBoundingClientRect().top)/range,0,1);
+}
+
+function requestSeek(t){
+  if(!video.duration||!isFinite(t)) return;
+  if(seekBusy){pendingTime=t;return;}
+  seekBusy=true;
+  try{video.currentTime=t;}catch(e){seekBusy=false;}
+}
+video.addEventListener('seeked',()=>{
+  seekBusy=false;
+  if(pendingTime!==null){const t=pendingTime;pendingTime=null;requestSeek(t);}
+});
+video.addEventListener('error',()=>{seekBusy=false;pendingTime=null;failVideo();});
+
+function updateCaptions(p){
+  for(const b of bands){
+    const len=b.b-b.a;
+    const f=Math.min(0.02,len/3);
+    const isFirst=b.a===0, isLast=b.b===1;
+    const inEase=isFirst?1:smoothstep(p,b.a,b.a+f);
+    const outEase=isLast?1:(1-smoothstep(p,b.b-f,b.b));
+    let op=inEase*outEase;
+    const ramp=Math.min(0.025,len*0.35);
+    let k=clamp((p-b.a)/ramp,0,1);
+    if(isFirst) k=Math.max(k,loadK);
+    if(Math.abs(op-b.op)>0.004){b.op=op;b.el.style.opacity=op.toFixed(3);}
+    if(Math.abs(k-b.k)>0.008){b.k=k;b.el.style.setProperty('--k',k.toFixed(3));}
+  }
+}
+
+function tick(now){
+  const dt=Math.min(100,now-(lastTick||now));
+  lastTick=now;
+  const kk=0.16;
+  shown+=(target-shown)*(1-Math.pow(1-kk,dt/16.667));
+  let resting=Math.abs(target-shown)<0.0005;
+  if(loadRunning){
+    loadK=clamp((now-loadStart)/900,0,1);
+    if(loadK>=1) loadRunning=false;
+    resting=false;
+  }
+  if(resting){shown=target;rafId=null;lastTick=0;}
+  else rafId=requestAnimationFrame(tick);
+  if(video.duration) requestSeek(shown*video.duration);
+  updateCaptions(shown);
+}
+function kickLoop(){if(rafId===null&&heroOnScreen&&scrubOn){lastTick=0;rafId=requestAnimationFrame(tick);}}
+function onScroll(){target=heroProgress();kickLoop();}
+
+function failVideo(){
+  if(ring&&ring.parentNode){
+    const chev=document.createElement('div');
+    chev.className='chev';
+    chev.innerHTML='<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+    chev.setAttribute('aria-hidden','true');
+    ring.replaceWith(chev);
+  }
+  video.style.display='none';
+}
+
+async function loadHeroBlob(){
+  const ctrl=new AbortController();
+  let watchdog=setTimeout(()=>ctrl.abort(),20000);
+  const res=await fetch(VIDEO_URL,{signal:ctrl.signal});
+  if(!res.ok||!res.body) throw new Error('http '+res.status);
+  const total=Number(res.headers.get('Content-Length'))||VIDEO_BYTES;
+  const reader=res.body.getReader();
+  const chunks=[];
+  let got=0,lastRing=0;
+  for(;;){
+    const {done,value}=await reader.read();
+    if(done) break;
+    clearTimeout(watchdog);
+    watchdog=setTimeout(()=>ctrl.abort(),20000);
+    chunks.push(value); got+=value.length;
+    const frac=Math.min(1,got/total);
+    const now=performance.now();
+    if(now-lastRing>100||frac===1){
+      lastRing=now;
+      ring.style.setProperty('--ld',Math.round(126*(1-frac)));
+    }
+  }
+  clearTimeout(watchdog);
+  ring.style.setProperty('--ld',0);
+  video.src=URL.createObjectURL(new Blob(chunks,{type:'video/mp4'}));
+  video.load();
+  video.addEventListener('canplay',()=>{
+    if(ring&&ring.parentNode) ring.style.opacity='0';
+    requestSeek(heroProgress()*video.duration);
+    stage.classList.add('video-ready');
+  },{once:true});
+}
+
+function initHeroOnce(){
+  if(heroInit) return;
+  heroInit=true;
+  posterLayer.style.backgroundImage="url('"+POSTER_URL+"')";
+  loadStart=performance.now(); loadRunning=true; loadK=0;
+  let started=false;
+  const start=()=>{if(started)return;started=true;loadHeroBlob().catch(failVideo);};
+  const img=new Image();
+  img.onload=start; img.onerror=start; img.src=POSTER_URL;
+  setTimeout(start,4000);
+}
+
+const GATES=[
   '(max-width: 720px)',
   '(orientation: portrait) and (max-width: 1024px)',
   '(orientation: portrait) and (pointer: coarse)',
   '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
   '(prefers-reduced-motion: reduce)'
 ];
-var MQLS=GATES.map(function(q){return matchMedia(q);});
-var scrubOn=false, heroInit=false, heroOnScreen=true;
-
-/* ============================================================
-   D. CHARGEMENT DE LA VIDEO EN BLOB, AVEC ANNEAU
-   ============================================================ */
-var started=false;
-function initHeroOnce(){
-  if(heroInit) return; heroInit=true;
-  poster.style.backgroundImage="url('"+POSTER_URL+"')";
-  var img=new Image();
-  img.onload=startBlobFetch; img.onerror=startBlobFetch;
-  img.src=POSTER_URL;
-  setTimeout(startBlobFetch,4000);
-}
-function startBlobFetch(){
-  if(started) return; started=true;
-  loadHeroBlob().catch(failVideo);
-}
-function loadHeroBlob(){
-  var ctrl=new AbortController();
-  var watchdog=setTimeout(function(){ctrl.abort();},20000);
-  return fetch(VIDEO_URL,{signal:ctrl.signal}).then(function(res){
-    if(!res.ok||!res.body) throw new Error('video '+res.status);
-    var total=Number(res.headers.get('Content-Length'))||VIDEO_BYTES;
-    var reader=res.body.getReader();
-    var chunks=[],got=0,lastRing=0;
-    function pump(){
-      return reader.read().then(function(r){
-        if(r.done) return;
-        clearTimeout(watchdog);
-        watchdog=setTimeout(function(){ctrl.abort();},20000);
-        chunks.push(r.value);got+=r.value.length;
-        var frac=Math.min(1,got/total),now=performance.now();
-        if(now-lastRing>100||frac===1){
-          lastRing=now;
-          ring.style.setProperty('--ld',Math.round(126*(1-frac)));
-        }
-        return pump();
-      });
-    }
-    return pump().then(function(){
-      clearTimeout(watchdog);
-      ring.style.setProperty('--ld',0);
-      video.src=URL.createObjectURL(new Blob(chunks,{type:'video/mp4'}));
-      video.load();
-      video.addEventListener('canplay',function(){
-        ring.style.opacity='0';
-        requestSeek(heroProgress()*(video.duration||1));
-        stage.classList.add('video-ready');
-      },{once:true});
-    });
-  });
-}
-function failVideo(){
-  if(ring&&ring.parentNode){
-    var cue=document.createElement('div');
-    cue.className='cue';
-    cue.innerHTML='<span>DESCENDEZ</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '+
-      'stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>';
-    ring.parentNode.replaceChild(cue,ring);
-    ring=cue;
-  }
-  stage.classList.add('video-failed');
-}
-video.addEventListener('error',function(){failVideo();});
-
-/* ============================================================
-   E. LE PILOTE : progression, interpolation, recherches
-   ============================================================ */
-function heroProgress(){
-  var range=hero.offsetHeight-window.innerHeight;
-  if(range<=0) return 0;
-  return clamp(-hero.getBoundingClientRect().top/range,0,1);
-}
-var target=0,shown=0,rafId=null,lastTick=0;
-var seekBusy=false,pendingTime=null;
-
-function requestSeek(t){
-  if(!video.duration||!isFinite(video.duration)) return;
-  if(seekBusy){pendingTime=t;return;}
-  seekBusy=true;
-  try{video.currentTime=t;}catch(e){seekBusy=false;}
-}
-video.addEventListener('seeked',function(){
-  seekBusy=false;
-  if(pendingTime!==null){var t=pendingTime;pendingTime=null;requestSeek(t);}
-});
-video.addEventListener('error',function(){seekBusy=false;pendingTime=null;});
-
-var loadK=0,loadStart=0;
-function tick(now){
-  var dt=Math.min(100,now-(lastTick||now));
-  lastTick=now;
-  var k=0.16;
-  shown+=(target-shown)*(1-Math.pow(1-k,dt/16.667));
-  var converged=Math.abs(target-shown)<0.0005;
-  if(converged){shown=target;}
-  if(loadStart===0) loadStart=now;
-  loadK=clamp((now-loadStart)/1100,0,1);
-  requestSeek(shown*(video.duration||1));
-  updateCaptions(shown);
-  if(converged&&loadK>=1){rafId=null;lastTick=0;}
-  else{rafId=requestAnimationFrame(tick);}
-}
-function kick(){
-  if(rafId===null&&heroOnScreen&&scrubOn) rafId=requestAnimationFrame(tick);
-}
-function onScroll(){target=heroProgress();kick();}
-
-/* ============================================================
-   F. LES BANDES, ecritures uniquement au changement
-   ============================================================ */
-function bandOpacity(p,a,z,first,last){
-  var f=Math.min(0.02,(z-a)/3);
-  var into=first?(p>=a?1:0):smoothstep(p,a,a+f);
-  var outo=last?(p<=z?1:0):(1-smoothstep(p,z-f,z));
-  return clamp(into*outo,0,1);
-}
-function updateCaptions(p){
-  for(var i=0;i<bands.length;i++){
-    var b=bands[i],a=b.a,z=b.b;
-    var op=bandOpacity(p,a,z,i===0,i===bands.length-1);
-    var ramp=parseFloat(b.el.dataset.ramp||'0')||Math.min(0.025,(z-a)*0.35);
-    var kk=clamp((p-a)/ramp,0,1);
-    if(i===0) kk=Math.max(kk,loadK);
-    if(Math.abs(op-b.op)>0.004){
-      b.op=op;
-      b.el.style.opacity=op.toFixed(3);
-      /* une bande invisible ne doit ni capter un clic ni piéger le clavier */
-      var live=op>0.5;
-      if(live!==b.live){
-        b.live=live;
-        b.el.classList.toggle('live',live);
-        if('inert' in b.el) b.el.inert=!live;
-      }
-    }
-    if(Math.abs(kk-b.k)>0.008){b.k=kk;b.el.style.setProperty('--k',kk.toFixed(3));}
-  }
-}
-
-/* ============================================================
-   G. ARMEMENT ET DESARMEMENT
-   ============================================================ */
 function enableScrub(){
   if(scrubOn) return; scrubOn=true;
   initHeroOnce();
-  window.addEventListener('scroll',onScroll,{passive:true});
-  bands.forEach(function(b){b.op=-1;b.k=-1;});
+  addEventListener('scroll',onScroll,{passive:true});
+  bands.forEach(b=>{b.op=-1;b.k=-1;});
   unpinFinalStates();
-  loadStart=0;loadK=0;
-  updateCaptions(heroProgress());
+  target=heroProgress(); shown=target;
+  updateCaptions(target);
   onScroll();
 }
 function disableScrub(){
+  paintStatic();
   if(!scrubOn) return; scrubOn=false;
-  window.removeEventListener('scroll',onScroll);
+  removeEventListener('scroll',onScroll);
   if(rafId!==null){cancelAnimationFrame(rafId);rafId=null;}
 }
+/* le héros fixe : une seule image téléchargée, l'arrivée au repos du film */
+let staticPainted=false;
+function paintStatic(){
+  if(staticPainted||heroInit) return; staticPainted=true;
+  posterLayer.style.backgroundImage="url('assets/hero-ending.jpg')";
+}
 function applyHeroMode(){
-  var gated=MQLS.some(function(m){return m.matches;});
-  if(gated) disableScrub(); else enableScrub();
+  if(GATES.some(q=>matchMedia(q).matches)) disableScrub();
+  else enableScrub();
 }
-MQLS.forEach(function(m){
-  if(m.addEventListener) m.addEventListener('change',applyHeroMode);
-  else if(m.addListener) m.addListener(applyHeroMode);
-});
+const MQLS=GATES.map(q=>matchMedia(q));
+MQLS.forEach(m=>m.addEventListener('change',applyHeroMode));
 
-if('IntersectionObserver' in window){
-  new IntersectionObserver(function(es){
-    heroOnScreen=es[0].isIntersecting;
-    if(heroOnScreen) kick();
-  },{rootMargin:'120px'}).observe(hero);
-}
+new IntersectionObserver(es=>{
+  heroOnScreen=es[0].isIntersecting;
+  if(heroOnScreen) kickLoop();
+},{rootMargin:'120px'}).observe(hero);
 
 /* ============================================================
-   H. LA LIGNE DE PROFONDEUR
+   4. entrées chorégraphiées
    ============================================================ */
-var rail=document.getElementById('rail');
-var railFill=document.getElementById('railFill');
-var railHead=document.getElementById('railHead');
-var marks=[].slice.call(document.querySelectorAll('.rail-mark'));
-var trackTop=0,trackH=0,lastFill=-1,lastMark=-1;
-
-function layoutRail(){
-  var t=document.querySelector('.rail-track');
-  if(!t) return;
-  var r=t.getBoundingClientRect();
-  trackTop=r.top;trackH=r.height;
-  marks.forEach(function(m){
-    m.style.top=(parseFloat(m.dataset.at)/100*trackH)+'px';
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target;
+    el.classList.add('in');
+    if(el.classList.contains('stag')) setTimeout(()=>el.classList.add('done'),1200);
+    io.unobserve(el);
   });
-}
-function updateRail(){
-  if(!trackH) return;
-  var doc=document.documentElement;
-  var max=doc.scrollHeight-window.innerHeight;
-  var p=max>0?clamp(window.scrollY/max,0,1):0;
-  var h=Math.round(p*trackH);
-  if(h!==lastFill){
-    lastFill=h;
-    railFill.style.height=h+'px';
-    railHead.style.top=(trackTop+h)+'px';
-  }
-  var idx=p<0.17?0:(p<0.5?1:(p<0.8?2:3));
-  if(idx!==lastMark){
-    lastMark=idx;
-    marks.forEach(function(m,i){m.classList.toggle('on',i===idx);});
-  }
-}
-function onPageScroll(){
-  updateRail();
-  var solid=window.scrollY>window.innerHeight*0.9;
-  if(solid!==nav.classList.contains('solid')) nav.classList.toggle('solid',solid);
-}
-window.addEventListener('scroll',onPageScroll,{passive:true});
-window.addEventListener('resize',function(){layoutRail();updateRail();});
-layoutRail();rail.classList.add('armed');updateRail();onPageScroll();
+},{rootMargin:'0px 0px -12% 0px',threshold:.08});
+document.querySelectorAll('.rev,.stag,.pass,.proc').forEach(el=>io.observe(el));
+
+/* la ligne du procédé, mesurée pour se dessiner juste */
+(function(){
+  const path=document.querySelector('.proc-line path');
+  if(!path) return;
+  const len=path.getTotalLength?path.getTotalLength():1200;
+  path.style.setProperty('--len',len);
+})();
+
+/* la barre de navigation se densifie une fois le héros passé */
+const nav=document.getElementById('nav');
+new IntersectionObserver(es=>{
+  nav.classList.toggle('solid',!es[0].isIntersecting);
+},{threshold:0,rootMargin:'-70px 0px 0px 0px'}).observe(document.getElementById('top'));
 
 /* ============================================================
-   I. ENTREES DE SECTIONS + LIGNES QUI SE DESSINENT + IMAGES
+   5. le comparateur : le moment interactif
    ============================================================ */
-[].forEach.call(document.querySelectorAll('.weave path'),function(p){
-  var len=Math.ceil(p.getTotalLength());
-  p.style.setProperty('--len',len);
-  p.style.strokeDasharray=len;
-  p.style.strokeDashoffset=len;
-});
-if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(!e.isIntersecting) return;
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-      if(e.target.classList.contains('reveal')){
-        setTimeout(function(){e.target.classList.add('settled');},1400);
+(function(){
+  const cmp=document.getElementById('cmp');
+  if(!cmp) return;
+  let x=50, dragging=false;
+  function set(v,announce){
+    x=clamp(v,0,100);
+    cmp.style.setProperty('--x',x+'%');
+    cmp.setAttribute('aria-valuenow',Math.round(x));
+    if(announce) cmp.setAttribute('aria-valuetext',Math.round(x)+' pour cent');
+  }
+  function fromEvent(e){
+    const r=cmp.getBoundingClientRect();
+    const cx=(e.touches&&e.touches[0]?e.touches[0].clientX:e.clientX);
+    set(((cx-r.left)/r.width)*100,true);
+  }
+  function touched(){cmp.classList.add('touched');}
+  cmp.addEventListener('pointerdown',e=>{dragging=true;touched();try{cmp.setPointerCapture(e.pointerId);}catch(_){}fromEvent(e);e.preventDefault();});
+  cmp.addEventListener('pointermove',e=>{if(dragging)fromEvent(e);});
+  cmp.addEventListener('pointerup',e=>{dragging=false;try{cmp.releasePointerCapture(e.pointerId);}catch(_){}});
+  cmp.addEventListener('pointercancel',()=>{dragging=false;});
+  cmp.addEventListener('keydown',e=>{
+    const step=e.shiftKey?10:4;
+    if(e.key==='ArrowLeft'){set(x-step,true);touched();e.preventDefault();}
+    else if(e.key==='ArrowRight'){set(x+step,true);touched();e.preventDefault();}
+    else if(e.key==='Home'){set(0,true);touched();e.preventDefault();}
+    else if(e.key==='End'){set(100,true);touched();e.preventDefault();}
+  });
+  set(50,false);
+})();
+
+/* ============================================================
+   6. la machine : points d'accroche
+   ============================================================ */
+(function(){
+  const svg=document.querySelector('.mach-svg');
+  if(!svg) return;
+  const hots=[...document.querySelectorAll('.hot')];
+  const items=[...document.querySelectorAll('.mach-item')];
+  let active=null;
+  function select(name){
+    active=(active===name)?null:name;
+    svg.querySelectorAll('g[data-part]').forEach(g=>g.classList.toggle('on',g.dataset.part===active));
+    hots.forEach(h=>h.setAttribute('aria-pressed',String(h.dataset.hot===active)));
+    items.forEach(i=>i.setAttribute('aria-pressed',String(i.dataset.hot===active)));
+  }
+  hots.concat(items).forEach(el=>{
+    el.addEventListener('click',()=>select(el.dataset.hot));
+    el.addEventListener('mouseenter',()=>{
+      if(matchMedia('(pointer: fine)').matches&&active===null){
+        svg.querySelectorAll('g[data-part]').forEach(g=>g.classList.toggle('on',g.dataset.part===el.dataset.hot));
       }
     });
-  },{rootMargin:'0px 0px -12% 0px',threshold:0.08});
-  [].forEach.call(document.querySelectorAll('.reveal,.weave'),function(el){io.observe(el);});
-}else{
-  /* pas d'observateur : tout est montre dans son etat final, jamais de page vide */
-  [].forEach.call(document.querySelectorAll('.reveal,.weave'),function(el){
-    el.classList.add('in');el.classList.add('settled');
+    el.addEventListener('mouseleave',()=>{
+      if(matchMedia('(pointer: fine)').matches&&active===null){
+        svg.querySelectorAll('g[data-part]').forEach(g=>g.classList.remove('on'));
+      }
+    });
   });
-}
+  select('propre');
+})();
 
 /* ============================================================
-   J. LE MOMENT INTERACTIF : appuyer et maintenir
+   7. FAQ
    ============================================================ */
-var holdBtn=document.getElementById('holdBtn');
-var holdWrap=document.getElementById('holdWrap');
-var fibre=document.getElementById('fibre');
-var waterRect=document.getElementById('waterRect');
-var waterLine=document.getElementById('waterLine');
-var hold=0,holding=false,holdRaf=null,holdLast=0,lastHoldWrite=-1;
-
-function holdTick(now){
-  var dt=Math.min(100,now-(holdLast||now));holdLast=now;
-  var speed=holding?(dt/1500):-(dt/1100);
-  hold=clamp(hold+speed,0,1);
-  writeHold();
-  if((holding&&hold<1)||(!holding&&hold>0)) holdRaf=requestAnimationFrame(holdTick);
-  else{holdRaf=null;holdLast=0;}
-}
-function writeHold(){
-  if(Math.abs(hold-lastHoldWrite)<0.006&&hold!==0&&hold!==1) return;
-  lastHoldWrite=hold;
-  holdWrap.style.setProperty('--hold',hold.toFixed(3));
-  var h=hold*300;
-  waterRect.setAttribute('height',h.toFixed(1));
-  waterLine.setAttribute('y',(8+h).toFixed(1));
-  waterLine.setAttribute('opacity',(hold<=0.001?0:(hold>=0.999?0:0.85)).toFixed(2));
-  holdWrap.classList.toggle('hold-on',hold>0.55);
-}
-function startHold(e){
-  if(e&&e.cancelable) e.preventDefault();
-  holding=true;
-  if(holdRaf===null) holdRaf=requestAnimationFrame(holdTick);
-}
-function endHold(){holding=false;if(holdRaf===null) holdRaf=requestAnimationFrame(holdTick);}
-['mousedown','touchstart','pointerdown'].forEach(function(ev){
-  holdBtn.addEventListener(ev,startHold,{passive:false});
-  fibre.addEventListener(ev,startHold,{passive:false});
+document.querySelectorAll('#faqList .q button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const open=btn.getAttribute('aria-expanded')==='true';
+    document.querySelectorAll('#faqList .q').forEach(q=>{
+      q.removeAttribute('open');
+      q.querySelector('button').setAttribute('aria-expanded','false');
+    });
+    if(!open){btn.parentElement.setAttribute('open','');btn.setAttribute('aria-expanded','true');}
+  });
 });
-['mouseup','mouseleave','touchend','touchcancel','pointerup','pointercancel'].forEach(function(ev){
-  holdBtn.addEventListener(ev,endHold);
-  fibre.addEventListener(ev,endHold);
-  window.addEventListener(ev,endHold);
-});
-holdBtn.addEventListener('keydown',function(e){
-  if(e.key===' '||e.key==='Enter'){e.preventDefault();startHold();}
-});
-holdBtn.addEventListener('keyup',function(e){
-  if(e.key===' '||e.key==='Enter'){e.preventDefault();endHold();}
-});
-writeHold();
 
 /* ============================================================
-   K. LE FORMULAIRE (mailto, dit honnetement)
+   8. le formulaire de devis
    ============================================================ */
-var MAIL_TO='REMPLACER';   /* PATCH-COURRIEL */
-var form=document.getElementById('devis');
-form.addEventListener('submit',function(e){
-  e.preventDefault();
-  var nom=form.nom.value.trim(),tel=form.tel.value.trim(),
-      mail=form.mail.value.trim(),besoin=form.besoin.value.trim();
-  if(!mail){form.mail.focus();return;}
-  var body='Nom : '+nom+'\nTelephone : '+tel+'\nCourriel : '+mail+'\n\nA nettoyer :\n'+besoin+'\n';
-  var href='mailto:'+MAIL_TO+'?subject='+encodeURIComponent('Demande de devis, Pacific Rent&Clean')+
-           '&body='+encodeURIComponent(body);
-  form.classList.add('done');
-  window.location.href=href;
-});
+const MAILTO=''; /* À REMPLIR : l'adresse courriel de l'entreprise */
+(function(){
+  const form=document.getElementById('devis');
+  const msg=document.getElementById('formMsg');
+  if(!form) return;
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const nom=form.nom.value.trim(), mail=form.mail.value.trim(), tel=form.tel.value.trim(), txt=form.msg.value.trim();
+    if(!nom||!mail||!txt){msg.textContent='Il manque le nom, le courriel ou le besoin.';return;}
+    if(!MAILTO){
+      msg.textContent='L’adresse de destination n’est pas encore branchée sur ce site. Elle sera ajoutée avant la mise en ligne.';
+      return;
+    }
+    const body='Nom : '+nom+'\nCourriel : '+mail+'\nTéléphone : '+tel+'\n\n'+txt;
+    window.location.href='mailto:'+MAILTO+'?subject='+encodeURIComponent('Demande de devis · Pacific Rent&Clean')+
+      '&body='+encodeURIComponent(body);
+    msg.textContent='Votre messagerie s’ouvre avec le message prêt. Il ne part qu’une fois envoyé.';
+  });
+})();
 
 /* ============================================================
-   L. MOUVEMENT REDUIT, DANS LES DEUX SENS
+   9. mouvement réduit, dans les deux sens
    ============================================================ */
 function pinToFinalStates(){
-  [].forEach.call(document.querySelectorAll('.reveal,.weave'),function(el){
-    el.classList.add('in');el.classList.add('settled');
-  });
-  holding=false;
-  if(holdRaf!==null){cancelAnimationFrame(holdRaf);holdRaf=null;}
-  hold=1;lastHoldWrite=-1;writeHold();
-  marks.forEach(function(m,i){m.classList.toggle('on',i===marks.length-1);});
+  document.body.classList.add('rm');
+  document.querySelectorAll('.rev,.stag,.pass,.proc').forEach(el=>el.classList.add('in'));
+  document.querySelectorAll('.stag').forEach(el=>el.classList.add('done'));
+  const path=document.querySelector('.proc-line path');
+  if(path) path.style.strokeDashoffset='0';
+  disableScrub();
 }
 function unpinFinalStates(){
-  hold=0;lastHoldWrite=-1;writeHold();
-  lastMark=-1;updateRail();
+  document.body.classList.remove('rm');
+  const path=document.querySelector('.proc-line path');
+  if(path) path.style.strokeDashoffset='';
 }
-var rm=matchMedia('(prefers-reduced-motion: reduce)');
-function onRM(e){
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',e=>{
   if(e.matches) pinToFinalStates();
   else applyHeroMode();
-}
-if(rm.addEventListener) rm.addEventListener('change',onRM);
-else if(rm.addListener) rm.addListener(onRM);
-if(rm.matches) pinToFinalStates();
+});
+if(matchMedia('(prefers-reduced-motion: reduce)').matches) pinToFinalStates();
 
 /* ============================================================
-   M. PAUSE HORS ECRAN
+   10. on met tout en pause quand l'onglet est caché
    ============================================================ */
-document.addEventListener('visibilitychange',function(){
+document.addEventListener('visibilitychange',()=>{
   document.body.classList.toggle('paused',document.hidden);
-  if(!document.hidden) kick();
 });
 
-/* ============================================================
-   N. DEPART
-   ============================================================ */
+/* départ */
 applyHeroMode();
-window.addEventListener('resize',function(){
-  bands.forEach(function(b){b.op=-1;b.k=-1;});
-  if(scrubOn) onScroll();
-});
+addEventListener('resize',()=>{if(scrubOn){target=heroProgress();kickLoop();}},{passive:true});
 })();
 </script>
 </body>
