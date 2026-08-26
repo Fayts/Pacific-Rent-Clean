@@ -108,3 +108,47 @@ son chevron. Ce n'est pas un bug du site.
 - Les bruts de generation et les images de revue : `review/`, jamais en ligne.
 - Le suivi interne AI-OS : il reste dans `C:\AIOS\projects\pacific-rent-clean\`.
   **Ce depot est public.**
+
+## La section machine, et comment y mettre le vrai Puzzi
+
+`site/assets/machine/` contient 36 images du Puzzi vu sous 36 angles, plus
+`anchors.json`, qui donne pour chaque image la position a l'ecran des huit
+pieces. La page fait tourner l'objet au glisser et deplace les pastilles avec.
+
+**L'objet montre aujourd'hui est une maquette de travail**, une forme grossiere
+modelee a la main. La page le dit en clair. Pour la remplacer par le vrai
+Puzzi, deux chemins.
+
+### Chemin A, avec le fichier 3D (.glb)
+
+Le banc de rendu est dans le dossier de travail de la session, pas dans le
+depot : une scene three.js dans un Chrome sans ecran, qui sort les 36 images
+et projette les points d'accroche image par image. C'est le chemin le plus
+precis : les pastilles sont calculees, pas estimees.
+
+### Chemin B, avec une simple video
+
+Quand le fichier 3D n'est pas telechargeable, une capture video du modele qui
+tourne suffit.
+
+```
+./outils/mp4-vers-tourne-disque.sh <video.mp4> <largeur:hauteur:x:y> [nb_images] [debut] [duree]
+```
+
+Ce qui fait une bonne capture :
+
+- **un tour complet, a vitesse constante.** La rotation automatique du
+  visualiseur vaut mieux qu'un glissement a la main, toujours irregulier.
+- **la hauteur de camera ne bouge pas** pendant l'enregistrement.
+- **l'objet centre et le plus grand possible**, l'interface autour n'a pas
+  d'importance, elle est recadree.
+- **10 a 20 secondes** suffisent, sans le son.
+- **un fond uni et sombre** si le visualiseur le permet, sinon la couleur du
+  panneau de la page sera ajustee a celle de la video.
+
+Les pastilles, elles, ne sont plus calculees mais **estimees** par un modele
+cylindrique avec perspective, cale sur six reperes par piece releves a l'oeil
+sur les images. Precision du modele mesuree contre la verite terrain :
+**0,02 % de la largeur en horizontal, 0,28 % en vertical**, soit moins d'un
+pixel sur un panneau de 700 px. Le facteur limitant devient le releve a
+l'oeil, de l'ordre d'une largeur de pastille dans le pire cas.
