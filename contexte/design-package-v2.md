@@ -646,3 +646,73 @@ image. `turntable/` dans le dossier de travail contient la scène et le script.
 modélisée à la main pour juger l'interaction. La page le dit en clair sous la
 fiche. Le modèle Tripo du vrai Puzzi la remplacera sans toucher à une seule
 ligne d'interaction : il suffit de le passer dans le même banc de rendu.
+
+---
+
+## 15. Le vrai Puzzi entre dans la page
+
+2026-08-21. Tamatoa a genere un modele 3D du Puzzi 10/1 avec Tripo, mais le
+telechargement du fichier `.glb` est reserve a l'offre payante. Il a fourni a
+la place **la video de presentation du modele**, 1080x1080, 4 secondes,
+120 images, un tour complet a vitesse constante.
+
+**La maquette de travail est remplacee par le vrai modele.** L'interaction n'a
+pas bouge d'une ligne.
+
+### Ce qui a ete fait de la video
+
+- **Un tour complet verifie**, pas suppose : ecart mesure entre la premiere et
+  la derniere image, 3,15 sur une echelle ou deux images voisines du
+  tourne-disque valent 6,53 et un demi-tour 11,36. La boucle se referme.
+  Echantillonnage a `4,0 x i / 36`, soit exactement 10 degres par image.
+- **Recadrage** `crop=841:631:159:349`, mesure sur la boite englobante du sujet
+  relevee sur 18 instants du tour. Cela elimine le filigrane « Created With
+  Tripo Studio » et le QR code, tous deux dans les 250 premiers pixels.
+- **Etalonnage Pacific** : les ombres presque noires sont amenees vers le fond
+  de la page, les tons moyens et les hautes lumieres restent neutres pour que
+  le corps gris de la machine ne verdisse pas. Le jaune Karcher est conserve,
+  legerement desature pour ne pas concurrencer le corail.
+- **WebP plutot que JPEG.** Le fond en degrade se comprime mal en JPEG.
+  Mesure : **623 Ko en WebP qualite 80 contre 1 525 Ko en JPEG**, a qualite au
+  moins egale au zoom 200 pour cent sur le degrade. Total livre : **720 Ko**.
+- La couleur exacte du fond du rendu, `#013B47`, devient celle du panneau,
+  pour qu'il n'y ait aucun raccord visible.
+
+### Les points d'accroche, mesures et non estimes
+
+Le releve a l'oeil sur les images s'est revele trop imprecis pour les petites
+pieces. Les pieces mobiles du Puzzi sont **jaune vif** sur un fond teal : elles
+sont donc **detectees automatiquement**. Sur chacune des 36 images, les pixels
+jaunes sont isoles, regroupes en taches connexes, et les taches reliees d'une
+image a l'autre pour former des pistes. Cinq pieces jaunes distinctes en
+ressortent, suivies sans aucune intervention.
+
+Le modele de rotation est ensuite cale sur ces positions mesurees. Deux pieges
+rencontres et corriges :
+
+1. **L'ambiguite avant/arriere.** Une piece et son opposee donnent la meme
+   position horizontale. Corrige en penalisant les solutions ou une piece
+   observee serait derriere la machine, et en autorisant l'amplitude a devenir
+   negative, sans quoi le retournement est inexprimable.
+2. **Les deux reservoirs sont sur l'axe de rotation.** Leur piste est bruitee
+   et leur calage n'a pas de sens. Ils sont poses analytiquement et restent
+   toujours visibles, ce qui est correct : on peut montrer la cuve sous
+   n'importe quel angle.
+
+Ecart moyen final au modele : **pistolet 1,08 %, suceur fauteuil 2,07 %,
+extraction et flexible 0,81 %** de la largeur du cadre, soit 6 a 14 px sur un
+panneau de 700 px, pour une pastille de 30 px.
+
+**Six pastilles sur huit.** Les deux autres restent dans la fiche sans
+pastille, et la page le dit :
+
+- **Injection** : il y a bien un raccord jaune sur le flanc de la machine, mais
+  je ne peux pas affirmer que c'est celui de la solution. Je n'etiquette pas
+  une piece que je n'identifie pas. A confirmer par Tamatoa.
+- **Suceur sol 240 mm** : absent du modele 3D. Il faudrait un second modele, ou
+  une photo.
+
+### Sens du glissement
+
+Dans ce rendu, la face proche part vers la gauche quand l'indice monte. Le
+glissement a donc ete inverse pour que l'objet suive le doigt.
