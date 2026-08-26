@@ -594,3 +594,55 @@ peut plus rester orphelin.
 **Contrôle du texte.** Zéro tiret cadratin dans la page. Les seules occurrences
 de « solution » sont « solution de nettoyage », le vrai mot du métier. « landscape »
 n'apparaît que dans les requêtes média.
+
+---
+
+## 14. La section machine passe en volume
+
+Décidé le 2026-08-21, après que Tamatoa a généré un modèle 3D du Puzzi 10/1
+avec Tripo.
+
+**Le choix technique, dit à voix haute.** Le brief demandait une 3D
+manipulable. Deux façons de la livrer :
+
+1. Charger le fichier GLB dans la page avec une bibliothèque 3D. Cela veut dire
+   embarquer 300 à 600 Ko de moteur, plus le maillage et ses textures, souvent
+   5 à 20 Mo, et allumer WebGL sur le téléphone du visiteur.
+2. **Rendre un tourne-disque hors ligne depuis le modèle, et n'expédier que des
+   images.** C'est la méthode des pages produit haut de gamme.
+
+**C'est la deuxième qui est retenue**, et c'est un écart assumé par rapport au
+mot « 3D » du brief : le visiteur ne reçoit aucune 3D, il reçoit 36 images.
+Ce qu'il perd : le survol libre en hauteur et le zoom dans l'objet. Ce qu'il
+gagne : **636 Ko au total, 16 Ko par image**, une rotation fluide sur
+n'importe quel téléphone, aucune bibliothèque, aucun WebGL, aucune batterie
+brûlée, et le même comportement partout.
+
+**Ce que le tourne-disque sait faire.**
+
+- 36 images à 10 degrés d'intervalle, glissées à la main ou au doigt, avec
+  inertie qui retombe en douceur.
+- **Les huit points d'accroche suivent la rotation.** Pour chaque image, la
+  position à l'écran de chaque pièce est calculée au rendu et embarquée dans la
+  page (7,7 Ko de données). Une pièce qui passe derrière la machine s'efface et
+  cesse d'être cliquable.
+- **Cliquer une ligne de la fiche fait tourner la machine pour présenter la
+  pièce.** L'image la plus favorable de chaque pièce est calculée au rendu,
+  et l'animation prend le chemin le plus court.
+- Dérive lente au repos, au niveau du murmure, coupée dès qu'on touche et dès
+  qu'une pièce est sélectionnée.
+- Flèches gauche et droite au clavier, rôle `slider`, angle annoncé.
+- Chargement des 36 images derrière un anneau de progression, déclenché à
+  l'approche de la section.
+- Mouvement réduit : aucune dérive, aucune animation de rotation, la
+  manipulation reste possible.
+
+**La chaîne de fabrication, entièrement hors ligne :** three.js dans un Chrome
+sans écran rend les 36 images et projette les points d'accroche image par
+image. `turntable/` dans le dossier de travail contient la scène et le script.
+**Rien de three.js ne part sur le site.**
+
+**Ce qui tourne aujourd'hui est une maquette de travail**, une forme grossière
+modélisée à la main pour juger l'interaction. La page le dit en clair sous la
+fiche. Le modèle Tripo du vrai Puzzi la remplacera sans toucher à une seule
+ligne d'interaction : il suffit de le passer dans le même banc de rendu.

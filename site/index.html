@@ -325,29 +325,33 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
 /* ---------- la machine ---------- */
 .mach{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4vw,64px);align-items:center}
 @media (max-width:980px){.mach{grid-template-columns:1fr}}
-.mach-stage{background:var(--deep-2);border:1px solid rgba(78,133,142,.3);
-            border-radius:3px;padding:clamp(14px,2.2vw,30px)}
-.mach-canvas{position:relative}
-.mach-svg{width:100%;height:auto;display:block;overflow:visible}
-.mach-svg .solid{fill:rgba(78,133,142,.13);transition:fill .5s var(--ease)}
-.mach-svg .dash{stroke-dasharray:5 6}
-.mach-svg .dim{opacity:.42}
-.mach-svg .dim-t{fill:var(--on-deep-2);font-family:"DM Mono",monospace;font-size:15px;letter-spacing:.1em;opacity:.7}
-.mach-svg g.on .solid{fill:rgba(232,121,97,.16)}
-.mach-svg g.on .dim{opacity:.85}
-.mach-svg g.on .dim-t{fill:var(--coral);opacity:1}
-.mach-svg .part{fill:none;stroke:var(--on-deep-2);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round;
-  transition:stroke .5s var(--ease),stroke-width .5s var(--ease),opacity .5s var(--ease)}
-.mach-svg .thin{stroke-width:1.5;opacity:.55}
-.mach-svg g.on .part{stroke:var(--coral);stroke-width:3.4;opacity:1}
-.mach-svg g.on .thin{stroke-width:2.2}
-.hot{position:absolute;width:30px;height:30px;border-radius:50%;padding:0;cursor:pointer;
-  background:rgba(8,47,53,.72);border:1px solid var(--edge);color:var(--foam);display:grid;place-items:center;
-  transform:translate(-50%,-50%);transition:background .4s var(--ease),border-color .4s var(--ease),transform .4s var(--ease)}
-.hot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--on-deep-2);
+.mach-stage{background:var(--deep-2);border:1px solid rgba(78,133,142,.3);border-radius:3px;
+            padding:clamp(10px,1.4vw,18px)}
+.turn{position:relative;aspect-ratio:4/3;background:var(--deep-2);border-radius:2px;overflow:hidden;
+      cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.turn.dragging{cursor:grabbing}
+.turn-img{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;
+          -webkit-user-drag:none;-webkit-user-select:none;user-select:none}
+.turn-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;
+           color:var(--foam);opacity:.8;transition:opacity .5s var(--ease);pointer-events:none}
+.turn.loaded .turn-ring{opacity:0}
+.turn-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:4;pointer-events:none;
+  background:rgba(8,47,53,.72);color:var(--foam);border:1px solid rgba(78,133,142,.42);border-radius:10px;
+  padding:6px 11px;backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(4,18,20,.85);
+  transition:opacity .6s var(--ease)}
+.turn.touched .turn-hint{opacity:0}
+.hot{position:absolute;z-index:3;opacity:var(--o,1);width:30px;height:30px;border-radius:50%;padding:0;
+  cursor:pointer;background:rgba(6,34,38,.62);border:1.5px solid rgba(244,241,232,.58);color:var(--foam);
+  display:grid;place-items:center;transform:translate(-50%,-50%);
+  box-shadow:0 0 0 4px rgba(6,34,38,.30);
+  transition:background .4s var(--ease),border-color .4s var(--ease),transform .4s var(--ease),
+             box-shadow .4s var(--ease),opacity .3s linear}
+.hot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--foam);
   transition:background .4s var(--ease)}
-.hot:hover,.hot[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);transform:translate(-50%,-50%) scale(1.18)}
+.hot:hover,.hot[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);
+  transform:translate(-50%,-50%) scale(1.2);box-shadow:0 0 0 7px rgba(232,121,97,.22)}
 .hot:hover::after,.hot[aria-pressed="true"]::after{background:var(--basalt)}
+.hot[data-behind="1"]{pointer-events:none}
 @media (pointer:coarse){.hot{width:44px;height:44px}}
 .mach-list{display:grid;gap:0}
 .mach-item{border-top:1px solid rgba(78,133,142,.28);padding:14px 0;cursor:pointer;background:none;
@@ -754,95 +758,25 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
     <div class="mach">
       <div class="mach-stage rev" id="machStage">
-       <div class="mach-canvas">
-        <svg class="mach-svg" viewBox="60 46 800 540" role="img"
-             aria-label="Schéma du Kärcher Puzzi 10 barre 1 : corps avec réservoir d’eau propre de 10 litres, réservoir d’eau sale amovible de 9 litres, flexible de 2,5 mètres, pistolet, suceur sol de 240 millimètres et suceur fauteuil de 110 millimètres.">
-
-          <!-- réservoir d'eau sale, amovible, sur le dessus -->
-          <g data-part="sale">
-            <path class="part" d="M288 104C288 60 412 60 412 104"/>
-            <rect class="part solid" x="250" y="104" width="200" height="104" rx="18"/>
-            <path class="part thin" d="M262 134h176"/>
-            <rect class="part thin" x="336" y="94" width="28" height="14" rx="4"/>
-          </g>
-
-          <!-- corps et réservoir d'eau propre -->
-          <g data-part="propre">
-            <rect class="part solid" x="238" y="208" width="224" height="180" rx="14"/>
-            <rect class="part thin dash" x="258" y="246" width="184" height="126" rx="10"/>
-            <path class="part thin" d="M272 286h156M272 316h156M272 346h116"/>
-          </g>
-
-          <!-- châssis, ouïes, roues -->
-          <g>
-            <path class="part solid" d="M232 388h236l-12 118H244z"/>
-            <path class="part thin" d="M258 414h62M258 432h62M258 450h44"/>
-            <circle class="part thin" cx="418" cy="428" r="13"/>
-            <circle class="part thin" cx="268" cy="522" r="17"/>
-            <circle class="part thin" cx="432" cy="522" r="17"/>
-          </g>
-
-          <!-- injection : la solution part vers l'outil -->
-          <g data-part="injection">
-            <circle class="part" cx="478" cy="250" r="15"/>
-            <path class="part thin" d="M478 240v20M470 250h16"/>
-          </g>
-
-          <!-- extraction : la bouche d'aspiration -->
-          <g data-part="extraction">
-            <circle class="part" cx="478" cy="340" r="24"/>
-            <circle class="part thin" cx="478" cy="340" r="12"/>
-          </g>
-
-          <!-- flexible injection extraction -->
-          <g data-part="flexible">
-            <path class="part" d="M500 348c86 22 106-48 166-66 32-10 46-16 64-24"/>
-            <path class="part thin" d="M500 362c86 22 108-42 168-60 32-10 44-14 62-22"/>
-          </g>
-
-          <!-- pistolet -->
-          <g data-part="pistolet">
-            <path class="part solid" d="M718 250l82-32 14 28-82 32z"/>
-            <path class="part" d="M742 278l-12 44 22 8 14-44"/>
-            <path class="part thin" d="M814 246l24-10"/>
-          </g>
-
-          <!-- suceur sol, 240 mm -->
-          <g data-part="sol">
-            <path class="part thin" d="M143 412v22"/>
-            <path class="part solid" d="M66 474l70-40 84 40v42H66z"/>
-            <path class="part thin" d="M78 504h130"/>
-            <path class="part thin dim" d="M66 542h154M66 534v16M220 534v16"/>
-            <text class="dim-t" x="143" y="568" text-anchor="middle">240 mm</text>
-          </g>
-
-          <!-- suceur fauteuil, 110 mm -->
-          <g data-part="fauteuil">
-            <path class="part thin" d="M645 424v26"/>
-            <path class="part solid" d="M604 480l41-30 41 30v34h-82z"/>
-            <path class="part thin" d="M614 504h62"/>
-            <path class="part thin dim" d="M604 542h82M604 534v16M686 534v16"/>
-            <text class="dim-t" x="645" y="568" text-anchor="middle">110 mm</text>
-          </g>
-
-          <!-- cotes -->
-          <g class="cotes" aria-hidden="true">
-            <path class="part thin dim" d="M466 156h32"/>
-            <text class="dim-t" x="506" y="161">9 L</text>
-            <path class="part thin dim" d="M234 300h-30"/>
-            <text class="dim-t" x="196" y="305" text-anchor="end">10 L</text>
-            <text class="dim-t" x="596" y="372">2,5 m</text>
-          </g>
+       <div class="turn" id="turn" role="slider" tabindex="0"
+            aria-label="Le Kärcher Puzzi 10/1 en volume. Glissez pour le faire tourner, ou utilisez les flèches gauche et droite."
+            aria-valuemin="0" aria-valuemax="359" aria-valuenow="0" aria-valuetext="0 degrés">
+        <img class="turn-img" id="turnImg" src="assets/machine/m00.jpg" decoding="sync"
+             width="900" height="675" loading="lazy"
+             alt="Vue en volume du Kärcher Puzzi 10 barre 1 avec son flexible, son pistolet, le suceur sol et le suceur fauteuil.">
+        <svg class="turn-ring" id="turnRing" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
+                  stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)" transform="rotate(-90 24 24)"/>
         </svg>
-
-        <button class="hot" data-hot="sale"       style="left:36.3%;top:20.4%" aria-pressed="false" aria-label="Réservoir eau sale, 9 litres"></button>
-        <button class="hot" data-hot="propre"     style="left:36.3%;top:46.7%" aria-pressed="false" aria-label="Réservoir eau propre, 10 litres"></button>
-        <button class="hot" data-hot="injection"  style="left:52.3%;top:37.8%" aria-pressed="false" aria-label="Injection, 1 bar"></button>
-        <button class="hot" data-hot="extraction" style="left:52.3%;top:54.4%" aria-pressed="false" aria-label="Extraction"></button>
-        <button class="hot" data-hot="flexible"   style="left:67.5%;top:51.9%" aria-pressed="false" aria-label="Flexible injection extraction, 2,5 mètres"></button>
-        <button class="hot" data-hot="pistolet"   style="left:88.5%;top:37.0%" aria-pressed="false" aria-label="Pistolet injection extraction"></button>
-        <button class="hot" data-hot="fauteuil"   style="left:73.1%;top:80.4%" aria-pressed="false" aria-label="Suceur fauteuil, 110 millimètres"></button>
-        <button class="hot" data-hot="sol"        style="left:10.4%;top:79.3%" aria-pressed="false" aria-label="Suceur sol, 240 millimètres"></button>
+        <span class="turn-hint mono" id="turnHint">Faites tourner</span>
+        <button class="hot" data-hot="sale"       aria-pressed="false" aria-label="Réservoir eau sale, 9 litres"></button>
+        <button class="hot" data-hot="propre"     aria-pressed="false" aria-label="Réservoir eau propre, 10 litres"></button>
+        <button class="hot" data-hot="injection"  aria-pressed="false" aria-label="Injection, 1 bar"></button>
+        <button class="hot" data-hot="extraction" aria-pressed="false" aria-label="Extraction"></button>
+        <button class="hot" data-hot="flexible"   aria-pressed="false" aria-label="Flexible injection extraction, 2,5 mètres"></button>
+        <button class="hot" data-hot="pistolet"   aria-pressed="false" aria-label="Pistolet injection extraction"></button>
+        <button class="hot" data-hot="fauteuil"   aria-pressed="false" aria-label="Suceur fauteuil, 110 millimètres"></button>
+        <button class="hot" data-hot="sol"        aria-pressed="false" aria-label="Suceur sol, 240 millimètres"></button>
        </div>
       </div>
 
@@ -881,7 +815,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
             <span class="val">La turbine reprend l’eau et la saleté décollée, dans le même geste.</span>
           </button>
         </div>
-        <p class="mach-note">Ce schéma est un dessin, pas une photo. Il sera accompagné de vraies photos de la machine.</p>
+        <p class="mach-note">Cette vue en volume est une maquette de travail, pas encore la vraie machine. Elle sera remplacée par le modèle 3D du Puzzi 10/1, puis accompagnée de vraies photos.</p>
       </div>
     </div>
   </div>
@@ -1443,33 +1377,130 @@ new IntersectionObserver(es=>{
 })();
 
 /* ============================================================
-   6. la machine : points d'accroche
+   6. la machine : tourne-disque et points d'accroche
    ============================================================ */
+const TURN = {"n":36,"best":{"sale":33,"propre":4,"injection":1,"extraction":0,"flexible":32,"pistolet":28,"sol":8,"fauteuil":26},"f":[{"sale":[55.46,23.87,1],"propre":[40.55,44.87,1],"injection":[48.73,39.79,1],"extraction":[48.73,62.19,1],"flexible":[73.9,74.28,1],"pistolet":[90.77,54.56,1],"sol":[15.6,75.67,1],"fauteuil":[77.91,72.46,0]},{"sale":[57.01,23.95,1],"propre":[42.44,44.97,1],"injection":[51.24,39.78,1],"extraction":[51.3,62.15,1],"flexible":[78.13,73.05,1],"pistolet":[89.18,53.61,1],"sol":[16.62,77.25,1],"fauteuil":[75.27,71.27,0]},{"sale":[58.28,24.04,1],"propre":[44.57,45.03,1],"injection":[53.66,39.75,1],"extraction":[53.77,62.03,1],"flexible":[81.1,71.7,1],"pistolet":[86.57,52.75,0.96],"sol":[18.84,78.8,1],"fauteuil":[72.06,70.24,0]},{"sale":[59.23,24.14,1],"propre":[46.87,45.07,1],"injection":[55.9,39.71,1],"extraction":[56.06,61.83,1],"flexible":[82.8,70.31,1],"pistolet":[83.13,51.98,0.57],"sol":[22.29,80.25,1],"fauteuil":[68.4,69.38,0]},{"sale":[59.83,24.25,1],"propre":[49.24,45.08,1],"injection":[57.87,39.65,1],"extraction":[58.07,61.57,1],"flexible":[83.3,68.92,1],"pistolet":[79.04,51.33,0.18],"sol":[26.92,81.53,1],"fauteuil":[64.38,68.69,0]},{"sale":[60.09,24.36,1],"propre":[51.6,45.06,1],"injection":[59.52,39.58,1],"extraction":[59.75,61.26,1],"flexible":[82.72,67.59,0.66],"pistolet":[74.43,50.78,0],"sol":[32.61,82.56,1],"fauteuil":[60.11,68.17,0]},{"sale":[60,24.48,1],"propre":[53.86,45.01,1],"injection":[60.79,39.51,1],"extraction":[61.05,60.9,1],"flexible":[81.18,66.35,0.21],"pistolet":[69.43,50.34,0],"sol":[39.12,83.27,1],"fauteuil":[55.65,67.83,0]},{"sale":[59.58,24.58,0.73],"propre":[55.93,44.93,0.87],"injection":[61.66,39.42,0.74],"extraction":[61.93,60.51,0.7],"flexible":[78.83,65.23,0],"pistolet":[64.14,50.01,0],"sol":[46.15,83.61,1],"fauteuil":[51.08,67.67,0]},{"sale":[58.86,24.68,0.26],"propre":[57.74,44.83,0.34],"injection":[62.11,39.33,0.25],"extraction":[62.38,60.11,0.19],"flexible":[75.8,64.24,0],"pistolet":[58.66,49.78,0],"sol":[53.32,83.55,1],"fauteuil":[46.48,67.68,0]},{"sale":[57.86,24.77,0],"propre":[59.23,44.71,0],"injection":[62.14,39.25,0],"extraction":[62.41,59.71,0],"flexible":[72.23,63.39,0],"pistolet":[53.06,49.66,0],"sol":[60.25,83.09,0.55],"fauteuil":[41.92,67.87,0]},{"sale":[56.62,24.85,0],"propre":[60.36,44.57,0],"injection":[61.78,39.16,0],"extraction":[62.04,59.32,0],"flexible":[68.23,62.69,0],"pistolet":[47.4,49.64,0],"sol":[66.58,82.28,0],"fauteuil":[37.46,68.23,0]},{"sale":[55.17,24.92,0],"propre":[61.11,44.42,0],"injection":[61.05,39.08,0],"extraction":[61.29,58.96,0],"flexible":[63.9,62.13,0],"pistolet":[41.76,49.72,0],"sol":[72.02,81.16,0],"fauteuil":[33.19,68.77,0]},{"sale":[53.57,24.97,0],"propre":[61.46,44.27,0],"injection":[59.98,39.01,0],"extraction":[60.2,58.62,0],"flexible":[59.33,61.73,0],"pistolet":[36.21,49.91,0],"sol":[76.37,79.82,0],"fauteuil":[29.18,69.49,0.3]},{"sale":[51.86,25,0],"propre":[61.42,44.12,0],"injection":[58.62,38.94,0],"extraction":[58.81,58.32,0],"flexible":[54.6,61.49,0],"pistolet":[30.8,50.2,0],"sol":[79.52,78.32,0],"fauteuil":[25.52,70.37,0.71]},{"sale":[50.07,25.02,0],"propre":[61.01,43.97,0],"injection":[57,38.89,0],"extraction":[57.16,58.07,0],"flexible":[49.79,61.39,0],"pistolet":[25.64,50.6,0],"sol":[81.44,76.76,0],"fauteuil":[22.33,71.42,1]},{"sale":[48.25,25.02,0],"propre":[60.25,43.83,0],"injection":[55.19,38.84,0],"extraction":[55.32,57.87,0],"flexible":[44.96,61.44,0],"pistolet":[20.81,51.1,0],"sol":[82.2,75.19,0],"fauteuil":[19.71,72.63,1]},{"sale":[46.44,25.01,0],"propre":[59.18,43.71,0],"injection":[53.23,38.81,0],"extraction":[53.32,57.73,0],"flexible":[40.18,61.65,0],"pistolet":[16.43,51.72,0],"sol":[81.87,73.67,0],"fauteuil":[17.79,73.98,1]},{"sale":[44.7,24.98,0],"propre":[57.83,43.6,0],"injection":[51.16,38.79,0],"extraction":[51.21,57.64,0],"flexible":[35.54,62.01,0],"pistolet":[12.64,52.44,0],"sol":[80.59,72.24,0],"fauteuil":[16.7,75.44,1]},{"sale":[43.06,24.93,0],"propre":[56.26,43.5,0],"injection":[49.04,38.78,0],"extraction":[49.05,57.61,0],"flexible":[31.1,62.51,0],"pistolet":[9.6,53.26,0],"sol":[78.49,70.93,0],"fauteuil":[16.56,76.98,1]},{"sale":[41.56,24.87,0],"propre":[54.5,43.43,0],"injection":[46.92,38.79,0],"extraction":[46.89,57.64,0],"flexible":[26.95,63.17,0],"pistolet":[7.49,54.18,0],"sol":[75.7,69.77,0],"fauteuil":[17.49,78.56,1]},{"sale":[40.26,24.79,0],"propre":[52.61,43.38,0],"injection":[44.84,38.81,0],"extraction":[44.77,57.72,0],"flexible":[23.2,63.98,0],"pistolet":[6.52,55.18,0],"sol":[72.35,68.77,0],"fauteuil":[19.57,80.12,1]},{"sale":[39.18,24.7,0],"propre":[50.63,43.35,0],"injection":[42.85,38.84,0],"extraction":[42.75,57.87,0],"flexible":[19.94,64.93,0],"pistolet":[6.88,56.23,0],"sol":[68.54,67.93,0],"fauteuil":[22.83,81.58,1]},{"sale":[38.37,24.6,0],"propre":[48.6,43.34,0],"injection":[41.02,38.88,0],"extraction":[40.88,58.06,0],"flexible":[17.32,66.02,0],"pistolet":[8.77,57.3,0],"sol":[64.39,67.27,0],"fauteuil":[27.23,82.87,1]},{"sale":[37.86,24.5,0],"propre":[46.59,43.36,0],"injection":[39.37,38.94,0],"extraction":[39.2,58.31,0],"flexible":[15.46,67.23,0],"pistolet":[12.32,58.34,0],"sol":[59.98,66.78,0],"fauteuil":[32.66,83.92,1]},{"sale":[37.67,24.39,0],"propre":[44.62,43.4,0],"injection":[37.97,39,0],"extraction":[37.77,58.6,0],"flexible":[14.5,68.54,0],"pistolet":[17.57,59.3,0],"sol":[55.4,66.46,0],"fauteuil":[38.89,84.66,1]},{"sale":[37.83,24.28,0],"propre":[42.76,43.45,0],"injection":[36.86,39.08,0],"extraction":[36.64,58.94,0],"flexible":[14.6,69.91,0],"pistolet":[24.43,60.12,0.44],"sol":[50.72,66.31,0],"fauteuil":[45.64,85.02,1]},{"sale":[38.33,24.17,0],"propre":[41.05,43.53,0],"injection":[36.08,39.16,0],"extraction":[35.83,59.3,0],"flexible":[15.86,71.31,0],"pistolet":[32.66,60.72,1],"sol":[46.01,66.34,0],"fauteuil":[52.56,85,1]},{"sale":[39.18,24.06,0],"propre":[39.54,43.63,0],"injection":[35.66,39.24,0],"extraction":[35.41,59.69,0],"flexible":[18.37,72.68,0.36],"pistolet":[41.84,61.07,1],"sol":[41.34,66.54,0],"fauteuil":[59.29,84.58,0.91]},{"sale":[40.36,23.97,0.22],"propre":[38.27,43.75,0.24],"injection":[35.64,39.33,0.19],"extraction":[35.38,60.09,0.12],"flexible":[22.17,73.95,0.89],"pistolet":[51.46,61.13,1],"sol":[36.79,66.91,0],"fauteuil":[65.47,83.8,0.35]},{"sale":[41.84,23.89,0.73],"propre":[37.28,43.88,0.72],"injection":[36.03,39.42,0.68],"extraction":[35.78,60.49,0.63],"flexible":[27.19,75.05,1],"pistolet":[60.91,60.89,1],"sol":[32.42,67.46,0.21],"fauteuil":[70.82,82.71,0]},{"sale":[43.57,23.82,1],"propre":[36.62,44.02,1],"injection":[36.85,39.5,1],"extraction":[36.61,60.88,1],"flexible":[33.28,75.92,1],"pistolet":[69.62,60.38,1],"sol":[28.33,68.18,0.61],"fauteuil":[75.15,81.39,0]},{"sale":[45.49,23.78,1],"propre":[36.31,44.17,1],"injection":[38.07,39.58,1],"extraction":[37.85,61.24,1],"flexible":[40.18,76.49,1],"pistolet":[77.13,59.64,1],"sol":[24.61,69.06,1],"fauteuil":[78.32,79.91,0]},{"sale":[47.54,23.75,1],"propre":[36.38,44.32,1],"injection":[39.67,39.65,1],"extraction":[39.48,61.56,1],"flexible":[47.55,76.72,1],"pistolet":[83.12,58.73,1],"sol":[21.36,70.12,1],"fauteuil":[80.33,78.35,0]},{"sale":[49.63,23.75,1],"propre":[36.85,44.48,1],"injection":[41.61,39.71,1],"extraction":[41.46,61.82,1],"flexible":[54.99,76.59,1],"pistolet":[87.45,57.71,1],"sol":[18.7,71.32,1],"fauteuil":[81.19,76.77,0]},{"sale":[51.7,23.77,1],"propre":[37.71,44.62,1],"injection":[43.82,39.75,1],"extraction":[43.72,62.02,1],"flexible":[62.09,76.12,1],"pistolet":[90.08,56.64,1],"sol":[16.77,72.67,1],"fauteuil":[81,75.24,0]},{"sale":[53.67,23.81,1],"propre":[38.95,44.75,1],"injection":[46.22,39.78,1],"extraction":[46.17,62.14,1],"flexible":[68.49,75.33,1],"pistolet":[91.14,55.58,1],"sol":[15.69,74.13,1],"fauteuil":[79.86,73.79,0]}]};
 (function(){
-  const svg=document.querySelector('.mach-svg');
-  if(!svg) return;
-  const hots=[...document.querySelectorAll('.hot')];
+  const turn=document.getElementById('turn');
+  if(!turn) return;
+  const img=document.getElementById('turnImg');
+  const ring=document.getElementById('turnRing');
+  const hots=[...turn.querySelectorAll('.hot')];
   const items=[...document.querySelectorAll('.mach-item')];
-  let active=null;
+  const N=TURN.n;
+  const pad=n=>String(n).padStart(2,'0');
+  const src=i=>'assets/machine/m'+pad(((i%N)+N)%N)+'.jpg';
+
+  let idx=0, shownIdx=-1, vel=0, dragging=false, lastX=0, lastT=0;
+  let active=null, target=null, targetT=0, targetFrom=0;
+  let idleAt=performance.now()+6000, raf=null, inView=false, loaded=false, armed=false;
+  const rm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- chargement des 36 images, derriere un anneau honnete --- */
+  function preload(){
+    if(armed) return; armed=true;
+    let got=0;
+    for(let i=0;i<N;i++){
+      const im=new Image();
+      im.onload=im.onerror=()=>{
+        got++;
+        ring.style.setProperty('--ld',Math.round(126*(1-got/N)));
+        if(got===N){loaded=true;turn.classList.add('loaded');draw(true);}
+      };
+      im.src=src(i);
+    }
+    setTimeout(()=>{if(!loaded){loaded=true;turn.classList.add('loaded');}},15000);
+  }
+
+  /* --- ecriture DOM uniquement au changement --- */
+  function draw(force){
+    const i=((Math.round(idx)%N)+N)%N;
+    if(i!==shownIdx||force){
+      shownIdx=i;
+      img.src=src(i);
+      turn.setAttribute('aria-valuenow',Math.round(i*360/N));
+      turn.setAttribute('aria-valuetext',Math.round(i*360/N)+' degrés');
+      const fr=TURN.f[i];
+      for(const h of hots){
+        const a=fr[h.dataset.hot]; if(!a) continue;
+        h.style.left=a[0]+'%'; h.style.top=a[1]+'%';
+        h.style.setProperty('--o',a[2]);
+        h.dataset.behind=a[2]<0.34?'1':'0';
+      }
+    }
+  }
+
+  function tick(now){
+    let busy=false;
+    if(target!==null){
+      const k=Math.min(1,(now-targetT)/620);
+      const e=1-Math.pow(1-k,3);
+      idx=targetFrom+(target-targetFrom)*e;
+      if(k>=1){idx=target;target=null;} else busy=true;
+    } else if(!dragging){
+      if(Math.abs(vel)>0.0006){ idx+=vel*16.667; vel*=0.93; busy=true; }
+      else if(!rm()&&!active&&inView&&now>idleAt){ idx+=0.055; busy=true; }
+    }
+    draw(false);
+    raf = busy||dragging ? requestAnimationFrame(tick) : null;
+  }
+  function kick(){ if(raf===null) raf=requestAnimationFrame(tick); }
+
+  /* --- glisser --- */
+  function down(e){
+    dragging=true; vel=0; target=null; turn.classList.add('dragging','touched');
+    lastX=e.clientX; lastT=performance.now();
+    try{turn.setPointerCapture(e.pointerId);}catch(_){}
+    kick(); e.preventDefault();
+  }
+  function move(e){
+    if(!dragging) return;
+    const now=performance.now(), dx=e.clientX-lastX, dt=Math.max(8,now-lastT);
+    const perPx=(N*1.35)/turn.getBoundingClientRect().width;
+    idx+=dx*perPx; vel=(dx*perPx)/dt;
+    lastX=e.clientX; lastT=now;
+    draw(false);
+  }
+  function up(e){
+    if(!dragging) return;
+    dragging=false; turn.classList.remove('dragging');
+    idleAt=performance.now()+6000;
+    try{turn.releasePointerCapture(e.pointerId);}catch(_){}
+    kick();
+  }
+  turn.addEventListener('pointerdown',down);
+  turn.addEventListener('pointermove',move);
+  turn.addEventListener('pointerup',up);
+  turn.addEventListener('pointercancel',up);
+  turn.addEventListener('keydown',e=>{
+    const step=e.shiftKey?3:1;
+    if(e.key==='ArrowLeft'){idx-=step;target=null;vel=0;turn.classList.add('touched');draw(false);e.preventDefault();}
+    else if(e.key==='ArrowRight'){idx+=step;target=null;vel=0;turn.classList.add('touched');draw(false);e.preventDefault();}
+    idleAt=performance.now()+6000;
+  });
+
+  /* --- selection d'une piece : la machine se tourne pour la montrer --- */
+  function spinTo(i){
+    const cur=((idx%N)+N)%N;
+    let d=i-cur; if(d>N/2) d-=N; if(d<-N/2) d+=N;
+    if(rm()){ idx=cur+d; draw(false); return; }
+    targetFrom=idx; target=idx+d; targetT=performance.now(); kick();
+  }
   function select(name){
     active=(active===name)?null:name;
-    svg.querySelectorAll('g[data-part]').forEach(g=>g.classList.toggle('on',g.dataset.part===active));
     hots.forEach(h=>h.setAttribute('aria-pressed',String(h.dataset.hot===active)));
     items.forEach(i=>i.setAttribute('aria-pressed',String(i.dataset.hot===active)));
+    if(active!=null&&TURN.best[active]!=null){ turn.classList.add('touched'); spinTo(TURN.best[active]); }
+    idleAt=performance.now()+8000;
   }
-  hots.concat(items).forEach(el=>{
-    el.addEventListener('click',()=>select(el.dataset.hot));
-    el.addEventListener('mouseenter',()=>{
-      if(matchMedia('(pointer: fine)').matches&&active===null){
-        svg.querySelectorAll('g[data-part]').forEach(g=>g.classList.toggle('on',g.dataset.part===el.dataset.hot));
-      }
-    });
-    el.addEventListener('mouseleave',()=>{
-      if(matchMedia('(pointer: fine)').matches&&active===null){
-        svg.querySelectorAll('g[data-part]').forEach(g=>g.classList.remove('on'));
-      }
-    });
-  });
+  hots.concat(items).forEach(el=>el.addEventListener('click',()=>select(el.dataset.hot)));
+
+  new IntersectionObserver(es=>{
+    inView=es[0].isIntersecting;
+    if(inView){ preload(); idleAt=performance.now()+3000; kick(); }
+  },{rootMargin:'300px'}).observe(turn);
+
+  draw(true);
   select('propre');
 })();
 
