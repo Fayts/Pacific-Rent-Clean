@@ -886,3 +886,51 @@ onze images chargées et décodées en une seconde, cibles tactiles sous 44 px :
 **Copie ajustée.** « À gauche la fibre encrassée » devient « le poil
 encrassé », les sept textes alternatifs sont réécrits pour décrire les
 nouvelles images et non les anciennes macrophotographies.
+
+---
+
+## 20. La dernière image de substitution tombe, et le réseau se révèle asymétrique
+
+2026-08-27. `voie-location` était le dernier visuel de substitution de la page :
+un suceur sol sur une moquette, tiré du film du hero. La carte promet « la
+machine arrive chez vous avec tout ce qu'il faut », l'image ne le disait pas.
+
+**Premier essai, raté, et la leçon est nette.** Trois générations à partir d'un
+prompt texte seul ont produit une machine générique que Tamatoa a rejetée
+d'emblée : rien à voir avec un Puzzi 10/1. Un modèle de diffusion n'invente pas
+un produit réel, il invente un produit plausible. 6 crédits.
+
+**Ce qui a marché : la photo produit en référence.** La photo Kärcher déjà
+détourée au point 18 a été téléversée sur le stockage Higgsfield puis passée en
+`image_references` à `nano_banana_pro`, avec la consigne de reproduire
+fidèlement proportions, cuve transparente, attaches jaunes, flexible et suceur
+à poignée en D, et de ne pas redessiner la machine. L'interdiction de logo a
+été levée : c'est la vraie machine, ses marquages d'origine sont légitimes. La
+variante retenue porte le bandeau `KÄRCHER Professional Puzzi 10/1` correct.
+7 crédits. Solde : 847.
+
+**Découverte sur le réseau, à consigner.** Le blocage n'est pas symétrique :
+
+| Hôte | Rôle | État |
+|---|---|---|
+| `fast-and-furious-input-prod-*.s3.amazonaws.com` | dépôt des références | **joignable** |
+| `d2ol7oe51mr4n9.cloudfront.net` | relecture des entrées | bloqué |
+| `d8j0ntlcm91z4.cloudfront.net` | résultats des générations | bloqué |
+
+On peut donc **envoyer** vers Higgsfield mais rien en **rapatrier**. Aucun
+détour n'a été construit pour contourner ce blocage : la solution propre est
+d'ouvrir `d8j0ntlcm91z4.cloudfront.net` dans la politique réseau de
+l'environnement. En attendant, le circuit est : je génère, Tamatoa regarde et
+renvoie la retenue en pièce jointe, je traite.
+
+**Traitement.** Recadrage en 4:3 `crop=2048:1536:704:0` : la carte fait 1,30 de
+rapport, un 4:3 s'y pose presque sans perte, alors qu'un 16:9 enfouissait le
+corps de la machine sous le voile de texte. La porte ouverte et les tongs
+restent dans le cadre à gauche. Étalonnage Pacific commun.
+`object-position:56% 52%` pour la version portrait sur mobile. 1400 x 1050,
+113 Ko.
+
+**Vérifications.** Trois passes : débordement 0, exceptions 0, onze images
+chargées en une seconde, une seule cible sous 44 px (le lien en ligne connu).
+
+**Il ne reste plus aucun visuel de substitution dans la page.**
