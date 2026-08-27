@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pacific Rent&amp;Clean · Nettoyage textile et location de machines, Tahiti</title>
-<meta name="description" content="Nettoyage textile par injection extraction à domicile à Tahiti. Matelas, canapés, tapis, sièges auto. Et la machine professionnelle en location si vous préférez le faire vous-même.">
+<meta name="description" content="Prestation de nettoyage textile par injection extraction à domicile à Tahiti : matelas, canapés, tapis, sièges auto. Ou location du Kärcher Puzzi 10/1 pour le faire vous-même.">
 <meta name="theme-color" content="#082F35">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23082F35'/%3E%3Cpath d='M8 40 L14 30 L20 38 L26 26 L32 36 L38 24 L44 34 L50 28 L56 36' stroke='%23E87961' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
 <!-- DEPLOY STEP: patch og:url and og:image with the live absolute URL before zipping -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Pacific Rent&amp;Clean · Le propre se voit.">
-<meta property="og:description" content="Nettoyage textile par injection extraction à domicile à Tahiti. Et la machine professionnelle en location.">
+<meta property="og:description" content="Prestation de nettoyage textile par injection extraction à domicile à Tahiti. Ou location du Kärcher Puzzi 10/1.">
 <meta property="og:url" content="REPLACE_AT_DEPLOY/">
 <meta property="og:image" content="REPLACE_AT_DEPLOY/assets/hero-ending.jpg">
 
@@ -228,6 +228,9 @@ button{font:inherit;color:inherit}
 
 .sec-foam .mono,.sec-sand .mono{color:var(--on-foam-2)}
 .sec-foam .lede,.sec-sand .lede{color:var(--on-foam-2)}
+.lede a{color:inherit;text-decoration:none;border-bottom:1px solid var(--edge);
+  padding-bottom:2px;transition:border-color .4s var(--ease),color .4s var(--ease)}
+.lede a:hover{border-color:var(--coral)}
 .lede{color:var(--on-deep-2);font-size:clamp(1rem,1.28vw,1.16rem);max-width:56ch;line-height:1.62}
 
 h2.title{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 118;
@@ -261,7 +264,7 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
 .track span::after{content:"·";margin-left:26px;color:var(--coral)}
 @keyframes slide{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
-/* ---------- services : empilement éditorial ---------- */
+/* ---------- prestations : empilement éditorial ---------- */
 .svc{display:grid;gap:clamp(20px,3vw,46px);align-items:center;
      padding:clamp(38px,5.4vw,74px) 0;border-top:1px solid rgba(92,107,102,.26)}
 .svc:first-of-type{border-top:0}
@@ -297,30 +300,6 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
 }
 
 /* ---------- le comparateur : le moment interactif ---------- */
-.cmp-head{display:grid;gap:18px;margin-bottom:clamp(26px,3.4vw,46px);max-width:64ch}
-.cmp{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:3px;
-     cursor:ew-resize;touch-action:pan-y;background:var(--deep-2);user-select:none}
-.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-.cmp .after{clip-path:inset(0 0 0 var(--x,50%))}
-.cmp-handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--coral);
-            transform:translateX(-1px);pointer-events:none;z-index:3}
-.cmp-handle::before{content:"";position:absolute;top:0;bottom:0;left:-9px;width:20px;
-  background-image:repeating-linear-gradient(180deg,rgba(232,121,97,.55) 0 7px,rgba(232,121,97,0) 7px 15px);
-  filter:blur(1px)}
-.cmp-grip{position:absolute;top:50%;left:var(--x,50%);transform:translate(-50%,-50%);z-index:4;
-  width:56px;height:56px;border-radius:50%;background:var(--coral);color:var(--basalt);
-  display:grid;place-items:center;pointer-events:none;
-  box-shadow:0 10px 34px rgba(4,18,20,.5)}
-.cmp-tag{position:absolute;top:16px;z-index:3;background:rgba(8,47,53,.7);color:var(--foam);
-  border:1px solid rgba(78,133,142,.4);border-radius:10px;padding:6px 11px;backdrop-filter:blur(10px);
-  text-shadow:0 1px 3px rgba(4,18,20,.85)}
-.cmp-tag.l{left:16px}.cmp-tag.r{right:16px}
-.cmp-note{margin-top:16px;max-width:74ch;line-height:1.55;font-size:.86rem;color:var(--on-deep-2)}
-.cmp-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:4;
-  background:rgba(8,47,53,.7);color:var(--foam);border:1px solid rgba(78,133,142,.4);border-radius:10px;
-  padding:6px 11px;backdrop-filter:blur(10px);text-shadow:0 1px 3px rgba(4,18,20,.85);
-  transition:opacity .6s var(--ease)}
-.cmp.touched .cmp-hint{opacity:0}
 
 /* ---------- la machine ---------- */
 .mach{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4vw,64px);align-items:center}
@@ -621,10 +600,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <nav class="nav" id="nav">
   <a class="brand" href="#top">Pacific Rent<i>&amp;</i>Clean</a>
   <div class="nav-links">
-    <a href="#services">Services</a>
+    <a href="#prestations">Prestations</a>
     <a href="#location">Location</a>
     <a href="#marche">Comment ça marche</a>
-    <a href="#resultats">Résultats</a>
     <a href="#faq">FAQ</a>
   </div>
   <a class="btn btn-a" href="#reserver" style="margin-left:14px">Réserver</a>
@@ -678,10 +656,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="band b5" data-a="0.8" data-b="1">
         <div class="in-b">
           <h2 class="d line e-rise" data-split="word" data-seed="53">À vous de passer. Ou à nous.</h2>
-          <p class="sub">Nettoyage à domicile par injection extraction. Ou vous louez la machine et vous le faites vous-même.</p>
+          <p class="sub">Deux façons de faire. La prestation : on vient chez vous. La location : vous tenez la machine.</p>
           <div class="cta-row">
-            <a class="btn btn-a" href="#reserver">Réserver un nettoyage</a>
-            <a class="btn btn-b" href="#location">Louer la machine</a>
+            <a class="btn btn-a" href="#reserver">Réserver une prestation</a>
+            <a class="btn btn-b" href="#location">Louer le Kärcher</a>
           </div>
         </div>
       </div>
@@ -690,10 +668,10 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <!-- le héros fixe : téléphones, tablettes en portrait, mouvement réduit -->
     <div class="static-hero">
       <h1>Le propre se voit.</h1>
-      <p>Nettoyage textile par injection extraction, à domicile. Et la machine en location si vous préférez le faire vous-même. Tahiti, 7j/7.</p>
+      <p>Deux façons de faire, par injection extraction. La prestation : on vient chez vous. La location : vous tenez le Kärcher Puzzi 10/1. Tahiti, 7j/7.</p>
       <div class="cta-row">
-        <a class="btn btn-a" href="#reserver">Réserver un nettoyage</a>
-        <a class="btn btn-b" href="#location">Louer la machine</a>
+        <a class="btn btn-a" href="#reserver">Réserver une prestation</a>
+        <a class="btn btn-b" href="#location">Louer le Kärcher</a>
       </div>
     </div>
   </div>
@@ -706,13 +684,13 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 </div>
 
 <!-- ========== ACTE 2 · CE QU'ON REMET À NEUF ========== -->
-<section class="sec sec-foam" id="services">
+<section class="sec sec-foam" id="prestations">
   <div class="pass" style="--from:var(--basalt)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="rev" style="max-width:60ch;margin-bottom:clamp(30px,4vw,60px)">
-      <span class="mono" style="display:block;margin-bottom:1rem">Acte 2 / Les surfaces</span>
+      <span class="mono" style="display:block;margin-bottom:1rem">Acte 2 / Les prestations</span>
       <h2 class="title">Ce qu’on remet à neuf.</h2>
-      <p class="lede" style="margin-top:1.4rem">Quatre familles de textile, une seule méthode. On injecte la solution au fond de la fibre, et on la reprend dans le même geste.</p>
+      <p class="lede" style="margin-top:1.4rem">Quatre familles de textile, une seule méthode. Un professionnel vient chez vous : on injecte la solution au fond de la fibre, et on la reprend dans le même geste. Si vous préférez tenir la machine vous-même, c’est la <a href="#location">location</a>.</p>
     </div>
 
     <article class="svc svc-1 rev">
@@ -765,39 +743,12 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<!-- ========== ACTE 3 · LE COMPARATEUR ========== -->
-<section class="sec sec-deep" id="resultats">
+<!-- ========== ACTE 3 · LA MACHINE ========== -->
+<section class="sec sec-deep2" id="machine">
   <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
-    <div class="cmp-head rev">
-      <span class="mono">Acte 3 / La preuve</span>
-      <h2 class="title">Faites le passage<br>vous-même.</h2>
-      <p class="lede">Tirez la ligne en travers de l’image. À gauche le poil encrassé, à droite le même poil après extraction. C’est tout le métier en un geste.</p>
-    </div>
-
-    <div class="cmp rev" id="cmp" role="slider" tabindex="0"
-         aria-label="Comparateur avant après. Flèches gauche et droite pour déplacer la ligne."
-         aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 pour cent">
-      <img class="before" src="assets/comparateur-avant.jpg" alt="Le poil d’un tapis encrassé : terne, grisé, alourdi." width="1500" height="844">
-      <img class="after" src="assets/comparateur-apres.jpg" alt="Le même poil après extraction : clair, redressé, la couleur revenue." width="1500" height="844">
-      <span class="cmp-tag l mono">Avant</span>
-      <span class="cmp-tag r mono">Après</span>
-      <span class="cmp-handle" aria-hidden="true"></span>
-      <span class="cmp-grip" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 4 12l5 6M15 6l5 6-5 6"/></svg>
-      </span>
-      <span class="cmp-hint mono">Glissez</span>
-    </div>
-    <p class="cmp-note">Démonstration du procédé. Les deux moitiés sont la même photo d’un tapis, étalonnée deux fois : encrassée à gauche, propre à droite. Ce ne sont pas les photos d’un chantier client, elles seront remplacées par de vrais avant après.</p>
-  </div>
-</section>
-
-<!-- ========== ACTE 4 · LA MACHINE ========== -->
-<section class="sec sec-deep2" id="machine">
-  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
-  <div class="wrap">
     <div class="rev" style="max-width:64ch;margin-bottom:clamp(30px,4vw,58px)">
-      <span class="mono" style="display:block;margin-bottom:1rem">Acte 4 / L’outil</span>
+      <span class="mono" style="display:block;margin-bottom:1rem">Acte 3 / L’outil</span>
       <h2 class="title">La puissance professionnelle,<br>entre vos mains.</h2>
       <p class="lede" style="margin-top:1.4rem">Le Kärcher Puzzi 10/1. Deux réservoirs, une gâchette, une turbine. Touchez une pièce pour savoir ce qu’elle fait.</p>
     </div>
@@ -865,12 +816,12 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<!-- ========== ACTE 5 · LE PROCÉDÉ ========== -->
+<!-- ========== ACTE 4 · LE PROCÉDÉ ========== -->
 <section class="sec sec-lagoon" id="procede">
   <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="rev" style="max-width:58ch;margin-bottom:clamp(30px,4vw,58px)">
-      <span class="mono" style="display:block;margin-bottom:1rem;color:var(--sand)">Acte 5 / La méthode</span>
+      <span class="mono" style="display:block;margin-bottom:1rem;color:var(--sand)">Acte 4 / La méthode</span>
       <h2 class="title">Six temps,<br>un seul geste.</h2>
     </div>
 
@@ -897,19 +848,19 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<!-- ========== ACTE 6 · LA FOURCHE ========== -->
+<!-- ========== ACTE 5 · LA FOURCHE ========== -->
 <section class="sec sec-deep" id="fourche">
   <div class="pass" style="--from:var(--lagoon)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="fork-head rev">
-      <span class="mono" style="display:block;margin-bottom:1.2rem">Acte 6 / Votre choix</span>
+      <span class="mono" style="display:block;margin-bottom:1.2rem">Acte 5 / Votre choix</span>
       <h2 class="title">Deux façons<br>de retrouver le propre.</h2>
     </div>
     <div class="fork stag">
       <article class="voie">
         <div class="voie-fig"><img style="object-position:68% 62%" src="assets/voie-domicile.jpg" alt="Embout d’extraction posé sur un matelas propre, dans une chambre en fin de prestation." loading="lazy" decoding="async" width="1500" height="844"></div>
         <div class="voie-body">
-          <span class="mono" style="color:var(--sand)">Option A</span>
+          <span class="mono" style="color:var(--sand)">Prestation</span>
           <h3>On s’en occupe.</h3>
           <p>Un professionnel vient chez vous, sur rendez vous, 7 jours sur 7. Vous ne touchez à rien.</p>
           <a class="btn btn-a" href="#reserver">Réserver une prestation</a>
@@ -918,7 +869,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <article class="voie">
         <div class="voie-fig"><img style="object-position:56% 52%" src="assets/voie-location.jpg" alt="Le Kärcher Puzzi 10/1 posé dans une entrée, flexible déroulé, porte ouverte sur le jardin." loading="lazy" decoding="async" width="1400" height="1050"></div>
         <div class="voie-body">
-          <span class="mono" style="color:var(--sand)">Option B</span>
+          <span class="mono" style="color:var(--sand)">Location</span>
           <h3>À vous de jouer.</h3>
           <p>La machine arrive chez vous avec tout ce qu’il faut. Vous avez 24 heures à partir de la livraison.</p>
           <a class="btn btn-b" href="#location">Louer le Kärcher</a>
@@ -935,6 +886,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <div class="rev" style="margin-bottom:clamp(30px,4vw,58px)">
       <span class="mono" style="display:block;margin-bottom:1rem">La location</span>
       <h2 class="title" style="font-size:clamp(2rem,4.6vw,4.3rem)">Tout ce qu’il vous faut<br>pour nettoyer vous-même.</h2>
+      <p class="lede" style="margin-top:1.4rem">Vous louez le Kärcher Puzzi 10/1, vous tenez la machine, vous faites le passage. Si vous préférez qu’on s’en charge, c’est la <a href="#prestations">prestation</a>.</p>
     </div>
     <div class="kitshot rev">
       <figure class="kitshot-fig">
@@ -994,7 +946,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="rev" style="margin-bottom:clamp(30px,4vw,58px);max-width:56ch">
-      <span class="mono" style="display:block;margin-bottom:1rem">Acte 7 / Sans friction</span>
+      <span class="mono" style="display:block;margin-bottom:1rem">Acte 6 / Sans friction</span>
       <h2 class="title">Comment ça marche.</h2>
     </div>
     <div class="steps stag">
@@ -1017,7 +969,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </div>
     <div class="tar rev">
       <table class="tbl">
-        <caption class="mono">Prestation à domicile</caption>
+        <caption class="mono">Prestation · on vient chez vous</caption>
         <tbody>
           <tr><th scope="row">Tapis petit (80x150)</th><td>2 000 F</td></tr>
           <tr><th scope="row">Tapis moyen (160x230)</th><td>4 000 F</td></tr>
@@ -1034,7 +986,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         </tbody>
       </table>
       <table class="tbl">
-        <caption class="mono">Consommables</caption>
+        <caption class="mono">Location · en supplément</caption>
         <tbody>
           <tr><th scope="row">Pastille Kärcher RM 760</th><td>500 F</td></tr>
           <tr><th scope="row">Buse à crevasse</th><td>500 F</td></tr>
@@ -1079,17 +1031,17 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<!-- ========== ACTE 8 · LA CLÔTURE ========== -->
+<!-- ========== ACTE 7 · LA CLÔTURE ========== -->
 <section class="close" id="reserver">
   <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="close-bg" style="background-image:url('assets/hero-ending.jpg')" aria-hidden="true"></div>
   <div class="close-in">
     <div class="rev">
-      <span class="mono" style="display:block;margin-bottom:1.4rem;color:var(--sand)">Acte 8 / À vous</span>
+      <span class="mono" style="display:block;margin-bottom:1.4rem;color:var(--sand)">Acte 7 / À vous</span>
       <h2 class="title">Prêt à voir<br><span style="white-space:nowrap">la différence ?</span></h2>
       <div class="cta-row">
-        <a class="btn btn-a" href="#" data-shop="prestation">Réserver un nettoyage</a>
-        <a class="btn btn-b" href="#" data-shop="location">Louer la machine</a>
+        <a class="btn btn-a" href="#" data-shop="prestation">Réserver une prestation</a>
+        <a class="btn btn-b" href="#" data-shop="location">Louer le Kärcher</a>
       </div>
       <p class="mono" style="margin-top:1.4rem;color:var(--on-deep-2)">Les deux boutons partiront vers la boutique. <span class="todo">Liens à brancher</span></p>
       <div class="contact">
@@ -1123,12 +1075,12 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <p style="margin:0;color:rgba(244,241,232,.7);max-width:32ch;font-size:.92rem;line-height:1.6">Nettoyage textile par injection extraction et location de machines professionnelles. Tahiti, Polynésie française.</p>
       </div>
       <div>
-        <h5>Services</h5>
+        <h5>Prestations</h5>
         <ul>
-          <li><a href="#services">Matelas</a></li>
-          <li><a href="#services">Canapés et fauteuils</a></li>
-          <li><a href="#services">Auto</a></li>
-          <li><a href="#services">Tapis et moquettes</a></li>
+          <li><a href="#prestations">Matelas</a></li>
+          <li><a href="#prestations">Canapés et fauteuils</a></li>
+          <li><a href="#prestations">Auto</a></li>
+          <li><a href="#prestations">Tapis et moquettes</a></li>
           <li><a href="#tarifs">Tarifs</a></li>
         </ul>
       </div>
@@ -1415,39 +1367,6 @@ const nav=document.getElementById('nav');
 new IntersectionObserver(es=>{
   nav.classList.toggle('solid',!es[0].isIntersecting);
 },{threshold:0,rootMargin:'-70px 0px 0px 0px'}).observe(document.getElementById('top'));
-
-/* ============================================================
-   5. le comparateur : le moment interactif
-   ============================================================ */
-(function(){
-  const cmp=document.getElementById('cmp');
-  if(!cmp) return;
-  let x=50, dragging=false;
-  function set(v,announce){
-    x=clamp(v,0,100);
-    cmp.style.setProperty('--x',x+'%');
-    cmp.setAttribute('aria-valuenow',Math.round(x));
-    if(announce) cmp.setAttribute('aria-valuetext',Math.round(x)+' pour cent');
-  }
-  function fromEvent(e){
-    const r=cmp.getBoundingClientRect();
-    const cx=(e.touches&&e.touches[0]?e.touches[0].clientX:e.clientX);
-    set(((cx-r.left)/r.width)*100,true);
-  }
-  function touched(){cmp.classList.add('touched');}
-  cmp.addEventListener('pointerdown',e=>{dragging=true;touched();try{cmp.setPointerCapture(e.pointerId);}catch(_){}fromEvent(e);e.preventDefault();});
-  cmp.addEventListener('pointermove',e=>{if(dragging)fromEvent(e);});
-  cmp.addEventListener('pointerup',e=>{dragging=false;try{cmp.releasePointerCapture(e.pointerId);}catch(_){}});
-  cmp.addEventListener('pointercancel',()=>{dragging=false;});
-  cmp.addEventListener('keydown',e=>{
-    const step=e.shiftKey?10:4;
-    if(e.key==='ArrowLeft'){set(x-step,true);touched();e.preventDefault();}
-    else if(e.key==='ArrowRight'){set(x+step,true);touched();e.preventDefault();}
-    else if(e.key==='Home'){set(0,true);touched();e.preventDefault();}
-    else if(e.key==='End'){set(100,true);touched();e.preventDefault();}
-  });
-  set(50,false);
-})();
 
 /* ============================================================
    6. la machine : tourne-disque et points d'accroche

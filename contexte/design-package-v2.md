@@ -934,3 +934,56 @@ restent dans le cadre à gauche. Étalonnage Pacific commun.
 chargées en une seconde, une seule cible sous 44 px (le lien en ligne connu).
 
 **Il ne reste plus aucun visuel de substitution dans la page.**
+
+---
+
+## 21. La section Résultats tombe, Services devient Prestations
+
+2026-08-27. Décision de Tamatoa, et elle est juste : Pacific Rent&Clean n'a pas
+encore d'avant après réels de chantier ni de retours clients. Une section
+« Résultats » nourrie d'une démonstration étalonnée ne prouve rien. Elle est
+retirée, pas mise en sourdine.
+
+**Ce qui a été retiré.** La section `#resultats` en entier, son entrée de
+navigation, les 60 lignes de CSS `.cmp*`, le bloc JS du comparateur, et les
+deux images `comparateur-avant.jpg` / `comparateur-apres.jpg`. 5 252 octets de
+HTML en moins, 402 Ko d'images en moins. Aucune référence orpheline, aucune
+ancre morte : les deux sont vérifiées par script.
+
+**Deux effets de bord qu'il fallait rattraper.**
+
+1. *La chaîne des lignes de passage.* Chaque `.pass` porte la couleur de la
+   section **précédente**. `#machine` suivait `#resultats` (deep) et suit
+   désormais `#prestations` (foam) : son `--from` passe de `var(--deep)` à
+   `var(--foam)`. Sans ça la ligne de fibre changeait de couleur au mauvais
+   endroit.
+2. *La numérotation des actes.* L'acte 3 disparaissait, laissant un trou.
+   Renumérotés : machine 3, procédé 4, fourche 5, marche 6, clôture 7.
+
+**Le vocabulaire.** `Services` devient `Prestations` partout où il désigne le
+nettoyage exécuté par Pacific Rent&Clean : navigation, `id` de section (donc
+`#prestations`), colonne du pied de page, surtitre d'acte, commentaire CSS.
+
+**La distinction posée noir sur blanc.** L'ambiguïté ne venait pas d'un mot
+mais de l'absence de nommage aux endroits où le lecteur choisit :
+
+| Endroit | Avant | Après |
+|---|---|---|
+| Cartes de la fourche | `Option A` / `Option B` | **`Prestation`** / **`Location`** |
+| Accroche du hero | « Nettoyage à domicile… ou vous louez » | « Deux façons de faire. La prestation : on vient chez vous. La location : vous tenez la machine. » |
+| Boutons, partout | `Réserver un nettoyage` / `Louer la machine` | `Réserver une prestation` / `Louer le Kärcher` |
+| Colonnes de tarifs | `Prestation à domicile` / `Consommables` | `Prestation · on vient chez vous` / `Location · en supplément` |
+| Chapô de `#prestations` | ne disait pas qui tient la machine | « Un professionnel vient chez vous » + lien vers la location |
+| Chapô de `#location` | absent | « Vous tenez la machine » + lien vers la prestation |
+
+Les deux chapôs se renvoient l'un à l'autre : depuis n'importe laquelle des
+deux sections, l'autre mode est à un clic. Nouveau style `.lede a` pour ces
+liens en ligne.
+
+Les métadonnées suivent le même vocabulaire, description et og:description.
+
+**Vérifications.** Trois passes : débordement 0, exceptions 0, images chargées
+en une seconde, ancres toutes résolues. Cibles tactiles sous 44 px : 3, les
+trois liens en ligne posés dans des phrases (exception WCAG 2.5.8).
+
+La page passe de 24 702 à 23 289 px de hauteur.
