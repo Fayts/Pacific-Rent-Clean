@@ -377,6 +377,11 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
 .mach-note a:hover{border-color:var(--coral)}
 
 /* ---------- le procédé ---------- */
+.proc-fig{margin:0 0 clamp(34px,4.4vw,60px);position:relative}
+.proc-fig img{display:block;width:100%;height:clamp(240px,38vh,420px);
+  object-fit:cover;border:1px solid rgba(216,198,165,.24)}
+.proc-fig figcaption{position:absolute;left:0;bottom:0;color:var(--foam);
+  background:rgba(6,34,38,.72);padding:8px 14px;font-size:.66rem;letter-spacing:.16em}
 .proc{position:relative}
 .proc-line{position:absolute;left:0;right:0;top:38px;height:2px;overflow:visible}
 .proc-line path{fill:none;stroke:var(--edge);stroke-width:2;
@@ -718,7 +723,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <span class="svc-price">À partir de 5 000 F</span><br>
         <a class="svc-link" href="#reserver">Réserver un matelas <span aria-hidden="true">→</span></a>
       </div>
-      <div class="svc-fig"><img src="assets/svc-matelas.jpg" alt="Macrophotographie d’une fibre textile propre et redressée après extraction." loading="lazy" decoding="async" width="1500" height="844"></div>
+      <div class="svc-fig"><img src="assets/svc-matelas.jpg" alt="Matelas taché par des années de transpiration, vu de dessus dans la lumière d’une fenêtre." loading="lazy" decoding="async" width="1500" height="844"></div>
     </article>
 
     <article class="svc svc-2 rev">
@@ -729,11 +734,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <span class="svc-price">À partir de 5 000 F</span><br>
         <a class="svc-link" href="#reserver">Réserver un canapé <span aria-hidden="true">→</span></a>
       </div>
-      <div class="svc-fig"><img src="assets/svc-canape.jpg" alt="Macrophotographie d’un tissage d’ameublement encrassé, avant nettoyage." loading="lazy" decoding="async" width="1500" height="844"></div>
+      <div class="svc-fig"><img src="assets/svc-canape.jpg" alt="Assise de canapé en lin marquée par une auréole de tasse et une salissure incrustée." loading="lazy" decoding="async" width="1500" height="844"></div>
     </article>
 
     <article class="svc svc-3 rev">
-      <div class="svc-fig"><img src="assets/svc-auto.jpg" alt="Macrophotographie de l’intérieur d’une fibre dense, vue en profondeur." loading="lazy" decoding="async" width="1500" height="844"></div>
+      <div class="svc-fig"><img src="assets/svc-auto.jpg" alt="Embout d’extraction en cours de passage sur le dossier d’un siège de voiture." loading="lazy" decoding="async" width="1500" height="844"></div>
       <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-top:26px">
         <div>
           <span class="svc-num">03</span>
@@ -748,7 +753,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </article>
 
     <article class="svc svc-4 rev">
-      <div class="svc-fig"><img src="assets/svc-tapis.jpg" alt="Macrophotographie de la solution de nettoyage traversant le poil d’un tapis." loading="lazy" decoding="async" width="1500" height="844"></div>
+      <div class="svc-fig"><img src="assets/svc-tapis.jpg" alt="Poil long d’un tapis encrassé, vu au ras du sol, poussière en suspension." loading="lazy" decoding="async" width="1500" height="844"></div>
       <div>
         <span class="svc-num">04</span>
         <h3 class="svc-word">Tapis</h3>
@@ -767,14 +772,14 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <div class="cmp-head rev">
       <span class="mono">Acte 3 / La preuve</span>
       <h2 class="title">Faites le passage<br>vous-même.</h2>
-      <p class="lede">Tirez la ligne en travers de l’image. À gauche la fibre encrassée, à droite la même fibre après extraction. C’est tout le métier en un geste.</p>
+      <p class="lede">Tirez la ligne en travers de l’image. À gauche le poil encrassé, à droite le même poil après extraction. C’est tout le métier en un geste.</p>
     </div>
 
     <div class="cmp rev" id="cmp" role="slider" tabindex="0"
          aria-label="Comparateur avant après. Flèches gauche et droite pour déplacer la ligne."
          aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 pour cent">
-      <img class="before" src="assets/comparateur-avant.jpg" alt="La fibre encrassée : terne, grisée, aplatie." width="1500" height="844">
-      <img class="after" src="assets/comparateur-apres.jpg" alt="La même fibre après extraction : claire, redressée, saturée." width="1500" height="844">
+      <img class="before" src="assets/comparateur-avant.jpg" alt="Le poil d’un tapis encrassé : terne, grisé, alourdi." width="1500" height="844">
+      <img class="after" src="assets/comparateur-apres.jpg" alt="Le même poil après extraction : clair, redressé, la couleur revenue." width="1500" height="844">
       <span class="cmp-tag l mono">Avant</span>
       <span class="cmp-tag r mono">Après</span>
       <span class="cmp-handle" aria-hidden="true"></span>
@@ -783,7 +788,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </span>
       <span class="cmp-hint mono">Glissez</span>
     </div>
-    <p class="cmp-note">Démonstration du procédé, images générées. Ce ne sont pas les photos d’un chantier client. Elles seront remplacées par de vrais avant après.</p>
+    <p class="cmp-note">Démonstration du procédé. Les deux moitiés sont la même photo d’un tapis, étalonnée deux fois : encrassée à gauche, propre à droite. Ce ne sont pas les photos d’un chantier client, elles seront remplacées par de vrais avant après.</p>
   </div>
 </section>
 
@@ -869,6 +874,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <h2 class="title">Six temps,<br>un seul geste.</h2>
     </div>
 
+    <figure class="proc-fig rev">
+      <img src="assets/extraction.jpg" alt="Gros plan sur l’injection : la solution traverse le poil et remonte en gouttes au moment de l’extraction." loading="lazy" decoding="async" width="1500" height="844">
+      <figcaption class="mono">Le moment de l’extraction, vu de près</figcaption>
+    </figure>
+
     <div class="proc" id="proc">
       <svg class="proc-line" viewBox="0 0 1200 4" preserveAspectRatio="none" aria-hidden="true">
         <path d="M6 2 H1194"/>
@@ -897,7 +907,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     </div>
     <div class="fork stag">
       <article class="voie">
-        <div class="voie-fig"><img src="assets/voie-domicile.jpg" alt="Buse d’extraction en action sur l’assise d’un canapé en tissu." loading="lazy" decoding="async" width="1500" height="844"></div>
+        <div class="voie-fig"><img style="object-position:68% 62%" src="assets/voie-domicile.jpg" alt="Embout d’extraction posé sur un matelas propre, dans une chambre en fin de prestation." loading="lazy" decoding="async" width="1500" height="844"></div>
         <div class="voie-body">
           <span class="mono" style="color:var(--sand)">Option A</span>
           <h3>On s’en occupe.</h3>

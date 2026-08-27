@@ -829,3 +829,60 @@ lien en ligne dans un bloc de texte, il reste tel quel.
 
 **Correction de langue au passage.** Le titre de la section disait « pour
 nettoyer vous même », il dit maintenant « pour nettoyer vous-même ».
+
+---
+
+## 19. Les vraies images remplacent les macrophotographies de substitution
+
+2026-08-27. Tamatoa envoie sept images générées qu'il a lui-même
+sélectionnées. Elles remplacent la totalité des visuels de substitution, qui
+étaient tous des macrophotographies de fibre tirées du film du hero, faute
+d'accès réseau à Higgsfield au moment du montage.
+
+**Placement.**
+
+| Image source | Emplacement | Pourquoi |
+|---|---|---|
+| Matelas taché, vu de dessus | `svc-matelas.jpg` | Le texte parle de transpiration qui descend dans la mousse. L'image le montre. |
+| Assise de canapé en lin, auréole de tasse | `svc-canape.jpg` | « Les repas, les enfants, le sel, le sable. » Littéral. |
+| Siège de voiture, embout en action | `svc-auto.jpg` | La seule des sept qui montre le geste sur un habitacle. |
+| Tapis à poil long encrassé, au ras du sol | `svc-tapis.jpg` | Remplace le tunnel vert signalé comme la faiblesse de la page. |
+| Matelas propre, embout posé, chambre | `voie-domicile.jpg` | « Un professionnel vient chez vous. » Une pièce, un lit, l'outil. |
+| Poil de tapis et gouttes d'eau, macro | `extraction.jpg`, nouvelle bande dans la section méthode | La meilleure image du lot, et la seule qui montre l'injection extraction elle-même. Placée en pleine largeur sous le titre des six temps, sans voile. |
+| Tapis moelleux propre, vu de dessus | `comparateur-avant.jpg` **et** `comparateur-apres.jpg` | Une seule photo, deux étalonnages. |
+
+**Le comparateur.** Le principe d'origine est conservé, en mieux : une seule
+image, étalonnée deux fois, donc la ligne de comparaison porte vraiment sur le
+même objet au même cadrage. Encrassé : `saturation=0.52 contrast=0.86
+brightness=-0.07 gamma=0.90`, dominante brune dans les tons moyens, courbe
+écrasée aux deux bouts. Propre : `saturation=1.00 contrast=1.06
+brightness=+0.02`, ombres tirées vers le lagon. La légende dit désormais
+exactement ce que c'est : la même photo étalonnée deux fois, et non un avant
+après de chantier.
+
+**Étalonnage Pacific commun** aux six autres :
+
+    eq=saturation=0.94:contrast=1.04,
+    colorbalance=rs=-0.03:bs=0.05:rm=-0.01:bm=0.02:rh=0.02:bh=-0.02
+
+Ombres vers le lagon, hautes lumières vers le sable, saturation légèrement
+retenue. Le matelas sale a reçu une passe plus froide (`saturation=0.86`,
+`bs=0.08`) parce que le sépia d'origine sortait du monde Pacific.
+
+**Recadrages notables.** Les sources 16:9 font 2752 x 1536, soit 1,79 et non
+1,778 : recadrage en largeur à 2730 avant mise à l'échelle. La photo de
+chambre portait une bande noire à droite à partir de x=2440, mesurée puis
+coupée. La carte `voie-domicile` étant en portrait, l'image porte un
+`object-position:68% 62%` pour garder l'embout et le matelas dans le cadre.
+
+**Poids.** Les huit fichiers pèsent 1,18 Mo au total, tous en 1500 x 844.
+L'ensemble des assets hors film fait 2,46 Mo.
+
+**Vérifications.** Trois passes : 1440 desktop, 375 x 812 tactile, mouvement
+réduit. Débordement horizontal 0 partout, `Runtime.exceptionThrown` 0 partout,
+onze images chargées et décodées en une seconde, cibles tactiles sous 44 px :
+1 (le lien en ligne de la note machine, exception WCAG 2.5.8).
+
+**Copie ajustée.** « À gauche la fibre encrassée » devient « le poil
+encrassé », les sept textes alternatifs sont réécrits pour décrire les
+nouvelles images et non les anciennes macrophotographies.
