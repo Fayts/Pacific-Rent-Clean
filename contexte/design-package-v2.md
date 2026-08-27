@@ -716,3 +716,41 @@ pastille, et la page le dit :
 
 Dans ce rendu, la face proche part vers la gauche quand l'indice monte. Le
 glissement a donc ete inverse pour que l'objet suive le doigt.
+
+---
+
+## 16. La fiche machine reprend le vocabulaire de Tamatoa
+
+2026-08-21. Tamatoa a fourni le visuel descriptif qu'il avait prepare pour la
+page Facebook de Pacific Rent&Clean. Il regle deux questions restees ouvertes
+et en corrige une troisieme que je n'avais pas vue.
+
+**Injection et extraction ne sont pas des pieces.** Dans son vocabulaire elles
+sont toujours accolees : *flexible d'injection / d'extraction*, *pistolet
+d'extraction / injection*, *embout d'extraction / injection*. C'est le meme
+geste et le meme tuyau. Ma fiche les listait comme deux pieces separees a
+pointer, ce qui etait faux. Elles descendent en caracteristiques, sur une seule
+ligne sous la fiche : `Injection 1 bar · Debit 1 L/min · Extraction par turbine
+· 10,5 kg`. La pastille `extraction` est supprimee et fusionnee avec celle du
+flexible, qui designait deja le meme endroit.
+
+**Ses mots remplacent les miens.** J'ecrivais « reservoir eau sale » et
+« suceur fauteuil ». Il ecrit **bac d'eau sale** et **embout d'extraction /
+injection**. Ses clients ont deja lu ces termes sur Facebook. La fiche adopte
+son vocabulaire, verbatim, y compris ses deux avertissements : « a vider
+regulierement » et « ne pas depasser le marquage MAX ».
+
+**Trois accessoires de sol manquent au modele 3D.** Son visuel montre
+l'aspirateur sols 240 mm, le tube d'injection / d'extraction et la poignee en
+D. Tripo ne les a pas generes. Ils figurent dans la fiche avec une etiquette
+`fourni`, description ouverte, sans pastille, et la note sous la fiche dit
+pourquoi.
+
+**Etat final de la section :** cinq pieces avec pastille, trois accessoires
+listes sans pastille, quatre caracteristiques sur une ligne.
+
+Piste ouverte, a arbitrer avec Tamatoa : son visuel contient une photo produit
+qui montre justement les trois accessoires manquants. Elle pourrait etre
+detouree et posee a cote du tourne-disque. Reste a savoir de qui elle est. Une
+photo de presse Karcher n'est pas une photo maison, et je ne reutilise pas une
+image dont les droits ne sont pas clairs.
