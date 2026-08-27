@@ -372,6 +372,9 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
 .mach-item .val-open{max-height:none;opacity:1;margin-top:8px}
 .mach-spec{margin:18px 0 0;color:var(--sand);font-size:.68rem;letter-spacing:.14em;line-height:1.8}
 .mach-note{margin-top:14px;font-size:.82rem;color:var(--on-deep-2);max-width:64ch;line-height:1.55}
+.mach-note a{color:var(--foam);text-decoration:none;border-bottom:1px solid var(--edge);
+  padding-bottom:2px;transition:border-color .4s var(--ease)}
+.mach-note a:hover{border-color:var(--coral)}
 
 /* ---------- le procédé ---------- */
 .proc{position:relative}
@@ -419,6 +422,23 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
 /* ---------- location ---------- */
 .loc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3.4vw,56px);align-items:start}
 @media (max-width:900px){.loc{grid-template-columns:1fr}}
+.kitshot{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);
+  gap:clamp(20px,3.4vw,54px);align-items:center;margin:0 0 clamp(34px,4.4vw,64px);
+  padding-bottom:clamp(28px,3.4vw,48px);border-bottom:1px solid rgba(92,107,102,.26)}
+.kitshot-fig{margin:0;position:relative;justify-self:center;width:100%}
+.kitshot-fig::before{content:"";position:absolute;left:8%;right:8%;bottom:1%;height:16px;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(32,37,36,.22),rgba(32,37,36,0) 72%)}
+.kitshot-fig img{position:relative;display:block;width:100%;height:auto;max-width:470px;margin:0 auto}
+.kitshot-txt{align-self:center}
+.kitshot-lede{margin:1rem 0 1.7rem;color:var(--on-foam-2);
+  font-size:clamp(1rem,1.28vw,1.16rem);line-height:1.62;max-width:46ch}
+.kitshot-notes{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.kitshot-notes li{padding:13px 0;border-top:1px solid rgba(92,107,102,.26)}
+.kitshot-notes li:last-child{border-bottom:1px solid rgba(92,107,102,.26)}
+.kitshot-notes b{display:block;font-weight:600;color:var(--on-foam)}
+.kitshot-notes span{display:block;margin-top:5px;color:var(--on-foam-2);font-size:.94rem;line-height:1.5}
+@media (max-width:900px){.kitshot{grid-template-columns:1fr;gap:clamp(16px,4vw,26px)}
+  .kitshot-fig img{margin:0 auto}}
 .kit{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:0}
 .kit li{display:flex;gap:14px;align-items:baseline;padding:13px 0;
   border-top:1px solid rgba(92,107,102,.26)}
@@ -834,7 +854,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           </div>
         </div>
         <p class="mach-spec mono">Injection 1 bar · Débit 1 L/min · Extraction par turbine · 10,5 kg</p>
-        <p class="mach-note">Vue en volume du Puzzi 10/1, rendue depuis un modèle 3D. Les cinq pièces du haut portent une pastille et se montrent d’un clic. Les trois accessoires de sol partent avec la machine mais ne sont pas sur ce modèle.</p>
+        <p class="mach-note">Vue en volume du Puzzi 10/1, rendue depuis un modèle 3D. Les cinq pièces du haut portent une pastille et se montrent d’un clic. Les trois accessoires de sol partent avec la machine mais ne sont pas sur ce modèle : ils sont <a href="#location">en photo dans la section location</a>.</p>
       </div>
     </div>
   </div>
@@ -904,8 +924,23 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   <div class="wrap">
     <div class="rev" style="margin-bottom:clamp(30px,4vw,58px)">
       <span class="mono" style="display:block;margin-bottom:1rem">La location</span>
-      <h2 class="title" style="font-size:clamp(2rem,4.6vw,4.3rem)">Tout ce qu’il vous faut<br>pour nettoyer vous même.</h2>
+      <h2 class="title" style="font-size:clamp(2rem,4.6vw,4.3rem)">Tout ce qu’il vous faut<br>pour nettoyer vous-même.</h2>
     </div>
+    <div class="kitshot rev">
+      <figure class="kitshot-fig">
+        <img src="assets/kit-puzzi.webp" alt="Kärcher Puzzi 10/1 avec son flexible, son tube d’injection extraction, sa poignée en D et son aspirateur sols de 240 mm." loading="lazy" decoding="async" width="880" height="1147">
+      </figure>
+      <div class="kitshot-txt">
+        <span class="mono">Monté pour le sol</span>
+        <p class="kitshot-lede">Les trois pièces qui ne tiennent pas sur le modèle en volume plus haut. Elles partent avec la machine.</p>
+        <ul class="kitshot-notes">
+          <li><b>Aspirateur sols · 240 mm</b><span>Pour les moquettes et les tapis de sol.</span></li>
+          <li><b>Tube d’injection / d’extraction</b><span>Le manche, pour travailler debout au sol.</span></li>
+          <li><b>Poignée en D</b><span>Permet le nettoyage à deux mains.</span></li>
+        </ul>
+      </div>
+    </div>
+
     <div class="loc">
       <div class="rev">
         <ul class="kit" style="margin-top:0">

@@ -783,3 +783,49 @@ Poids : 78 Ko en grand, 29 Ko pour la vignette, en WebP, chargee en differe.
 **Ce qui manque encore pour montrer les trois accessoires de sol dans la
 section machine** : la photo source, avant mise en page. Avec elle, detourage
 propre et etalonnage Pacific en quelques minutes.
+
+---
+
+## 18. La photo produit devient la bande « Monté pour le sol »
+
+2026-08-27. Tamatoa fournit la photo produit Kärcher du Puzzi 10/1 sur fond
+blanc, 2526 x 3508, kit entier visible : cuve, flexible, pistolet, tube,
+poignée en D et aspirateur sols. C'est la photo source qui manquait au point
+17. Elle est de source constructeur et non maison, je l'ai signalé une fois,
+Tamatoa autorise son usage.
+
+**Détourage.** `outils/` n'en avait pas, j'ai écrit `detoure.mjs` (scratchpad) :
+remplissage depuis les quatre bords du cadre sur les pixels clairs et peu
+colorés, donc on n'efface que le blanc **relié au bord**. Les blancs intérieurs
+survivent : la cuve transparente, les reflets du tube chromé, le plastique
+clair de l'aspirateur sols. L'alpha passe de 255 à 0 entre L=208 et L=232, ce
+qui évite le liseré dur. Mesures : 21,0 % du cadre conservé, boîte du sujet
+1202 x 1579 sur un cadre de travail 1400 px. Vérifié en composite sur Foam et
+sur Pacific Deep : pas de halo blanc, pas de trou, ombre portée supprimée,
+l'ajour de la poignée en D correctement évacué.
+
+    node detoure.mjs <source> <sortie.png> 1400 232 208
+
+**L'asset.** `site/assets/kit-puzzi.webp`, 880 x 1147, `yuva420p`, 76 Ko.
+Recadrage au plus juste, saturation 0,90 et contraste 1,03 pour poser les gris
+Kärcher dans le monde Pacific sans les repeindre.
+
+**La place dans la page.** Une bande à deux colonnes ouvre la section location,
+entre le titre et la grille des formules : la photo à gauche, à droite le
+surtitre `Monté pour le sol` et les trois accessoires nommés. Ce sont exactement
+les trois pièces que le tourne-disque ne peut pas montrer, celles qui portent
+la puce `fourni` dans la fiche machine. La note de la section machine les
+renvoie désormais ici par un lien.
+
+Fond Foam et non Pacific Deep : le corps de la machine est gris foncé, il se
+détache franchement sur le Foam alors qu'il se noie à moitié sur le Deep. Le
+composite des deux est dans le scratchpad.
+
+**Vérifications.** Desktop 1440 et mobile 375 x 812 tactile : débordement
+horizontal 0, `Runtime.exceptionThrown` 0, images chargées. Cibles tactiles
+sous 44 px : 1, le lien `en photo dans la section location` posé dans une
+phrase de la note machine. C'est l'exception explicite de WCAG 2.5.8 pour un
+lien en ligne dans un bloc de texte, il reste tel quel.
+
+**Correction de langue au passage.** Le titre de la section disait « pour
+nettoyer vous même », il dit maintenant « pour nettoyer vous-même ».
