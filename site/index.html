@@ -424,6 +424,22 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
   border-top:1px solid rgba(92,107,102,.26)}
 .kit li:last-child{border-bottom:1px solid rgba(92,107,102,.26)}
 .kit li i{font-style:normal;color:var(--coral);font-family:"DM Mono",monospace;font-size:.72rem}
+.fiche{display:grid;grid-template-columns:132px 1fr;gap:clamp(16px,2vw,24px);align-items:center;
+  margin-top:clamp(24px,3vw,36px);padding:14px;text-decoration:none;color:inherit;
+  border:1px solid rgba(92,107,102,.3);border-radius:3px;background:rgba(244,241,232,.55);
+  transition:border-color .5s var(--ease),transform .5s var(--ease)}
+.fiche:hover{border-color:var(--basalt);transform:translateY(-3px)}
+.fiche img{width:132px;height:132px;object-fit:cover;object-position:top center;border-radius:2px;
+  border:1px solid rgba(92,107,102,.22)}
+.fiche-txt{display:grid;gap:6px}
+.fiche-txt b{color:var(--on-foam-2);font-size:.68rem;letter-spacing:.16em}
+.fiche-txt em{font-style:normal;color:var(--on-foam);line-height:1.5;font-size:.94rem;max-width:34ch}
+.fiche-go{display:inline-flex;align-items:center;gap:.6ch;font-weight:500;font-size:.9rem;
+  border-bottom:1px solid var(--edge);padding-bottom:3px;justify-self:start;
+  transition:border-color .4s var(--ease),gap .4s var(--ease)}
+.fiche:hover .fiche-go{border-color:var(--coral);gap:1.2ch}
+@media (max-width:560px){.fiche{grid-template-columns:1fr;justify-items:start}}
+@media (pointer:coarse){.fiche-go{min-height:44px}}
 .plans{display:grid;gap:14px}
 .plan{border:1px solid rgba(92,107,102,.3);border-radius:3px;padding:clamp(18px,2.2vw,28px);
   background:rgba(244,241,232,.5);transition:border-color .5s var(--ease),transform .5s var(--ease)}
@@ -899,6 +915,15 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           <li><i>04</i><span>Manuel d’utilisation en PDF</span></li>
         </ul>
         <p class="lede" style="margin-top:1.6rem;max-width:50ch">Les pastilles RM 760 sont conçues pour l’injection extraction. Elles encapsulent la salissure grasse au lieu de la diluer, ce qui raccourcit le séchage.</p>
+
+        <a class="fiche" href="assets/fiche-puzzi.webp" target="_blank" rel="noopener">
+          <img src="assets/fiche-puzzi-min.webp" alt="Fiche de prise en main du Kärcher Puzzi 10/1 : chaque pièce nommée et son rôle expliqué." loading="lazy" decoding="async" width="560" height="560">
+          <span class="fiche-txt">
+            <b class="mono">La fiche de prise en main</b>
+            <em>Chaque pièce nommée, son rôle expliqué. Elle part avec la machine.</em>
+            <span class="fiche-go">Voir en grand <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
       </div>
 
       <div class="rev">

@@ -754,3 +754,32 @@ qui montre justement les trois accessoires manquants. Elle pourrait etre
 detouree et posee a cote du tourne-disque. Reste a savoir de qui elle est. Une
 photo de presse Karcher n'est pas une photo maison, et je ne reutilise pas une
 image dont les droits ne sont pas clairs.
+
+---
+
+## 17. La fiche de prise en main entre dans la section location
+
+2026-08-21. Tamatoa confirme que le visuel descriptif est **sa photo**, libre
+d'usage.
+
+**Le detourage a ete tente et rejete, mesure a l'appui.** Le fichier est un
+montage fini en 1080x1080 : les accessoires y sont traverses par les traits de
+legende, par la tache orange du fond et par le haut de la machine. Un masque
+sur le beige laisse le trait brun intact, decoupe un fantome rectangulaire a
+l'emplacement de la tache, et mange les gris clairs de l'aspirateur sols. Le
+groupe accessoires ne fait par ailleurs que 500 x 190 px dans le fichier, trop
+peu pour une image de site nette.
+
+**Ce qui est fait a la place.** Le visuel n'est pas decoupe, il est publie tel
+quel, a sa vraie place : une carte dans la section location, presentee comme un
+document et non comme un visuel du site. Vignette de 132 px, etiquette
+`La fiche de prise en main`, une phrase, et un lien qui ouvre l'image en grand.
+Le decalage de palette entre le beige du montage et le monde Pacific est
+assume : une fiche imprimee posee sur la page se lit comme une fiche, pas comme
+une faute de gout.
+
+Poids : 78 Ko en grand, 29 Ko pour la vignette, en WebP, chargee en differe.
+
+**Ce qui manque encore pour montrer les trois accessoires de sol dans la
+section machine** : la photo source, avant mise en page. Avec elle, detourage
+propre et etalonnage Pacific en quelques minutes.
