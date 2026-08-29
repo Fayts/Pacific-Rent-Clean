@@ -355,6 +355,12 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
   padding-bottom:2px;transition:border-color .4s var(--ease)}
 .mach-note a:hover{border-color:var(--coral)}
 
+/* bande six temps (VERSION B — fond foncé, contraste) */
+.band-six{background:var(--basalt);border:1px solid rgba(244,241,232,.22);border-radius:4px;padding:26px 30px 24px;box-shadow:0 16px 34px rgba(0,0,0,.35)}
+.b6 h4{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth"112;font-size:.97rem;margin-bottom:5px;line-height:1.05;color:var(--foam)}
+.b6 p{font-size:.78rem;color:#C9D9DB;line-height:1.45;margin:0}
+.b6-dot{display:block;width:9px;height:9px;border-radius:50%;background:var(--coral);margin-bottom:12px}
+
 /* ---------- le procédé ---------- */
 .proc-fig{margin:0 0 clamp(34px,4.4vw,60px);position:relative}
 .proc-fig img{display:block;width:100%;height:clamp(240px,38vh,420px);
@@ -740,6 +746,21 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <a class="svc-link" href="#reserver">Réserver un tapis <span aria-hidden="true">→</span></a>
       </div>
     </article>
+
+    <div id="bandSix" class="band-six" style="margin:clamp(30px,4vw,52px) 0 0">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;flex-wrap:wrap">
+        <span class="mono" style="color:var(--foam)">La méthode · <b style="color:var(--coral)">six temps, un seul geste</b></span>
+        <span class="mono" style="color:var(--foam)">Injection extraction · pas un simple aspirateur</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:2px solid var(--coral);padding-top:16px">
+        <div class="b6" style="padding-right:18px;border-right:1px solid rgba(244,241,232,.16)"><span class="b6-dot"></span><h4>Préparation</h4><p>On dégage, on aspire le sec.</p></div>
+        <div class="b6" style="padding:0 18px;border-right:1px solid rgba(244,241,232,.16)"><span class="b6-dot"></span><h4>Injection</h4><p>Le produit au fond de la fibre.</p></div>
+        <div class="b6" style="padding:0 18px;border-right:1px solid rgba(244,241,232,.16)"><span class="b6-dot"></span><h4>Action</h4><p>Il dissout la saleté incrustée.</p></div>
+        <div class="b6" style="padding:0 18px;border-right:1px solid rgba(244,241,232,.16)"><span class="b6-dot"></span><h4>Extraction</h4><p>On réaspire l’eau sale.</p></div>
+        <div class="b6" style="padding:0 18px;border-right:1px solid rgba(244,241,232,.16)"><span class="b6-dot"></span><h4>Séchage</h4><p>Fini vite, peu d’eau reste.</p></div>
+        <div class="b6" style="padding-left:18px"><span class="b6-dot"></span><h4>Textile propre</h4><p>Comme neuf, odeur partie.</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -817,7 +838,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 </section>
 
 <!-- ========== ACTE 4 · LE PROCÉDÉ ========== -->
-<section class="sec sec-lagoon" id="procede">
+<section class="sec sec-lagoon" id="procede" style="display:none" aria-hidden="true">
   <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="rev" style="max-width:58ch;margin-bottom:clamp(30px,4vw,58px)">
