@@ -1,3 +1,8 @@
 .env*
 .vercel
 review/
+
+# outils de production (hors depôt)
+incoming/
+_previews/
+node_modules/
