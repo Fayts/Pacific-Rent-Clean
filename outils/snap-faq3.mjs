@@ -1,0 +1,17 @@
+import { chromium } from 'playwright';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dir = path.dirname(fileURLToPath(import.meta.url));
+const SITE = path.resolve(__dir, '../site/index.html');
+const b = await chromium.launch({ args: ['--no-sandbox','--disable-dev-shm-usage'] });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+await p.goto('file://' + SITE, { waitUntil: 'load' });
+await p.waitForTimeout(900);
+await p.evaluate(()=>{ const btn=document.querySelector('button[aria-controls="a1"]'); if(btn) btn.click(); });
+await p.waitForTimeout(500);
+const area = await p.evaluate(()=>{ const el=document.getElementById('faq'); return { top: el.getBoundingClientRect().top+scrollY-60, h: Math.min(el.offsetHeight+140, 4000) }; });
+await p.evaluate((t)=>window.scrollTo({top:t,behavior:'instant'}), area.top);
+await p.waitForTimeout(1000);
+await p.screenshot({ path: path.resolve(__dir,'../_previews/faq-sechage.png') });
+console.log('ok');
+await b.close();

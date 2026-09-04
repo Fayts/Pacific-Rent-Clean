@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Comparaison Six temps — VERSION B (bande courte)</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Instrument+Sans:wght@400;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--deep:#082F35;--deep-2:#0A3B42;--lagoon:#0E6670;--foam:#F4F1E8;--sand:#D8C6A5;
+        --basalt:#202524;--on-foam:#202524;--on-foam-2:#5C6B66;--coral:#E87961;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--foam);font-family:"Instrument Sans",sans-serif;color:var(--on-foam)}
+  /* On simule la FIN de la section Prestations (fond clair) où la bande viendrait s'insérer */
+  .sec{padding:64px clamp(24px,7vw,110px) 46px}
+  .wrap{max-width:1240px;margin:0 auto}
+  /* une petite pastille "fin de prestations" pour le contexte */
+  .tail{display:flex;align-items:center;gap:12px;margin-bottom:34px;color:var(--on-foam-2);
+        font-family:"DM Mono",monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}
+  .tail::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--coral)}
+  /* ===== LA BANDE COURTE ===== */
+  .band{background:#FBF9F2;border:1px solid rgba(32,37,36,.12);border-radius:4px;
+        padding:26px 30px 24px;box-shadow:0 1px 0 rgba(32,37,36,.04)}
+  .band-eyebrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .band-eyebrow .t{font-family:"DM Mono",monospace;font-size:.66rem;letter-spacing:.2em;color:var(--on-foam-2);text-transform:uppercase}
+  .band-eyebrow .t b{color:var(--coral);font-weight:400}
+  .band-eyebrow .how{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.14em;color:var(--on-foam-2)}
+  .p6{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--coral);padding-top:16px}
+  .p6 .step{position:relative;padding:0 18px 0 0;border-right:1px solid rgba(32,37,36,.09)}
+  .p6 .step:last-child{border-right:0;padding-right:0}
+  .p6 .step:first-child{padding-left:0}
+  .p6 .dot{display:block;width:9px;height:9px;border-radius:50%;background:var(--coral);margin-bottom:12px}
+  .p6 h5{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth"112;font-size:.98rem;margin-bottom:5px;line-height:1.05}
+  .p6 p{font-size:.76rem;color:var(--on-foam-2);line-height:1.42}
+  .band-note{margin-top:16px;font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.12em;color:var(--on-foam-2)}
+</style>
+</head>
+<body>
+  <section class="sec">
+    <div class="wrap">
+      <div class="tail">… fin de la section « Ce qu’on remet à neuf. »</div>
+      <div class="band">
+        <div class="band-eyebrow">
+          <span class="t">La méthode · <b>six temps, un seul geste</b></span>
+          <span class="how">Injection extraction · pas un simple aspirateur</span>
+        </div>
+        <div class="p6">
+          <div class="step"><span class="dot"></span><h5>Préparation</h5><p>Dégager, aspirer le sec, repérer.</p></div>
+          <div class="step"><span class="dot"></span><h5>Injection</h5><p>La solution au fond de la fibre.</p></div>
+          <div class="step"><span class="dot"></span><h5>Action</h5><p>Elle décroche la salissure grasse.</p></div>
+          <div class="step"><span class="dot"></span><h5>Extraction</h5><p>Elle reprend l’eau souillée.</p></div>
+          <div class="step"><span class="dot"></span><h5>Séchage</h5><p>Peu d’eau reste, attente courte.</p></div>
+          <div class="step"><span class="dot"></span><h5>Textile propre</h5><p>Poil dressé, couleur revenue.</p></div>
+        </div>
+        <div class="band-note">→ le gros plan du « moment de l’extraction » et le détail immersive restent dans le film du hero</div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

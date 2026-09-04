@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dir = path.dirname(fileURLToPath(import.meta.url));
+const SITE = path.resolve(__dir, '../site/index.html');
+const b = await chromium.launch({ args: ['--no-sandbox','--disable-dev-shm-usage'] });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+await p.goto('file://' + SITE, { waitUntil: 'load' });
+await p.waitForTimeout(1100);
+const info = await p.evaluate(()=>{ const s=document.getElementById('machine'); return {top:s.getBoundingClientRect().top+scrollY, h:s.offsetHeight, hots:document.querySelectorAll('#turn .hot').length, items:document.querySelectorAll('.mach-item').length}; });
+console.log('machine top', info.top, 'height', info.h, '| hotspots:', info.hots, '| items:', info.items);
+await p.evaluate(()=>window.scrollTo({top: document.getElementById('machine').getBoundingClientRect().top+scrollY + 600, behavior:'instant'}));
+await p.waitForTimeout(1200);
+await p.screenshot({ path: path.resolve(__dir,'../_previews/machine-3d.png') });
+console.log('OK regions anim:', await p.evaluate(()=>({h:document.body.scrollHeight})));
+await b.close();
