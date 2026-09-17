@@ -4,7 +4,7 @@
   "description": "Le skill `10k-websites` est embarque dans `.claude/skills/` pour que les sessions Claude Code lancees sur ce depot -- terminal, web ou tablette -- le chargent automatiquement.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node outils/verify-multipage.mjs"
   },
   "keywords": [],
   "author": "",
