@@ -1,0 +1,4 @@
+import { chromium } from 'playwright';
+import { resolve } from 'path';
+const root=resolve(import.meta.dirname,'..');const browser=await chromium.launch();
+for(const [width,name] of [[1440,'desktop'],[390,'mobile']]){const p=await browser.newPage({viewport:{width,height:900}});await p.goto(`file://${root}/site/index.html`,{waitUntil:'load'});await p.evaluate(()=>{document.querySelectorAll('img[loading="lazy"]').forEach(i=>i.loading='eager');document.querySelectorAll('.rev,.stag').forEach(e=>e.classList.add('in'))});await p.waitForTimeout(400);await p.locator('#prestations').scrollIntoViewIfNeeded();await p.waitForTimeout(400);await p.screenshot({path:`${root}/_previews/accueil-prestations-final-${name}.png`});await p.close()}await browser.close();

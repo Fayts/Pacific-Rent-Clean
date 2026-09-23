@@ -7,7 +7,7 @@ import { createServer } from 'http';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const siteDir = resolve(__dir, '..', 'site');
-const pages = ['index.html', 'prestations.html', 'location.html', 'faq.html', 'reserver.html'];
+const pages = ['index.html', 'prestations.html', 'location.html', 'contact.html', 'reserver.html'];
 
 const mime = { '.html':'text/html; charset=utf-8', '.js':'text/javascript', '.css':'text/css', '.jpg':'image/jpeg', '.webp':'image/webp', '.mp4':'video/mp4', '.svg':'image/svg+xml' };
 const server = createServer((req, res) => {
@@ -56,6 +56,6 @@ if (errors.length) process.exitCode = 1;
 console.log('\n=== NAV CHECK ===');
 for (const p of pages) {
   const html = readFileSync(resolve(siteDir,p), 'utf8');
-  const links = ['prestations.html','location.html','faq.html','reserver.html'].map(n => html.includes(n) ? '✓' : '✗').join(' ');
+  const links = ['prestations.html','location.html','contact.html','reserver.html'].map(n => html.includes(n) ? '✓' : '✗').join(' ');
   console.log(`${p.padEnd(18)} | nav links: ${links} | mailto: ${html.includes('pacificrentclean@gmail.com') ? '✓' : '✗'}`);
 }

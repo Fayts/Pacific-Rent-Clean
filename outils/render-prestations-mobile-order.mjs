@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+import { resolve } from 'path';
+const root=resolve(import.meta.dirname,'..');
+const browser=await chromium.launch();
+const page=await browser.newPage({viewport:{width:390,height:900},deviceScaleFactor:1});
+await page.goto(`file://${root}/site/prestations.html`,{waitUntil:'load'});
+await page.evaluate(()=>{document.querySelectorAll('img[loading="lazy"]').forEach(img=>img.loading='eager');document.querySelectorAll('.rev,.stag').forEach(el=>el.classList.add('in'));});
+await page.waitForTimeout(150);
+const order=await page.evaluate(()=>Object.fromEntries(['matelas','canapes','auto','tapis'].map(id=>{const e=document.getElementById(id);return [id,[...e.children].map(x=>({class:x.className,top:x.getBoundingClientRect().top}))]})));
+await page.locator('#prestations').screenshot({path:`${root}/_previews/prestations-mobile-ordre-uniforme.png`});
+for (const id of ['matelas','canapes','auto','tapis']) await page.locator('#'+id).screenshot({path:`${root}/_previews/prestation-${id}-mobile-ordre.png`});
+console.log(JSON.stringify(order));
+await browser.close();

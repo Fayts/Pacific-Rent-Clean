@@ -34,7 +34,7 @@
   <div class="nav-links">
     <a href="prestations.html">Prestations</a>
     <a href="location.html" aria-current="page">Location</a>
-    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Nous contacter</a>
   </div>
   <a class="btn btn-a" href="reserver.html">Réserver</a>
   <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i></button>
@@ -45,7 +45,7 @@
   <a href="index.html">Accueil</a>
   <a href="prestations.html">Prestations</a>
   <a href="location.html" aria-current="page">Location</a>
-  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Nous contacter</a>
   <a href="reserver.html">Réserver</a>
 </div>
 
@@ -60,147 +60,74 @@
     <h1>À vous de jouer.</h1>
     <p>Vous louez le Kärcher Puzzi 10/1, vous tenez la machine, vous faites le passage. Elle arrive chez vous avec tout ce qu’il faut, et vous l’avez 24 heures à partir de la livraison. Si vous préférez qu’on s’en charge, c’est la <a href="prestations.html" style="color:var(--sand)">prestation</a>.</p>
     <nav class="jump" aria-label="Sur cette page">
-      <a href="#machine">La machine</a>
+      <a href="#forfaits">Les forfaits</a>
       <a href="#kitshot">Le kit</a>
       <a href="#accessoires">Les accessoires</a>
-      <a href="#fiche">La fiche</a>
-      <a href="#forfaits">Les forfaits</a>
+      <a href="#methode">La méthode</a>
       <a href="#livraison">La livraison</a>
+      <a href="#faq-location">FAQ</a>
     </nav>
   </div>
 </header>
 
-<!-- ========== LA MACHINE, EN VOLUME ========== -->
-<section class="sec sec-deep2" id="machine">
+<!-- ========== LES FORFAITS · CHOISIR ========== -->
+<section class="sec sec-foam" id="forfaits">
   <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="mono">L’outil</span>
-      <h2 class="title">Le Kärcher<br>Puzzi 10/1.</h2>
-      <p class="lede">Deux réservoirs, une gâchette, une turbine. Touchez une pièce pour savoir ce qu’elle fait, ou faites tourner la machine.</p>
+      <span class="mono">Choisir sa location</span>
+      <h2 class="title">Deux forfaits,<br>un choix simple.</h2>
+      <p class="lede">La machine, les accessoires essentiels et 24 heures à partir de la livraison. Choisissez la formule qui correspond à votre usage.</p>
     </div>
-
-    <div class="mach">
-      <div class="mach-stage rev" id="machStage">
-       <div class="turn" id="turn" role="slider" tabindex="0"
-            aria-label="Le Kärcher Puzzi 10/1 en volume. Glissez pour le faire tourner, ou utilisez les flèches gauche et droite."
-            aria-valuemin="0" aria-valuemax="359" aria-valuenow="0" aria-valuetext="0 degrés">
-        <img class="turn-img" id="turnImg" src="assets/machine/m00.webp" decoding="sync"
-             width="900" height="675" loading="lazy"
-             alt="Vue en volume du Kärcher Puzzi 10 barre 1 avec son flexible, son pistolet, le suceur sol et le suceur fauteuil.">
-        <svg class="turn-ring" id="turnRing" viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
-                  stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)" transform="rotate(-90 24 24)"/>
-        </svg>
-        <span class="turn-hint mono" id="turnHint">Faites tourner</span>
-        <button class="hot" data-hot="sale"       aria-pressed="false" aria-label="Réservoir eau sale, 9 litres"></button>
-        <button class="hot" data-hot="propre"     aria-pressed="false" aria-label="Réservoir eau propre, 10 litres"></button>
-        <button class="hot" data-hot="flexible"   aria-pressed="false" aria-label="Flexible injection extraction, 2,5 mètres"></button>
-       </div>
+    <div class="plans plans-choice rev">
+      <div class="plan">
+        <div class="plan-top"><h3 class="sub-t">Standard</h3><span class="plan-price">6 390 F</span></div>
+        <ul><li>2 pastilles RM 760</li><li>Suceur sol et suceur fauteuil</li><li>24 heures à partir de la livraison</li></ul>
+        <a class="btn btn-c" href="reserver.html" style="margin-top:20px">Choisir Standard</a>
       </div>
-
-      <div class="rev">
-        <div class="mach-list" id="machList">
-          <button class="mach-item" data-hot="sale" aria-pressed="false">
-            <span class="lab"><b>Bac d’eau sale · 9 L</b></span>
-            <span class="val">Récupère l’eau sale. Amovible, on le vide à l’évier. À vider régulièrement.</span>
-          </button>
-          <button class="mach-item" data-hot="propre" aria-pressed="false">
-            <span class="lab"><b>Bac d’eau propre · 10 L</b></span>
-            <span class="val">Eau propre et pastilles détergentes. Ne pas dépasser le marquage MAX.</span>
-          </button>
-          <button class="mach-item" data-hot="flexible" aria-pressed="false">
-            <span class="lab"><b>Flexible d’injection / d’extraction · 2,5 m</b></span>
-            <span class="val">Le tuyau qui injecte et qui aspire. De quoi faire un canapé sans déplacer la cuve.</span>
-          </button>
-          <div class="mach-item mach-item-flat">
-            <span class="lab"><b>Pistolet d’extraction / injection</b> <i class="mono">fourni</i></span>
-            <span class="val val-open">Vous appuyez, ça injecte le produit. Vous relâchez, ça aspire la saleté en profondeur.</span>
-          </div>
-          <div class="mach-item mach-item-flat">
-            <span class="lab"><b>Embout d’extraction / injection · 110 mm</b> <i class="mono">fourni</i></span>
-            <span class="val val-open">Canapés, matelas, sièges de voiture. Passe aussi dans les espaces étroits.</span>
-          </div>
-        </div>
-        <p class="mach-spec mono">Injection 1 bar · Débit 1 L/min · Extraction par turbine · 10,5 kg</p>
-        <p class="mach-note">La visionneuse montre le Puzzi 10/1 en volume, rendu depuis un modèle 3D. Ses trois pièces cliquables se montrent d’un clic, et la machine pivote pour les exposer. Le pistolet, l’embout fauteuil et les accessoires de sol partent avec la location : ils sont <a href="#accessoires">en photo juste en dessous</a>.</p>
-        <a class="btn btn-a" href="reserver.html" style="margin-top:32px">Louer le Kärcher Puzzi</a>
+      <div class="plan">
+        <div class="plan-top"><h3 class="sub-t">Auto-Home</h3><span class="plan-price">7 990 F</span></div>
+        <ul><li>2 pastilles RM 760</li><li>1 brosse rotative et perceuse à batterie</li><li>1 bouteille de TASKI Tapi Extract</li><li>24 heures à partir de la livraison</li></ul>
+        <a class="btn btn-c" href="reserver.html" style="margin-top:20px">Choisir Auto-Home</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== LE KIT, LES ACCESSOIRES, LES FORFAITS ========== -->
+<!-- ========== LE KIT ET LES ACCESSOIRES ========== -->
 <section class="sec sec-foam" id="kit">
   <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="sec-head rev">
       <span class="mono">Le kit</span>
       <h2 class="title" style="font-size:clamp(2rem,4.6vw,4.3rem)">Tout ce qu’il vous faut<br>pour nettoyer vous-même.</h2>
+      <p class="lede">Le kit arrive prêt à l’emploi avec les accessoires nécessaires pour nettoyer vous-même vos textiles.</p>
     </div>
 
-    <div class="kitshot rev" id="kitshot">
-      <figure class="kitshot-fig">
-        <img src="assets/kit-puzzi.webp" alt="Kärcher Puzzi 10/1 avec son flexible, son tube d’injection extraction, sa poignée en D et son aspirateur sols de 240 mm." loading="lazy" decoding="async" width="880" height="1147">
+    <div class="kit-composition rev" id="kitshot">
+      <div class="kit-rail kit-rail-left" aria-label="Accessoires pour les sols">
+        <div class="kit-label"><i>01</i><span>Tube d’injection / d’extraction</span></div>
+        <div class="kit-label"><i>02</i><span>Poignée en D</span></div>
+        <div class="kit-label"><i>03</i><span>Suceur sol · 240 mm</span></div>
+      </div>
+
+      <figure class="kit-main-figure">
+        <span class="mono kit-main-kicker">Kärcher Puzzi 10/1</span>
+        <img src="assets/puzzi-kit-complete.webp" alt="Kärcher Puzzi 10/1 avec son flexible d’injection et d’extraction, son pistolet, son suceur fauteuil, son tube, sa poignée en D et son suceur sol 240 mm." loading="lazy" decoding="async" width="472" height="376">
       </figure>
-      <div class="kitshot-txt">
-        <span class="mono">Monté pour le sol</span>
-        <p class="kitshot-lede">Les trois pièces qui ne tiennent pas sur le modèle en volume plus haut. Elles partent avec la machine.</p>
-        <ul class="kitshot-notes">
-          <li><b>Aspirateur sols · 240 mm</b><span>Pour les moquettes et les tapis de sol.</span></li>
-          <li><b>Tube d’injection / d’extraction</b><span>Le manche, pour travailler debout au sol.</span></li>
-          <li><b>Poignée en D</b><span>Permet le nettoyage à deux mains.</span></li>
-        </ul>
+
+      <div class="kit-rail kit-rail-right" aria-label="Accessoires pour les textiles et le raccordement">
+        <div class="kit-label"><i>04</i><span>Flexible d’injection / d’extraction · 2,5 m</span></div>
+        <div class="kit-label"><i>05</i><span>Pistolet d’injection / d’extraction</span></div>
+        <div class="kit-label"><i>06</i><span>Suceur fauteuil</span></div>
       </div>
     </div>
 
-    <div class="loc">
-      <div class="rev" id="accessoires">
-        <h3 class="sub-t">Ce qui part avec la machine</h3>
-        <ul class="kit">
-          <li><i>01</i><span>Kärcher Puzzi 10/1, injecteur extracteur professionnel</span></li>
-          <li><i>02</i><span>Flexible 2,5 m, suceur sol 240 mm, suceur fauteuil</span></li>
-          <li><i>03</i><span>Pastilles Kärcher CarpetPro RM 760</span></li>
-          <li><i>04</i><span>Manuel d’utilisation en PDF</span></li>
-        </ul>
-        <p class="lede" style="margin-top:1.6rem;max-width:50ch">Les pastilles RM 760 sont conçues pour l’injection extraction. Elles encapsulent la salissure grasse au lieu de la diluer, ce qui raccourcit le séchage.</p>
-
-        <a class="fiche" id="fiche" href="assets/fiche-puzzi.webp" target="_blank" rel="noopener">
-          <img src="assets/fiche-puzzi-min.webp" alt="Fiche de prise en main du Kärcher Puzzi 10/1 : chaque pièce nommée et son rôle expliqué." loading="lazy" decoding="async" width="560" height="560">
-          <span class="fiche-txt">
-            <b class="mono">La fiche de prise en main</b>
-            <em>Chaque pièce nommée, son rôle expliqué. Elle part avec la machine.</em>
-            <span class="fiche-go">Voir en grand <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-      </div>
-
-      <div class="rev" id="forfaits">
-        <h3 class="sub-t">Les deux forfaits</h3>
-        <div class="plans" style="margin-top:1.6rem">
-          <div class="plan">
-            <div class="plan-top"><h4 class="sub-t">Standard</h4><span class="plan-price">6 390 F</span></div>
-            <ul><li>2 pastilles RM 760</li><li>Suceur sol et suceur fauteuil</li><li>24 heures à partir de la livraison</li></ul>
-          </div>
-          <div class="plan">
-            <div class="plan-top"><h4 class="sub-t">Auto Home</h4><span class="plan-price">7 990 F</span></div>
-            <ul><li>2 pastilles RM 760</li><li>1 brosse rotative et perceuse à batterie</li><li>1 bouteille de TASKI Tapi Extract</li><li>24 heures à partir de la livraison</li></ul>
-          </div>
-        </div>
-        <p class="deliv" id="livraison">Livraison 1 500 F sur Punaauia, Faa’a et Papenoo.</p>
-        <a class="btn btn-c" href="reserver.html" style="margin-top:20px">Louer le Kärcher Puzzi</a>
-      </div>
+    <div class="kit-utility rev" id="accessoires">
+      <span class="mono">Le contenu de la location</span>
+      <p>Le Kärcher et les accessoires indiqués sont fournis ensemble pour passer du nettoyage des sols au nettoyage des fauteuils et autres textiles.</p>
     </div>
 
-    <div id="marche" class="rev" style="margin-top:clamp(44px,6vw,84px)">
-      <span class="mono" style="display:block;margin-bottom:1rem">Comment ça marche</span>
-      <div class="steps stag">
-        <div class="step"><b>01</b><h3>Choisissez</h3><p>Le forfait Standard, ou le forfait Auto Home avec la brosse rotative.</p></div>
-        <div class="step"><b>02</b><h3>Réservez</h3><p>Vous choisissez la date de livraison, et vous laissez vos coordonnées.</p></div>
-        <div class="step"><b>03</b><h3>On livre</h3><p>La machine arrive chez vous. Vous l’avez 24 heures à partir de la livraison.</p></div>
-      </div>
-      <p class="steps-tag rev">Simple. Rapide. Clair.</p>
-    </div>
   </div>
 </section>
 
@@ -209,7 +136,7 @@
   <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="mono">La méthode · six temps</span>
+      <span class="mono method-label">La méthode · six temps</span>
       <h2 class="title">Un seul geste,<br>du début à la fin.</h2>
       <p class="lede" style="color:var(--foam)">La même séquence pour chaque textile : préparer, injecter, agir, extraire, laisser sécher, retrouver un textile propre.</p>
     </div>
@@ -237,22 +164,58 @@
   </div>
 </section>
 
-<!-- ========== LA CLÔTURE ========== -->
+<!-- ========== LIVRAISON ========== -->
+<section class="sec sec-deep2" id="livraison">
+  <div class="pass" style="--from:var(--lagoon)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="mono">Livraison selon la zone</span>
+      <h2 class="title">La machine arrive<br>chez vous.</h2>
+      <p class="lede">Sélectionnez votre zone lors de la réservation. Le tarif de livraison est calculé selon votre secteur.</p>
+      <ul class="delivery-zones rev" aria-label="Tarifs de livraison par zone">
+        <li><span>Papeete à Mahina</span><strong>Gratuit</strong></li>
+        <li><span>Faaa – Papenoo</span><strong>1 500 F CFP</strong></li>
+        <li><span>Au-delà</span><strong>2 500 F CFP</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ LOCATION ========== -->
+<section class="sec sec-foam" id="faq-location">
+  <div class="pass" style="--from:var(--deep-2)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap faq">
+      <div class="rev" style="margin-bottom:clamp(26px,3.4vw,48px)">
+        <span class="mono" style="display:block;margin-bottom:1rem">Questions location</span>
+        <h2 class="title">Avant de choisir.</h2>
+        <p class="lede faq-intro">Les réponses essentielles avant de réserver votre location.</p>
+      </div>
+    <div id="faqLocationList" class="rev">
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="loc-a1">Quelle différence entre les forfaits Standard et Auto-Home ?</button>
+        <div class="a" id="loc-a1" role="region"><p>Le forfait Standard couvre l’usage courant avec les accessoires essentiels. Auto-Home ajoute une brosse rotative, une perceuse à batterie et une bouteille de TASKI Tapi Extract.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="loc-a2">Les produits de nettoyage sont-ils fournis ?</button>
+        <div class="a" id="loc-a2" role="region"><p>Oui. Les deux forfaits comprennent 2 pastilles RM 760. Le forfait Auto-Home comprend également une bouteille de TASKI Tapi Extract.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="loc-a3">Combien de temps faut-il pour que les textiles sèchent ?</button>
+        <div class="a" id="loc-a3" role="region"><p>Il n’y a pas de durée fixe : cela dépend de la météo, de l’aération et de l’endroit où se trouve le textile. Au soleil et à l’air libre, le séchage est plus rapide ; dans une pièce fermée, il prend plus de temps.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="loc-a4">Quels textiles puis-je nettoyer avec le Puzzi ?</button>
+        <div class="a" id="loc-a4" role="region"><p>Le Puzzi est adapté notamment aux tapis, moquettes, canapés, fauteuils, matelas et sièges de voiture, en tenant compte de la matière et des recommandations du fabricant.</p></div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA FINAL ========== -->
 <section class="close" id="conversion">
-  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
   <div class="close-bg" style="background-image:url('assets/hero-ending.jpg')" aria-hidden="true"></div>
   <div class="close-in">
     <div class="rev">
       <span class="mono" style="display:block;margin-bottom:1.4rem;color:var(--sand)">À vous</span>
-      <h2 class="title">La machine,<br>chez vous.</h2>
-      <p class="lede close-note" style="margin:1.4rem auto 0">Livraison sur Punaauia, Faa’a et Papenoo. 24 heures à partir de la livraison.</p>
+      <h2 class="title">Louer le Kärcher.</h2>
+      <p class="lede close-note" style="margin:1.4rem auto 0">Choisissez votre forfait et votre date de livraison.</p>
       <div class="cta-row" style="justify-content:center">
-        <a class="btn btn-a" href="reserver.html">Louer le Kärcher</a>
-        <a class="btn btn-b" href="faq.html">Lire la FAQ d’abord</a>
-      </div>
-      <div class="contact">
-        <span>Tahiti, 7j/7</span>
-        <span><a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a></span>
+        <a class="btn btn-a" href="reserver.html">Standard — 6 390 F</a>
+        <a class="btn btn-b" href="reserver.html">Auto-Home — 7 990 F</a>
       </div>
     </div>
   </div>
@@ -279,16 +242,17 @@
       <div>
         <h5>Location</h5>
         <ul>
-          <li><a href="location.html">Kärcher Puzzi 10/1</a></li>
-          <li><a href="location.html#machine">La machine en détail</a></li>
+          <li><a href="location.html#kitshot">Le kit</a></li>
+          <li><a href="location.html#accessoires">Les accessoires</a></li>
           <li><a href="location.html#forfaits">Forfaits et livraison</a></li>
+          <li><a href="location.html#methode">La méthode en six temps</a></li>
         </ul>
       </div>
       <div>
         <h5>Contact</h5>
         <ul>
           <li><a href="reserver.html">Réserver</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Nous contacter</a></li>
           <li><a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a></li>
           <li><span style="color:rgba(244,241,232,.55);font-size:.92rem">Punaauia, Faa’a, Papenoo · 7j/7</span></li>
         </ul>
@@ -302,6 +266,5 @@
 </footer>
 
 <script src="assets/js/site.js"></script>
-<script src="assets/js/puzzi.js"></script>
 </body>
 </html>

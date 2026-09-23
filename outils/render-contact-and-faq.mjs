@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+import { resolve } from 'path';
+const root=resolve(import.meta.dirname,'..');
+const browser=await chromium.launch();
+const src = resolve(root, 'site/assets/puzzi-kit-complete.webp');
+const out = resolve(root, '_previews/puzzi-kit-complete-check.png');
+const page = await browser.newPage({ viewport:{width:1440,height:900}, deviceScaleFactor:1 });
+await page.goto(`file://${root}/site/location.html#kit`,{waitUntil:'load'});
+await page.waitForTimeout(400);
+await page.locator('#kit').screenshot({path:out});
+console.log(`kit capture: ${out}`);
+await browser.close();
