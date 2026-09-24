@@ -137,24 +137,19 @@ button{font:inherit;color:inherit}
 .band .btn{text-shadow:none}
 
 /* placement par bande, et voile centré sur son propre texte */
-.b1 .in-b{max-width:min(74vw,1040px)}
-.b2 .in-b{max-width:min(86vw,1260px)}
-.b3 .in-b{max-width:min(80vw,1120px)}
-.b4 .in-b{max-width:min(58vw,820px)}
+.b1 .in-b{max-width:min(78vw,1080px)}
+.b2 .in-b,.b3 .in-b,.b4 .in-b{max-width:min(58vw,720px)}
 .b5 .in-b{max-width:min(88vw,1180px)}
 .b1{align-content:end;justify-items:start;text-align:left}
-.b1::before{background:linear-gradient(to top,rgba(4,18,20,.88) 0%,rgba(4,18,20,.70) 26%,rgba(4,18,20,.30) 50%,rgba(4,18,20,0) 72%),linear-gradient(to right,rgba(4,18,20,.50) 0%,rgba(4,18,20,0) 62%)}
-.b2{align-content:start;justify-items:start;text-align:left}
-.b2::before{background:linear-gradient(to bottom,rgba(4,18,20,.90) 0%,rgba(4,18,20,.80) 30%,rgba(4,18,20,.56) 50%,rgba(4,18,20,.18) 68%,rgba(4,18,20,0) 84%),linear-gradient(to right,rgba(4,18,20,.44) 0%,rgba(4,18,20,0) 66%)}
-.b3{align-content:center;justify-items:center;text-align:center}
-.b3::before{background:radial-gradient(ellipse 80% 56% at 50% 50%,rgba(4,18,20,.88) 0%,rgba(4,18,20,.64) 42%,rgba(4,18,20,0) 80%)}
-.b4{align-content:center;justify-items:end;text-align:right}
-.b4::before{background:linear-gradient(to left,rgba(4,18,20,.92) 0%,rgba(4,18,20,.80) 30%,rgba(4,18,20,.52) 56%,rgba(4,18,20,0) 86%),radial-gradient(ellipse 66% 48% at 72% 50%,rgba(4,18,20,.56) 0%,rgba(4,18,20,0) 80%)}
+.b1::before{background:linear-gradient(to top,rgba(4,18,20,.82) 0%,rgba(4,18,20,.58) 28%,rgba(4,18,20,.18) 52%,rgba(4,18,20,0) 76%),linear-gradient(to right,rgba(4,18,20,.42) 0%,rgba(4,18,20,0) 62%)}
+.b2,.b3,.b4{align-content:center;justify-items:center;text-align:center}
+.b2::before,.b3::before,.b4::before{background:radial-gradient(ellipse 58% 38% at 50% 50%,rgba(4,18,20,.54) 0%,rgba(4,18,20,.28) 45%,rgba(4,18,20,0) 82%)}
 .b5{align-content:center;justify-items:center;text-align:center}
-.b5::before{background:radial-gradient(ellipse 94% 76% at 50% 50%,rgba(4,18,20,.90) 0%,rgba(4,18,20,.72) 44%,rgba(4,18,20,.30) 66%,rgba(4,18,20,0) 88%)}
+.b5::before{background:radial-gradient(ellipse 94% 76% at 50% 50%,rgba(4,18,20,.86) 0%,rgba(4,18,20,.64) 44%,rgba(4,18,20,.26) 66%,rgba(4,18,20,0) 88%)}
 
 .kick{color:var(--sand);margin-bottom:1.1rem;display:block}
 .b5 .sub{margin:1.5rem auto 0;font-size:clamp(1rem,1.32vw,1.2rem);color:var(--foam);max-width:46ch;line-height:1.55}
+.hero-word{letter-spacing:.055em;text-transform:uppercase;font-size:clamp(2.6rem,7.5vw,7.2rem)!important}
 .b5 .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:2rem}
 
 /* --- moteurs de texte : transform et opacity seulement --- */
