@@ -582,6 +582,8 @@ h3.sub-t{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:
   letter-spacing:.18em;text-transform:uppercase;color:var(--sand)}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .foot a{color:rgba(244,241,232,.76);text-decoration:none;font-size:.92rem;transition:color .35s var(--ease)}
+.foot a.foot-mail{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(232,121,97,.75)}
+.foot-zone{color:rgba(244,241,232,.55);font-size:.92rem}
 .foot a:hover{color:var(--coral)}
 .foot-mark{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 118;
   text-transform:uppercase;font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.025em;line-height:.95;margin:0 0 14px}
