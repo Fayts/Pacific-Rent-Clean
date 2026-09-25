@@ -67,10 +67,14 @@ const bands=[...document.querySelectorAll('.band')].map(el=>({
   el, a:parseFloat(el.dataset.a), b:parseFloat(el.dataset.b), op:-1, k:-1
 }));
 
-let target=0, shown=0, rafId=null, lastTick=0;
-let seekBusy=false, pendingTime=null;
+let target=0, shown=0, rafId=null, lastTick=0, lastSeekAt=0, lastAppliedTime=-1;
 let heroOnScreen=true, scrubOn=false, heroInit=false;
 let loadK=0, loadStart=0, loadRunning=false;
+
+const SMOOTHING=0.18;
+const SNAP_EPSILON=0.00045;
+const SEEK_INTERVAL=33;
+const SEEK_EPSILON=0.012;
 
 function heroProgress(){
   const range=hero.offsetHeight-window.innerHeight;
@@ -78,17 +82,19 @@ function heroProgress(){
   return clamp((-hero.getBoundingClientRect().top)/range,0,1);
 }
 
-function requestSeek(t){
-  if(!video.duration||!isFinite(t)) return;
-  if(seekBusy){pendingTime=t;return;}
-  seekBusy=true;
-  try{video.currentTime=t;}catch(e){seekBusy=false;}
+function syncVideoToProgress(p,now=performance.now(),force=false){
+  if(!video.duration||!isFinite(video.duration)) return;
+  const t=clamp(p,0,1)*video.duration;
+  if(!force&&now-lastSeekAt<SEEK_INTERVAL&&Math.abs(t-lastAppliedTime)<0.075) return;
+  if(force||Math.abs(video.currentTime-t)>SEEK_EPSILON){
+    try{
+      video.currentTime=t;
+      lastSeekAt=now;
+      lastAppliedTime=t;
+    }catch(e){}
+  }
 }
-video.addEventListener('seeked',()=>{
-  seekBusy=false;
-  if(pendingTime!==null){const t=pendingTime;pendingTime=null;requestSeek(t);}
-});
-video.addEventListener('error',()=>{seekBusy=false;pendingTime=null;failVideo();});
+video.addEventListener('error',()=>{failVideo();});
 
 function updateCaptions(p){
   for(const b of bands){
@@ -109,18 +115,19 @@ function updateCaptions(p){
 function tick(now){
   const dt=Math.min(100,now-(lastTick||now));
   lastTick=now;
-  const kk=0.16;
-  shown+=(target-shown)*(1-Math.pow(1-kk,dt/16.667));
-  let resting=Math.abs(target-shown)<0.0005;
+  const k=1-Math.pow(1-SMOOTHING,dt/16.667);
+  shown+=(target-shown)*k;
+  let resting=Math.abs(target-shown)<SNAP_EPSILON;
   if(loadRunning){
     loadK=clamp((now-loadStart)/900,0,1);
     if(loadK>=1) loadRunning=false;
     resting=false;
   }
-  if(resting){shown=target;rafId=null;lastTick=0;}
-  else rafId=requestAnimationFrame(tick);
-  if(video.duration) requestSeek(shown*video.duration);
+  if(resting) shown=target;
   updateCaptions(shown);
+  syncVideoToProgress(shown,now,resting);
+  if(resting){rafId=null;lastTick=0;}
+  else rafId=requestAnimationFrame(tick);
 }
 function kickLoop(){if(rafId===null&&heroOnScreen&&scrubOn){lastTick=0;rafId=requestAnimationFrame(tick);}}
 function onScroll(){target=heroProgress();kickLoop();}
@@ -165,7 +172,10 @@ async function loadHeroBlob(){
   video.load();
   video.addEventListener('canplay',()=>{
     if(ring&&ring.parentNode) ring.style.opacity='0';
-    requestSeek(heroProgress()*video.duration);
+    target=heroProgress();
+    shown=target;
+    syncVideoToProgress(target,performance.now(),true);
+    updateCaptions(target);
     stage.classList.add('video-ready');
   },{once:true});
 }
