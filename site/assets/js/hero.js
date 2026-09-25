@@ -58,8 +58,8 @@ document.querySelectorAll('[data-split]').forEach(splitText);
 /* ============================================================
    2. le héros défilé
    ============================================================ */
-const VIDEO_URL='assets/hero-scrub.mp4';
-const VIDEO_BYTES=13894882;
+const VIDEO_URL='assets/hero-scrub-web.mp4';
+const VIDEO_BYTES=9018450;
 const POSTER_URL='assets/hero-poster.jpg';
 const ENDING_URL='assets/hero-ending.jpg';
 
