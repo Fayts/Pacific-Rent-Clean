@@ -56,12 +56,17 @@ function splitText(el){
 document.querySelectorAll('[data-split]').forEach(splitText);
 
 /* ============================================================
-   2. le héros défilé
+   2. le héros défilé — prototype canvas frames
    ============================================================ */
+const SCRUB_MODE='frames'; // fallback rapide : mettre 'mp4' pour revenir au système vidéo.
 const VIDEO_URL='assets/hero-scrub-web.mp4';
 const VIDEO_BYTES=9018450;
 const POSTER_URL='assets/hero-poster.jpg';
 const ENDING_URL='assets/hero-ending.jpg';
+const FRAME_COUNT=181;
+const FRAME_DIR='assets/hero-frames';
+const FRAME_W=1920;
+const FRAME_H=1080;
 
 const bands=[...document.querySelectorAll('.band')].map(el=>({
   el, a:parseFloat(el.dataset.a), b:parseFloat(el.dataset.b), op:-1, k:-1
@@ -71,12 +76,17 @@ let target=0, shown=0, rafId=null, lastTick=0;
 let seekBusy=false, pendingTime=null;
 let heroOnScreen=true, scrubOn=false, heroInit=false;
 let loadK=0, loadStart=0, loadRunning=false;
+let canvas=null, ctx=null, renderId=null, currentIndex=-1, progressiveTimer=null;
+const frames=new Array(FRAME_COUNT);
+const requested=new Set();
 
 function heroProgress(){
   const range=hero.offsetHeight-window.innerHeight;
   if(range<=0) return 0;
   return clamp((-hero.getBoundingClientRect().top)/range,0,1);
 }
+function frameIndexForProgress(p){return clamp(Math.round(clamp(p,0,1)*(FRAME_COUNT-1)),0,FRAME_COUNT-1);}
+function frameUrl(i){return `${FRAME_DIR}/frame-${String(i+1).padStart(4,'0')}.webp`;}
 
 function requestSeek(t){
   if(!video.duration||!isFinite(t)) return;
@@ -106,6 +116,102 @@ function updateCaptions(p){
   }
 }
 
+function setupCanvas(){
+  if(canvas) return;
+  canvas=document.createElement('canvas');
+  canvas.id='heroCanvas';
+  canvas.className='hero-canvas';
+  canvas.setAttribute('aria-hidden','true');
+  canvas.tabIndex=-1;
+  ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
+  stage.insertBefore(canvas,video);
+  video.style.display='none';
+}
+function resizeCanvas(){
+  if(!canvas||!ctx) return;
+  const rect=stage.getBoundingClientRect();
+  const cssW=Math.max(1,Math.round(rect.width));
+  const cssH=Math.max(1,Math.round(rect.height));
+  const dpr=Math.max(1,Math.min(window.devicePixelRatio||1,FRAME_W/cssW,FRAME_H/cssH,2));
+  const w=Math.max(1,Math.round(cssW*dpr));
+  const h=Math.max(1,Math.round(cssH*dpr));
+  if(canvas.width!==w||canvas.height!==h){
+    canvas.width=w; canvas.height=h;
+  }
+}
+function drawImageCover(img){
+  if(!canvas||!ctx||!img) return;
+  resizeCanvas();
+  const cw=canvas.width, ch=canvas.height;
+  const iw=img.naturalWidth||FRAME_W, ih=img.naturalHeight||FRAME_H;
+  const scale=Math.max(cw/iw,ch/ih);
+  const dw=iw*scale, dh=ih*scale;
+  ctx.drawImage(img,(cw-dw)/2,(ch-dh)/2,dw,dh);
+}
+function nearestLoaded(idx){
+  if(frames[idx]) return idx;
+  for(let d=1;d<FRAME_COUNT;d++){
+    const a=idx-d,b=idx+d;
+    if(a>=0&&frames[a]) return a;
+    if(b<FRAME_COUNT&&frames[b]) return b;
+  }
+  return -1;
+}
+function loadFrame(idx){
+  if(idx<0||idx>=FRAME_COUNT||frames[idx]||requested.has(idx)) return;
+  requested.add(idx);
+  const img=new Image();
+  img.decoding='async';
+  img.onload=()=>{
+    frames[idx]=img;
+    if(idx===currentIndex||nearestLoaded(currentIndex)===idx) scheduleCanvasRender();
+    if(stage.classList.contains('video-ready')===false&&idx===currentIndex){
+      stage.classList.add('video-ready');
+      if(ring&&ring.parentNode) ring.style.opacity='0';
+    }
+  };
+  img.onerror=()=>{requested.delete(idx);};
+  img.src=frameUrl(idx);
+}
+function preloadAround(idx,radius=5){
+  loadFrame(idx);
+  for(let d=1;d<=radius;d++){
+    loadFrame(idx-d);
+    loadFrame(idx+d);
+  }
+}
+function startProgressivePreload(){
+  if(progressiveTimer) return;
+  progressiveTimer=setInterval(()=>{
+    if(!scrubOn||SCRUB_MODE!=='frames'){clearInterval(progressiveTimer);progressiveTimer=null;return;}
+    const center=currentIndex>=0?currentIndex:frameIndexForProgress(heroProgress());
+    for(let d=0;d<FRAME_COUNT;d++){
+      const before=center-d, after=center+d;
+      if(before>=0&&!frames[before]&&!requested.has(before)){loadFrame(before);return;}
+      if(after<FRAME_COUNT&&!frames[after]&&!requested.has(after)){loadFrame(after);return;}
+    }
+    clearInterval(progressiveTimer); progressiveTimer=null;
+  },70);
+}
+function renderCanvas(){
+  renderId=null;
+  const p=target;
+  updateCaptions(p);
+  const idx=frameIndexForProgress(p);
+  currentIndex=idx;
+  preloadAround(idx,6);
+  const loadedIdx=nearestLoaded(idx);
+  if(loadedIdx>=0){
+    drawImageCover(frames[loadedIdx]);
+    stage.classList.add('video-ready');
+    if(ring&&ring.parentNode) ring.style.opacity='0';
+  }
+  startProgressivePreload();
+}
+function scheduleCanvasRender(){
+  if(renderId===null&&heroOnScreen&&scrubOn) renderId=requestAnimationFrame(renderCanvas);
+}
+
 function tick(now){
   const dt=Math.min(100,now-(lastTick||now));
   lastTick=now;
@@ -123,7 +229,11 @@ function tick(now){
   updateCaptions(shown);
 }
 function kickLoop(){if(rafId===null&&heroOnScreen&&scrubOn){lastTick=0;rafId=requestAnimationFrame(tick);}}
-function onScroll(){target=heroProgress();kickLoop();}
+function onScroll(){
+  target=heroProgress();
+  if(SCRUB_MODE==='frames') scheduleCanvasRender();
+  else kickLoop();
+}
 
 function failVideo(){
   if(ring&&ring.parentNode){
@@ -175,6 +285,16 @@ function initHeroOnce(){
   heroInit=true;
   posterLayer.style.backgroundImage="url('"+POSTER_URL+"')";
   loadStart=performance.now(); loadRunning=true; loadK=0;
+  if(SCRUB_MODE==='frames'){
+    setupCanvas();
+    target=heroProgress();
+    currentIndex=frameIndexForProgress(target);
+    updateCaptions(target);
+    preloadAround(currentIndex,8);
+    loadFrame(0); loadFrame(FRAME_COUNT-1);
+    scheduleCanvasRender();
+    return;
+  }
   let started=false;
   const start=()=>{if(started)return;started=true;loadHeroBlob().catch(failVideo);};
   const img=new Image();
@@ -203,6 +323,7 @@ function disableScrub(){
   if(!scrubOn) return; scrubOn=false;
   removeEventListener('scroll',onScroll);
   if(rafId!==null){cancelAnimationFrame(rafId);rafId=null;}
+  if(renderId!==null){cancelAnimationFrame(renderId);renderId=null;}
 }
 /* le héros fixe : une seule image téléchargée, l'arrivée au repos du film */
 let staticPainted=false;
@@ -218,11 +339,14 @@ GATES.map(q=>matchMedia(q)).forEach(m=>m.addEventListener('change',applyHeroMode
 
 new IntersectionObserver(es=>{
   heroOnScreen=es[0].isIntersecting;
-  if(heroOnScreen) kickLoop();
+  if(heroOnScreen){
+    if(SCRUB_MODE==='frames') scheduleCanvasRender();
+    else kickLoop();
+  }
 },{rootMargin:'120px'}).observe(hero);
 
 /* départ */
 applyHeroMode();
-addEventListener('resize',()=>{if(scrubOn){target=heroProgress();kickLoop();}},{passive:true});
+addEventListener('resize',()=>{if(scrubOn){target=heroProgress(); if(SCRUB_MODE==='frames') scheduleCanvasRender(); else kickLoop();}},{passive:true});
 
 })();

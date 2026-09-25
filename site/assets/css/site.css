@@ -111,9 +111,10 @@ button{font:inherit;color:inherit}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--deep)}
 .poster{position:absolute;inset:0;background-size:cover;background-position:center;
         transform:scale(1.03);transition:opacity .9s var(--ease)}
-#heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+#heroVideo,.hero-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
            opacity:0;transition:opacity .9s var(--ease);will-change:transform;transform:translateZ(0)}
-.stage.video-ready #heroVideo{opacity:1}
+.hero-canvas{display:block;background:var(--deep)}
+.stage.video-ready #heroVideo,.stage.video-ready .hero-canvas{opacity:1}
 .stage.video-ready .poster{opacity:0}
 .scrim{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse 122% 92% at 50% 46%,rgba(4,18,20,0) 33%,rgba(4,18,20,.66) 100%)}
