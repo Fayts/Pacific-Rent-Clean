@@ -182,16 +182,18 @@ function preloadAround(idx,radius=5){
 }
 function startProgressivePreload(){
   if(progressiveTimer) return;
-  progressiveTimer=setInterval(()=>{
-    if(!scrubOn||SCRUB_MODE!=='frames'){clearInterval(progressiveTimer);progressiveTimer=null;return;}
-    const center=currentIndex>=0?currentIndex:frameIndexForProgress(heroProgress());
-    for(let d=0;d<FRAME_COUNT;d++){
-      const before=center-d, after=center+d;
-      if(before>=0&&!frames[before]&&!requested.has(before)){loadFrame(before);return;}
-      if(after<FRAME_COUNT&&!frames[after]&&!requested.has(after)){loadFrame(after);return;}
-    }
-    clearInterval(progressiveTimer); progressiveTimer=null;
-  },70);
+  progressiveTimer=setTimeout(()=>{
+    progressiveTimer=setInterval(()=>{
+      if(!scrubOn||SCRUB_MODE!=='frames'){clearInterval(progressiveTimer);progressiveTimer=null;return;}
+      const center=currentIndex>=0?currentIndex:frameIndexForProgress(heroProgress());
+      for(let d=0;d<FRAME_COUNT;d++){
+        const before=center-d, after=center+d;
+        if(before>=0&&!frames[before]&&!requested.has(before)){loadFrame(before);return;}
+        if(after<FRAME_COUNT&&!frames[after]&&!requested.has(after)){loadFrame(after);return;}
+      }
+      clearInterval(progressiveTimer); progressiveTimer=null;
+    },260);
+  },1800);
 }
 function renderCanvas(){
   renderId=null;
