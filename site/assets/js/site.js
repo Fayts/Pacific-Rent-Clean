@@ -132,6 +132,40 @@ document.querySelectorAll('form[data-mailto]').forEach(form=>{
   });
 });
 
+/* le formulaire serveur de la page contact */
+document.querySelectorAll('form[data-contact-form]').forEach(form=>{
+  const shell=form.closest('[data-contact-shell]');
+  const success=shell?shell.querySelector('[data-contact-success]'):null;
+  const status=form.querySelector('[data-contact-status]');
+  const loaded=form.elements.loadedAt;
+  if(loaded) loaded.value=String(Date.now());
+  const say=t=>{if(status) status.textContent=t||'';};
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(form.classList.contains('is-loading')) return;
+    const fd=new FormData(form);
+    const payload=Object.fromEntries(fd.entries());
+    if(!payload.name||!payload.email||!payload.message){say('Merci de compléter le nom, l’e-mail et le message.');return;}
+    form.classList.add('is-loading');
+    const button=form.querySelector('button[type="submit"]');
+    if(button){button.disabled=true;button.textContent='Envoi…';}
+    say('Envoi du message en cours.');
+    try{
+      const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok||data.ok===false) throw new Error(data.message||'L’envoi n’a pas abouti.');
+      say('');
+      if(shell) shell.classList.add('is-sent');
+      if(success){success.setAttribute('aria-hidden','false');setTimeout(()=>success.focus(),120);}
+    }catch(err){
+      say(err&&err.message?err.message:'L’envoi est momentanément indisponible.');
+    }finally{
+      form.classList.remove('is-loading');
+      if(button){button.disabled=false;button.textContent='Envoyer';}
+    }
+  });
+});
+
 /* ============================================================
    7. mouvement réduit, dans les deux sens
    ============================================================ */
