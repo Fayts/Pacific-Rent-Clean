@@ -46,11 +46,11 @@ module.exports = async function handler(req, res) {
   const name = clean(data.name, 120);
   const email = clean(data.email, 160).trim();
   const phone = clean(data.phone, 80);
-  const subject = SUBJECTS.has(data.subject) ? data.subject : 'Autre';
+  const subject = clean(data.subject, 40);
   const message = clean(data.message, 2400);
 
-  if (!name || !isEmail(email) || !message || message.length < 8) {
-    return json(res, 400, { ok: false, message: 'Merci de vérifier le nom, l’e-mail et le message.' });
+  if (!name || !isEmail(email) || !SUBJECTS.has(subject) || !message || message.length < 8) {
+    return json(res, 400, { ok: false, message: 'Merci de vérifier le nom, l’e-mail, le sujet et le message.' });
   }
 
   const plain = [
