@@ -175,6 +175,8 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
   const dateInput=form.elements.date;
   const commune=form.elements.commune;
   const address=form.elements.address;
+  const landmark=form.elements.landmark;
+  const dateReadable=form.querySelector('[data-date-readable]');
   const handoffNote=form.querySelector('[data-handoff-note]');
   const submit=form.querySelector('button[type="submit"]');
   const fmt=n=>Number(n||0).toLocaleString('fr-FR')+' XPF';
@@ -185,12 +187,18 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
   const setSummary=(key,value)=>{const el=form.querySelector('[data-summary="'+key+'"]'); if(el) el.textContent=value||'—';};
   const selected=n=>{const el=form.querySelector('input[name="'+n+'"]:checked'); return el?el.value:'';};
   const deliveryFee=()=>{
-    if(selected('handoff')!=='Livraison à domicile') return 0;
     const c=commune?commune.value:'';
     if(!c) return 0;
     if(free.has(c)) return 0;
     if(mid.has(c)) return 1500;
     return 2500;
+  };
+  const readableDate=value=>{
+    if(!value) return '';
+    const parts=value.split('-').map(Number);
+    if(parts.length!==3||parts.some(Number.isNaN)) return value;
+    const label=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(parts[0],parts[1]-1,parts[2]));
+    return label.charAt(0).toUpperCase()+label.slice(1);
   };
   const today=new Date(); today.setHours(0,0,0,0); today.setDate(today.getDate()+2);
   const min=today.toISOString().slice(0,10);
@@ -214,13 +222,19 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
       address.required=needsAddress;
       address.closest('.field')?.classList.toggle('is-hidden',!needsAddress);
     }
+    if(landmark){
+      landmark.closest('.field')?.classList.toggle('is-hidden',handoff!=='Livraison à domicile');
+    }
+    if(dateReadable){
+      dateReadable.textContent=dateInput&&dateInput.value?readableDate(dateInput.value):'Choisir une date';
+    }
     if(handoffNote){
       handoffNote.textContent=handoff==='Retrait à un point convenu'
-        ? 'Indiquez votre commune : nous vous contactons pour fixer le point de retrait convenu.'
-        : 'Pour une livraison, indiquez la commune et l’adresse. La localisation ou le repère reste facultatif.';
+        ? 'Nous vous contacterons pour convenir du point de rendez-vous.'
+        : 'Pour une livraison à domicile, indiquez la commune, l’adresse et un repère ou lien de localisation si utile.';
     }
     setSummary('package',pack?pack.label+' — '+fmt(pack.price):'—');
-    setSummary('date',dateInput&&dateInput.value?dateInput.value:'—');
+    setSummary('date',dateInput&&dateInput.value?readableDate(dateInput.value):'—');
     setSummary('handoff',handoff||'—');
     setSummary('commune',commune&&commune.value?commune.value:'—');
     setSummary('delivery',fmt(fee));

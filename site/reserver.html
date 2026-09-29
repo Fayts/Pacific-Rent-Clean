@@ -56,7 +56,7 @@
   <div class="phero-in">
     <p class="mono crumb"><a href="index.html">Accueil</a> <span aria-hidden="true">·</span> <span>Réserver une location</span></p>
     <h1>Louer le Kärcher.</h1>
-    <p>Une seule machine, une disponibilité confirmée manuellement. Choisissez votre forfait, votre date et votre mode de remise : nous revenons vers vous pour confirmer la réservation et fixer l’horaire.</p>
+    <p>Choisissez votre forfait, votre date et votre mode de remise. Nous vérifions la disponibilité et revenons vers vous pour confirmer la réservation.</p>
   </div>
 </header>
 
@@ -89,9 +89,9 @@
           <span class="mono booking-num">02 — Date</span>
           <h2 class="sub-t" id="step-date">Date de location.</h2>
           <div class="booking-grid compact">
-            <div class="field"><label for="loc-date">Date souhaitée</label><input id="loc-date" name="date" type="date" required></div>
+            <div class="field date-field"><label for="loc-date">Date souhaitée</label><div class="date-picker-shell"><span data-date-readable>Choisir une date</span><span class="date-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span><input id="loc-date" name="date" type="date" required></div></div>
           </div>
-          <p class="booking-note">Date uniquement, sans horaire. Aujourd’hui et demain ne sont pas sélectionnables. Remise entre 8h et 18h : après validation, nous vous contactons pour fixer l’heure.</p>
+          <p class="booking-note">Réservation possible à partir de J+2. La remise s’effectue entre 8h et 18h ; nous vous contactons après confirmation pour convenir de l’heure.</p>
         </section>
 
         <section class="booking-step" aria-labelledby="step-remise">
@@ -113,14 +113,14 @@
               <option value="Autre commune">Autre commune — 2 500 XPF</option>
             </select></div>
             <div class="field delivery-address"><label for="loc-address">Adresse</label><input id="loc-address" name="address" type="text" autocomplete="street-address"></div>
-            <div class="field full"><label for="loc-landmark">Localisation / repère facultatif</label><input id="loc-landmark" name="landmark" type="text" placeholder="Maison, portail, commerce proche…"></div>
+            <div class="field full delivery-landmark"><label for="loc-landmark">Repère / lien de localisation — facultatif</label><input id="loc-landmark" name="landmark" type="text" placeholder="Maison, portail, commerce proche, lien Maps…"></div>
           </div>
           <p class="booking-note" data-handoff-note>Pour une livraison, indiquez la commune et l’adresse. La localisation ou le repère reste facultatif.</p>
         </section>
 
         <section class="booking-step" aria-labelledby="step-coordonnees">
           <span class="mono booking-num">04 — Coordonnées</span>
-          <h2 class="sub-t" id="step-coordonnees">Pour vous répondre.</h2>
+          <h2 class="sub-t" id="step-coordonnees">Vos coordonnées.</h2>
           <div class="booking-grid">
             <div class="field"><label for="loc-last-name">Nom</label><input id="loc-last-name" name="lastName" type="text" autocomplete="family-name" required></div>
             <div class="field"><label for="loc-first-name">Prénom</label><input id="loc-first-name" name="firstName" type="text" autocomplete="given-name" required></div>
@@ -131,7 +131,7 @@
 
         <section class="booking-step" aria-labelledby="step-paiement">
           <span class="mono booking-num">05 — Paiement</span>
-          <h2 class="sub-t" id="step-paiement">À la remise.</h2>
+          <h2 class="sub-t" id="step-paiement">Mode de paiement.</h2>
           <div class="booking-options payment-options">
             <label class="booking-choice"><input type="radio" name="payment" value="Virement" required><span>Virement</span></label>
             <label class="booking-choice"><input type="radio" name="payment" value="Deblock" required><span>Deblock</span></label>
@@ -148,7 +148,7 @@
             <div><dt>Date</dt><dd data-summary="date">—</dd></div>
             <div><dt>Remise</dt><dd data-summary="handoff">—</dd></div>
             <div><dt>Commune</dt><dd data-summary="commune">—</dd></div>
-            <div><dt>Livraison</dt><dd data-summary="delivery">0 XPF</dd></div>
+            <div><dt>Frais de remise</dt><dd data-summary="delivery">0 XPF</dd></div>
             <div><dt>Paiement</dt><dd data-summary="payment">—</dd></div>
             <div class="summary-total"><dt>TOTAL</dt><dd data-summary="total">0 XPF</dd></div>
           </dl>

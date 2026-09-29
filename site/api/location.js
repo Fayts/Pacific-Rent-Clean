@@ -47,7 +47,6 @@ function isDateAllowed(value) {
 }
 
 function deliveryFee(handoff, commune) {
-  if (handoff !== 'Livraison à domicile') return 0;
   if (FREE_COMMUNES.has(commune)) return 0;
   if (MID_COMMUNES.has(commune)) return 1500;
   return 2500;
@@ -116,7 +115,7 @@ module.exports = async function handler(req, res) {
     `Commune : ${commune}`,
     `Adresse : ${address || 'non applicable'}`,
     `Localisation / repère : ${landmark || 'non communiqué'}`,
-    `Livraison : ${xpf(fee)}`,
+    `Frais de remise : ${xpf(fee)}`,
     `Paiement : ${payment}`,
     `TOTAL : ${xpf(total)}`,
     '',
@@ -141,7 +140,7 @@ module.exports = async function handler(req, res) {
     <p><strong>Commune :</strong> ${escapeHtml(commune)}</p>
     <p><strong>Adresse :</strong> ${escapeHtml(address || 'non applicable')}</p>
     <p><strong>Localisation / repère :</strong> ${escapeHtml(landmark || 'non communiqué')}</p>
-    <p><strong>Livraison :</strong> ${xpf(fee)}</p>
+    <p><strong>Frais de remise :</strong> ${xpf(fee)}</p>
     <p><strong>Paiement :</strong> ${escapeHtml(payment)}</p>
     <p><strong>Total :</strong> ${xpf(total)}</p>
     <hr>
