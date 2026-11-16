@@ -200,9 +200,6 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     const label=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(parts[0],parts[1]-1,parts[2]));
     return label.charAt(0).toUpperCase()+label.slice(1);
   };
-  const today=new Date(); today.setHours(0,0,0,0); today.setDate(today.getDate()+2);
-  const min=today.toISOString().slice(0,10);
-  if(dateInput) dateInput.min=min;
   if(loaded) loaded.value=String(Date.now());
   const params=new URLSearchParams(location.search);
   const preset=params.get('forfait');
@@ -214,6 +211,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     if(el) el.checked=true;
   }
   function update(){
+    if(dateInput) dateInput.min=locationDates.minimumDate();
     const pack=packageMeta[selected('package')];
     const fee=deliveryFee();
     const handoff=selected('handoff');

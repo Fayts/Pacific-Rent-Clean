@@ -1,3 +1,4 @@
+const locationDates = require('../assets/js/location-dates');
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'pacificrentclean@gmail.com';
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Pacific Rent&Clean <onboarding@resend.dev>';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -35,17 +36,6 @@ function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
 }
 
-function minDateString() {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + 2);
-  return d.toISOString().slice(0, 10);
-}
-
-function isDateAllowed(value) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(value) && value >= minDateString();
-}
-
 function deliveryFee(handoff, commune) {
   if (FREE_COMMUNES.has(commune)) return 0;
   if (MID_COMMUNES.has(commune)) return 1500;
@@ -81,8 +71,8 @@ module.exports = async function handler(req, res) {
   }
 
   const packageId = clean(data.package, 40);
-  const selectedPackage = PACKAGES[packageId];
-  const date = clean(data.date, 20);
+  const selectedPackage = Object.hasOwn(PACKAGES, packageId) && PACKAGES[packageId];
+  const date = data.date;
   const handoff = clean(data.handoff, 80);
   const commune = clean(data.commune, 120);
   const address = clean(data.address, 300);
@@ -94,7 +84,7 @@ module.exports = async function handler(req, res) {
   const payment = clean(data.payment, 40);
   const accepted = data.acceptedCgs === true || data.acceptedCgs === 'true' || data.acceptedCgs === 'on';
 
-  if (!selectedPackage || !isDateAllowed(date) || !HANDOFFS.has(handoff) || !commune || !lastName || !firstName || !isEmail(email) || !mobile || !PAYMENTS.has(payment) || !accepted) {
+  if (!selectedPackage || !locationDates.isAllowed(date) || !HANDOFFS.has(handoff) || !commune || !lastName || !firstName || !isEmail(email) || !mobile || !PAYMENTS.has(payment) || !accepted) {
     return json(res, 400, { ok: false, message: 'Merci de vérifier les champs obligatoires.' });
   }
 
@@ -104,6 +94,7 @@ module.exports = async function handler(req, res) {
 
   const fee = deliveryFee(handoff, commune);
   const total = selectedPackage.price + fee;
+  const consentRecord = `CGS Location acceptées : oui — reçu le ${new Date().toISOString()}`;
 
   const lines = [
     'Nouvelle demande de location depuis pacific-rent-clean-v2-preview.vercel.app',
@@ -124,7 +115,7 @@ module.exports = async function handler(req, res) {
     `E-mail : ${email}`,
     `Mobile : ${mobile}`,
     '',
-    'CGS Location acceptées : oui',
+    consentRecord,
     'Paiement en ligne : non',
     'Caution : non',
     'Disponibilité : à confirmer manuellement',
@@ -149,6 +140,7 @@ module.exports = async function handler(req, res) {
     <p><strong>Prénom :</strong> ${escapeHtml(firstName)}</p>
     <p><strong>E-mail :</strong> ${escapeHtml(email)}</p>
     <p><strong>Mobile :</strong> ${escapeHtml(mobile)}</p>
+    <p>${consentRecord}</p>
   `;
 
   try {
