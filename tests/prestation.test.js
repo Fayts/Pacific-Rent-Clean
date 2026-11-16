@@ -44,6 +44,7 @@ function setup(t) {
     return { ok: true, json: async () => ({ id: 'test-id' }) };
   });
   const valid = { name: 'TEST', email: 'test@example.invalid', mobile: '00000000', address: 'TEST',
+    acceptedCgs: 'prestations-2026-11-16', acceptedAt: new Date().toISOString(),
     requestId: 'aaaa0000-0000-4000-b000-000000000001', mode: 'urgent', date: rules.dateRange('urgent').min,
     items: [{ id: 'matelas-double', quantity: 2 }], commune: 'Papenoo', formAgeMs: 5000 };
   async function submit(overrides) {
@@ -60,15 +61,43 @@ test('le serveur ignore les prix transmis et envoie une demande de validation', 
   assert.equal(res.code, 200);
   assert.equal(res.data.emailId, 'test-id');
   assert.match(sent[0].text, /valider manuellement/);
+  assert.match(sent[0].text, /CGS Prestations acceptées — version du 16\/11\/2026/);
+  assert.match(sent[0].text, /Case cochée le \d{4}-\d{2}-\d{2}T[\d:.]+Z/);
   assert.ok(sent[0].text.includes('Total : ' + rules.money(23000)));
 });
 
 test('l’API refuse un panier ou des coordonnées invalides avant tout envoi', async t => {
   const { submit, sent } = setup(t);
-  for (const overrides of [{ items: [] }, { items: [null] }, { items: [{ id: 'auto', quantity: 1 }] },
+  for (const overrides of [{ acceptedCgs: undefined }, { acceptedCgs: false }, { acceptedAt: undefined }, { acceptedAt: "invalide" }, { items: [] }, { items: [null] }, { items: [{ id: 'auto', quantity: 1 }] },
     ...[0,-1,1.5,'2',Number.MAX_SAFE_INTEGER].map(quantity => ({ items: [{ id: 'fauteuil', quantity }] })),
     { date: '2099-02-31' }, { mode: 'autre' }, { commune: 'inconnue' }, { commune: 'Autre commune' },
     { email: 'test' }, { name: ' ' }, { mobile: '' }, { address: '' }, { website: 'bot' }])
     assert.equal((await submit(overrides)).code, 400);
   assert.equal(sent.length, 0);
+});
+
+test('le devis exige le textile, les dimensions et la description et les transmet à Resend', async t => {
+  process.env.RESEND_API_KEY = 'test';
+  const contact = require('../site/api/contact');
+  const body = { name: 'TEST', email: 'test@example.invalid', subject: 'Devis hors dimensions',
+    textile: 'Tapis', dimensions: '185 × 275', message: 'Tapis en laine.', formAgeMs: 4000 };
+  const sent = [];
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    sent.push(JSON.parse(options.body));
+    return { ok: true, json: async () => ({ id: 'devis-test' }) };
+  });
+  async function submit(overrides) {
+    const res = { setHeader() {}, end(value) { this.body = JSON.parse(value); } };
+    await contact({ method: 'POST', body: { ...body, ...overrides } }, res);
+    return res;
+  }
+  for (const key of ['textile', 'dimensions', 'message']) {
+    assert.equal((await submit({ [key]: '' })).statusCode, 400);
+  }
+  assert.equal(sent.length, 0);
+  assert.equal((await submit({})).body.emailId, 'devis-test');
+  for (const detail of ['Textile : Tapis', 'Dimensions (cm) : 185 × 275', 'Description : Tapis en laine.']) {
+    assert.ok(sent[0].text.includes(detail));
+    assert.ok(sent[0].html.includes(detail));
+  }
 });

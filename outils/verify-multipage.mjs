@@ -56,7 +56,9 @@ if (errors.length) process.exitCode = 1;
 console.log('\n=== NAV CHECK ===');
 for (const p of pages) {
   const html = readFileSync(resolve(siteDir,p), 'utf8');
-  const bookingPage = ['reserver.html','location.html'].includes(p) ? 'reserver.html' : 'demande-prestation.html';
+  const bookingPage = 'index.html#voies';
+  const menuLinks = [...html.matchAll(/<a[^>]*href="([^"]+)"[^>]*>Réserver<\/a>/g)];
+  if (!menuLinks.length || menuLinks.some(match => match[1] !== bookingPage)) process.exitCode = 1;
   const links = ['prestations.html','location.html','contact.html',bookingPage].map(n => html.includes(n) ? '✓' : '✗').join(' ');
   console.log(`${p.padEnd(18)} | nav links: ${links} | mailto: ${html.includes('pacificrentclean@gmail.com') ? '✓' : '✗'}`);
 }

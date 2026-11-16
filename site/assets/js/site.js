@@ -137,6 +137,27 @@ document.querySelectorAll('form[data-contact-form]').forEach(form=>{
   const shell=form.closest('[data-contact-shell]');
   const success=shell?shell.querySelector('[data-contact-success]'):null;
   const status=form.querySelector('[data-contact-status]');
+  const quoteSubject = 'Devis hors dimensions';
+  const fields = form.elements;
+  const params = new URLSearchParams(location.search);
+  const textiles = { matelas: 'Matelas', canapes: 'Canapé ou fauteuil', tapis: 'Tapis' };
+  const manageQuote = () => {
+    const isQuote = fields.subject.value === quoteSubject;
+    form.querySelector('#quote-fields').hidden = !isQuote;
+    for (const input of [fields.textile, fields.dimensions]) {
+      input.required = isQuote;
+      input.disabled = !isQuote;
+    }
+    form.querySelector('label[for="contact-message"]').textContent = isQuote ? 'Description de votre demande' : 'Message';
+  };
+  if (params.get('demande') === 'devis') {
+    fields.subject.value = quoteSubject;
+    fields.textile.value = textiles[params.get('textile')] || '';
+    fields.message.value = 'Je souhaite un devis pour un nettoyage hors dimensions.';
+  }
+  manageQuote();
+  fields.subject.addEventListener('change', manageQuote);
+  const openedAt = performance.now();
   const loaded=form.elements.loadedAt;
   if(loaded) loaded.value=String(Date.now());
   const say=t=>{if(status) status.textContent=t||'';};
@@ -145,6 +166,10 @@ document.querySelectorAll('form[data-contact-form]').forEach(form=>{
     if(form.classList.contains('is-loading')) return;
     const fd=new FormData(form);
     const payload=Object.fromEntries(fd.entries());
+    if (payload.subject === quoteSubject) {
+      if (!form.reportValidity()) return;
+      payload.formAgeMs = Math.floor(performance.now() - openedAt);
+    }
     if(!payload.name||!payload.email||!payload.message){say('Merci de compléter le nom, l’e-mail et le message.');return;}
     form.classList.add('is-loading');
     const button=form.querySelector('button[type="submit"]');

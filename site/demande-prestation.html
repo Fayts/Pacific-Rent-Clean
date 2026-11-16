@@ -35,7 +35,7 @@
     <a href="location.html">Location</a>
     <a href="contact.html">Nous contacter</a>
   </div>
-  <a class="btn btn-a" href="demande-prestation.html" aria-current="page">Réserver</a>
+  <a class="btn btn-a" href="index.html#voies">Réserver</a>
   <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i></button>
 </nav>
 
@@ -45,7 +45,7 @@
   <a href="prestations.html">Prestations</a>
   <a href="location.html">Location</a>
   <a href="contact.html">Nous contacter</a>
-  <a href="demande-prestation.html" aria-current="page">Réserver</a>
+  <a href="index.html#voies">Réserver</a>
 </div>
 
 <main id="main" tabindex="-1">
@@ -78,7 +78,7 @@
             </fieldset>
           </template>
           <button class="btn btn-b" type="button" id="add">Ajouter un article</button>
-          <p class="booking-note">Textile hors dimensions ? <a class="svc-link" href="contact.html#demande-devis">Demander un devis</a></p>
+          <p class="booking-note">Textile hors dimensions ? <a class="svc-link" href="contact.html?demande=devis#demande-devis">Demander un devis</a></p>
         </section>
         <section class="booking-step" aria-labelledby="step-2">
           <span class="mono booking-num">02 — Date</span>
@@ -112,6 +112,15 @@
           <h2 class="sub-t" id="step-5">Votre demande.</h2>
           <dl class="summary-list" id="summary" aria-live="polite"></dl>
           <p class="booking-note">Votre réservation sera confirmée après vérification manuelle de la disponibilité.</p>
+          <details id="cgs-prestations" class="booking-note">
+            <summary>Lire les conditions générales de service (CGS Prestations)</summary>
+            <p>Version du 16 novembre 2026.</p>
+            <p><strong>Intervention à domicile.</strong> Pacific Rent&amp;Clean nettoie les matelas, canapés, fauteuils et tapis indiqués dans votre demande. Signalez les matières délicates, les taches et les consignes d’entretien du fabricant. Pour un textile hors grille, demandez un devis avec ses dimensions.</p>
+            <p><strong>Prix.</strong> Le récapitulatif en XPF additionne les articles selon leurs quantités, le déplacement et l’urgence éventuelle. Le déplacement est gratuit à Papeete, Pirae, Arue et Mahina, de 1 500 XPF à Faa’a et Papenoo et de 2 500 XPF dans les autres communes. Si les dimensions ou la demande changent, nous vous soumettons le prix révisé pour accord avant intervention.</p>
+            <p><strong>Rendez-vous.</strong> Les dates sont calculées à Tahiti. Une intervention standard peut être demandée à partir de J+2. Une demande pour le lendemain est soumise à acceptation et comporte un supplément unique de 1 500 XPF. Aucun rendez-vous le jour même. Notre équipe vous contacte pour valider la disponibilité, le montant et le rendez-vous. Le seul envoi du formulaire ne confirme pas la réservation.</p>
+            <p><strong>Modification ou réclamation.</strong> Écrivez à <a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a> en précisant votre nom et la date demandée.</p>
+          </details>
+          <label class="cgs-check"><input type="checkbox" name="acceptedCgs" value="prestations-2026-11-16" required> <span>J’accepte les CGS Prestations ci-dessus.</span></label>
           <button class="btn btn-a" type="submit">Envoyer ma demande</button>
           <p class="form-status" id="status" role="status"></p>
         </section>
@@ -153,7 +162,7 @@
       <div>
         <h5>Contact</h5>
         <ul>
-          <li><a href="demande-prestation.html">Réserver</a></li>
+          <li><a href="index.html#voies">Réserver</a></li>
           <li><a href="contact.html">Nous contacter</a></li>
           <li class="foot-contact-line"><span class="foot-zone">Tahiti · 7j/7</span><span class="foot-links"><a class="foot-mail" href="mailto:pacificrentclean@gmail.com">E-mail</a><span aria-hidden="true">·</span><a class="foot-mail" href="https://www.facebook.com/share/19Tx5juhpF/" target="_blank" rel="noopener noreferrer">Facebook ↗</a></span></li>
         </ul>

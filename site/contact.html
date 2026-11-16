@@ -27,7 +27,7 @@
     <a href="location.html">Location</a>
     <a href="contact.html" aria-current="page">Nous contacter</a>
   </div>
-  <a class="btn btn-a" href="demande-prestation.html">Réserver</a>
+  <a class="btn btn-a" href="index.html#voies">Réserver</a>
   <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i></button>
 </nav>
 <div class="menu" id="menu" aria-hidden="true" aria-label="Menu principal">
@@ -36,7 +36,7 @@
   <a href="prestations.html">Prestations</a>
   <a href="location.html">Location</a>
   <a href="contact.html" aria-current="page">Nous contacter</a>
-  <a href="demande-prestation.html">Réserver</a>
+  <a href="index.html#voies">Réserver</a>
 </div>
 <main id="main" tabindex="-1"><span id="top" style="display:block;height:1px"></span>
 <header class="phero contact-hero">
@@ -73,7 +73,15 @@
         <div class="field"><label for="contact-name">Nom</label><input id="contact-name" name="name" type="text" autocomplete="name" required></div>
         <div class="field"><label for="contact-email">E-mail</label><input id="contact-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="contact-phone">Téléphone</label><input id="contact-phone" name="phone" type="tel" autocomplete="tel"></div>
-        <div class="field"><label for="contact-subject">Sujet</label><select id="contact-subject" name="subject" required><option>Prestation</option><option>Location</option><option>Autre</option></select></div>
+        <div class="field"><label for="contact-subject">Sujet</label><select id="contact-subject" name="subject" required><option>Prestation</option><option>Devis hors dimensions</option><option>Location</option><option>Autre</option></select></div>
+        <div id="quote-fields" class="field-full" hidden>
+          <div class="field"><label for="quote-textile">Type de textile</label>
+            <select name="textile" id="quote-textile" disabled><option value="">Choisir le textile</option><option>Matelas</option><option>Canapé ou fauteuil</option><option>Tapis</option></select>
+          </div>
+          <div class="field"><label for="quote-size">Dimensions réelles (en cm)</label>
+            <input name="dimensions" id="quote-size" maxlength="100" placeholder="Longueur × largeur, par exemple 210 × 180" disabled>
+          </div>
+        </div>
         <div class="field field-full"><label for="contact-message">Message</label><textarea id="contact-message" name="message" rows="6" required></textarea></div>
         <div class="form-actions field-full">
           <button class="btn btn-a" type="submit">Envoyer</button>
@@ -139,7 +147,7 @@
       <div>
         <h5>Contact</h5>
         <ul>
-          <li><a href="demande-prestation.html">Réserver</a></li>
+          <li><a href="index.html#voies">Réserver</a></li>
           <li><a href="contact.html">Nous contacter</a></li>
           <li class="foot-contact-line"><span class="foot-zone">Tahiti · 7j/7</span><span class="foot-links"><a class="foot-mail" href="mailto:pacificrentclean@gmail.com">E-mail</a><span aria-hidden="true">·</span><a class="foot-mail" href="https://www.facebook.com/share/19Tx5juhpF/" target="_blank" rel="noopener noreferrer">Facebook ↗</a></span></li>
         </ul>

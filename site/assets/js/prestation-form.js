@@ -11,6 +11,11 @@
   const rules = prestationRules;
   const groups = { matelas: 'Matelas', canapes: 'Canapés', tapis: 'Tapis' };
   const requestId = crypto.randomUUID();
+  let acceptedAt;
+  fields.acceptedCgs.addEventListener('change', () => {
+    acceptedAt = fields.acceptedCgs.checked ? new Date().toISOString() : undefined;
+  });
+  const quoteLink = form.querySelector('a[href*="demande=devis"]');
   const openedAt = performance.now();
 
   for (const [commune, fee] of rules.travelFees) {
@@ -68,6 +73,10 @@
     Array.from(cart.children).forEach((row, index) => {
       row.querySelector('legend').textContent = 'Article ' + (index + 1);
     });
+    const selected = rules.catalog.find(product => product.id === items()[0]?.id);
+    const quoteUrl = new URL('contact.html?demande=devis#demande-devis', location.href);
+    if (selected) quoteUrl.searchParams.set('textile', selected.category);
+    quoteLink.href = quoteUrl.href;
     summary.replaceChildren();
     try {
       // En attendant la commune, seul le sous-total articles est affiché.
@@ -99,6 +108,7 @@
     update();
     if (!form.reportValidity()) return;
     const payload = Object.fromEntries(new FormData(form));
+    payload.acceptedAt = acceptedAt;
     payload.items = items();
     payload.requestId = requestId;
     payload.formAgeMs = Math.floor(performance.now() - openedAt);

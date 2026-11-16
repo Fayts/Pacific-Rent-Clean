@@ -2,7 +2,7 @@ const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'pacificrentclean@gmail.com';
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Pacific Rent&Clean <onboarding@resend.dev>';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
-const SUBJECTS = new Set(['Prestation', 'Location', 'Autre']);
+const SUBJECTS = new Set(['Prestation', 'Location', 'Autre', 'Devis hors dimensions']);
 
 function json(res, status, payload) {
   res.statusCode = status;
@@ -39,7 +39,10 @@ module.exports = async function handler(req, res) {
   const honeypot = clean(data.website, 200);
   const loadedAt = Number(data.loadedAt || 0);
   const ageMs = Date.now() - loadedAt;
-  if (honeypot || !loadedAt || ageMs < 3000) {
+  const isQuote = data.subject === 'Devis hors dimensions';
+  if (isQuote && (honeypot || !Number.isFinite(data.formAgeMs) || data.formAgeMs < 3000))
+    return json(res, 400, { ok: false, message: 'Patientez quelques secondes puis réessayez.' });
+  if (!isQuote && (honeypot || !loadedAt || ageMs < 3000)) {
     return json(res, 200, { ok: true });
   }
 
@@ -47,7 +50,13 @@ module.exports = async function handler(req, res) {
   const email = clean(data.email, 160).trim();
   const phone = clean(data.phone, 80);
   const subject = clean(data.subject, 40);
-  const message = clean(data.message, 2400);
+  let message = clean(data.message, 2400);
+  if (isQuote) {
+    const dimensions = clean(data.dimensions, 100).trim();
+    if (!['Matelas', 'Canapé ou fauteuil', 'Tapis'].includes(data.textile) || !dimensions || message.trim().length < 8)
+      return json(res, 400, { ok: false, message: 'Précisez le textile, ses dimensions et votre demande.' });
+    message = [`Textile : ${data.textile}`, `Dimensions (cm) : ${dimensions}`, `Description : ${message}`].join('\n');
+  }
 
   if (!name || !isEmail(email) || !SUBJECTS.has(subject) || !message || message.length < 8) {
     return json(res, 400, { ok: false, message: 'Merci de vérifier le nom, l’e-mail, le sujet et le message.' });
@@ -96,6 +105,12 @@ module.exports = async function handler(req, res) {
       return json(res, 502, { ok: false, message: 'L’envoi n’a pas abouti. Merci de réessayer.' });
     }
 
+    if (isQuote) {
+      const receipt = await response.json();
+      if (typeof receipt?.id !== 'string' || !receipt.id.trim())
+        return json(res, 502, { ok: false, message: 'L’envoi du devis n’a pas été confirmé.' });
+      return json(res, 200, { ok: true, emailId: receipt.id });
+    }
     return json(res, 200, { ok: true });
   } catch {
     return json(res, 502, { ok: false, message: 'L’envoi est momentanément indisponible.' });
