@@ -2,7 +2,7 @@ const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'pacificrentclean@gmail.com';
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Pacific Rent&Clean <onboarding@resend.dev>';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
-const SUBJECTS = new Set(['Prestation', 'Location', 'Autre']);
+const SUBJECTS = new Set(['Prestation', 'Location', 'Autre', 'Devis hors dimensions']);
 
 function json(res, status, payload) {
   res.statusCode = status;
@@ -12,11 +12,16 @@ function json(res, status, payload) {
 }
 
 function clean(value, max = 1200) {
-  return String(value || '').replace(/[<>]/g, '').replace(/\s+$/g, '').slice(0, max);
+  return String(value || '').trimEnd().slice(0, max);
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function isEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
+  return /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(String(value || '').trim());
 }
 
 module.exports = async function handler(req, res) {
@@ -39,7 +44,10 @@ module.exports = async function handler(req, res) {
   const honeypot = clean(data.website, 200);
   const loadedAt = Number(data.loadedAt || 0);
   const ageMs = Date.now() - loadedAt;
-  if (honeypot || !loadedAt || ageMs < 3000) {
+  const isQuote = data.subject === 'Devis hors dimensions';
+  if (isQuote && (honeypot || !Number.isFinite(data.formAgeMs) || data.formAgeMs < 3000))
+    return json(res, 400, { ok: false, message: 'Patientez quelques secondes puis réessayez.' });
+  if (!isQuote && (honeypot || !loadedAt || ageMs < 3000)) {
     return json(res, 200, { ok: true });
   }
 
@@ -47,9 +55,15 @@ module.exports = async function handler(req, res) {
   const email = clean(data.email, 160).trim();
   const phone = clean(data.phone, 80);
   const subject = clean(data.subject, 40);
-  const message = clean(data.message, 2400);
+  let message = clean(data.message, 2400);
+  if (isQuote) {
+    const dimensions = clean(data.dimensions, 100).trim();
+    if (!['Matelas', 'Canapé ou fauteuil', 'Tapis'].includes(data.textile) || !dimensions || message.trim().length < 8)
+      return json(res, 400, { ok: false, message: 'Précisez le textile, ses dimensions et votre demande.' });
+    message = [`Textile : ${data.textile}`, `Dimensions (cm) : ${dimensions}`, `Description : ${message}`].join('\n');
+  }
 
-  if (!name || !isEmail(email) || !SUBJECTS.has(subject) || !message || message.length < 8) {
+  if (!name || /[\r\n]/.test(name) || !isEmail(email) || !SUBJECTS.has(subject) || !message || message.length < 8) {
     return json(res, 400, { ok: false, message: 'Merci de vérifier le nom, l’e-mail, le sujet et le message.' });
   }
 
@@ -67,12 +81,12 @@ module.exports = async function handler(req, res) {
 
   const html = `
     <h2>Nouvelle demande Pacific Rent&amp;Clean</h2>
-    <p><strong>Nom :</strong> ${name}</p>
-    <p><strong>E-mail :</strong> ${email}</p>
-    <p><strong>Téléphone :</strong> ${phone || 'non communiqué'}</p>
-    <p><strong>Sujet :</strong> ${subject}</p>
+    <p><strong>Nom :</strong> ${escapeHtml(name)}</p>
+    <p><strong>E-mail :</strong> ${escapeHtml(email)}</p>
+    <p><strong>Téléphone :</strong> ${escapeHtml(phone || 'non communiqué')}</p>
+    <p><strong>Sujet :</strong> ${escapeHtml(subject)}</p>
     <hr>
-    <p>${message.replace(/\n/g, '<br>')}</p>
+    <p>${escapeHtml(message).replace(/\r\n?|\n/g, '<br>')}</p>
   `;
 
   try {
@@ -96,6 +110,12 @@ module.exports = async function handler(req, res) {
       return json(res, 502, { ok: false, message: 'L’envoi n’a pas abouti. Merci de réessayer.' });
     }
 
+    if (isQuote) {
+      const receipt = await response.json();
+      if (typeof receipt?.id !== 'string' || !receipt.id.trim())
+        return json(res, 502, { ok: false, message: 'L’envoi du devis n’a pas été confirmé.' });
+      return json(res, 200, { ok: true, emailId: receipt.id });
+    }
     return json(res, 200, { ok: true });
   } catch {
     return json(res, 502, { ok: false, message: 'L’envoi est momentanément indisponible.' });
