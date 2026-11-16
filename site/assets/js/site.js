@@ -173,6 +173,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
   const status=form.querySelector('[data-location-status]');
   const loaded=form.elements.loadedAt;
   const dateInput=form.elements.date;
+  const openedAt=performance.now();
   const commune=form.elements.commune;
   const address=form.elements.address;
   const landmark=form.elements.landmark;
@@ -200,9 +201,6 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     const label=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(parts[0],parts[1]-1,parts[2]));
     return label.charAt(0).toUpperCase()+label.slice(1);
   };
-  const today=new Date(); today.setHours(0,0,0,0); today.setDate(today.getDate()+2);
-  const min=today.toISOString().slice(0,10);
-  if(dateInput) dateInput.min=min;
   if(loaded) loaded.value=String(Date.now());
   const params=new URLSearchParams(location.search);
   const preset=params.get('forfait');
@@ -214,6 +212,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     if(el) el.checked=true;
   }
   function update(){
+    if(dateInput) dateInput.min=locationDates.minimumDate();
     const pack=packageMeta[selected('package')];
     const fee=deliveryFee();
     const handoff=selected('handoff');
@@ -256,13 +255,14 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     }
     const fd=new FormData(form);
     const payload=Object.fromEntries(fd.entries());
+    payload.formAgeMs=Math.floor(performance.now()-openedAt);
     form.classList.add('is-loading');
     if(submit){submit.disabled=true;submit.textContent='ENVOI…';}
     say('Envoi de votre demande en cours.');
     try{
       const res=await fetch('/api/location',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       const data=await res.json().catch(()=>({}));
-      if(!res.ok||data.ok===false) throw new Error(data.message||'L’envoi n’a pas abouti.');
+      if(!res.ok||data.ok!==true||!data.emailId) throw new Error(data.message||'L’envoi n’a pas abouti.');
       say('');
       if(shell) shell.classList.add('is-sent');
       if(success){success.setAttribute('aria-hidden','false');setTimeout(()=>success.focus(),120);}
