@@ -66,8 +66,8 @@ module.exports = async function handler(req, res) {
   const honeypot = clean(data.website, 200);
   const loadedAt = Number(data.loadedAt || 0);
   const ageMs = Date.now() - loadedAt;
-  if (honeypot || !loadedAt || ageMs < 3000) {
-    return json(res, 200, { ok: true });
+  if (honeypot || !Number.isFinite(loadedAt) || loadedAt <= 0 || ageMs < 3000) {
+    return json(res, 400, { ok: false, message: 'La demande n’a pas été envoyée. Patientez quelques secondes puis réessayez.' });
   }
 
   const packageId = clean(data.package, 40);
@@ -164,7 +164,11 @@ module.exports = async function handler(req, res) {
       return json(res, 502, { ok: false, message: 'L’envoi n’a pas abouti. Merci de réessayer.' });
     }
 
-    return json(res, 200, { ok: true });
+    const { id } = await response.json();
+    if (typeof id !== 'string' || !id.trim()) {
+      return json(res, 502, { ok: false, message: 'Le service e-mail n’a pas confirmé la prise en charge.' });
+    }
+    return json(res, 200, { ok: true, emailId: id });
   } catch {
     return json(res, 502, { ok: false, message: 'L’envoi est momentanément indisponible.' });
   }

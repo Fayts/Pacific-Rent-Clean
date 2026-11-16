@@ -21,12 +21,12 @@ test('J+2 suit minuit à Tahiti, même au changement d’année ou de mois', () 
 });
 
 // Le transport Resend est remplacé avant chaque appel du véritable handler.
-function request(t) {
+function request(t, receipt = { id: 'test-email-id' }) {
   const messages = [];
   t.mock.method(globalThis, 'fetch', async (url, options) => {
     assert.equal(url, 'https://api.resend.com/emails');
     messages.push(JSON.parse(options.body));
-    return { ok: true };
+    return { ok: true, json: async () => receipt };
   });
   const valid = {
     package: 'standard', date: minimumDate(), handoff: 'Livraison à domicile',
@@ -35,12 +35,27 @@ function request(t) {
     acceptedCgs: 'on', loadedAt: Date.now() - 5000,
   };
   async function submit(overrides) {
-    const res = { setHeader() {}, end() {} };
+    const res = { setHeader() {}, end(body) {
+      if (this.statusCode === 200) assert.equal(JSON.parse(body).emailId, receipt.id);
+    } };
     await handler({ method: 'POST', body: JSON.stringify({ ...valid, ...overrides }) }, res);
     return res.statusCode;
   }
   return { submit, messages, valid };
 }
+
+test('une demande filtrée ne déclenche ni envoi ni confirmation', async t => {
+  const { submit, messages } = request(t);
+  for (const overrides of [{ website: 'robot' }, { loadedAt: null }, { loadedAt: Date.now() }, { loadedAt: 'abc' }]) {
+    assert.equal(await submit(overrides), 400);
+  }
+  assert.equal(messages.length, 0);
+});
+
+test('une réponse Resend sans identifiant ne confirme pas la demande', async t => {
+  const { submit } = request(t, {});
+  assert.equal(await submit({}), 502);
+});
 
 test('le serveur refuse les dates impossibles, incomplètes ou trop proches', async t => {
   const { submit, messages } = request(t);

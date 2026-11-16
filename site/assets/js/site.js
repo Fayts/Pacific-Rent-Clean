@@ -260,7 +260,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     try{
       const res=await fetch('/api/location',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       const data=await res.json().catch(()=>({}));
-      if(!res.ok||data.ok===false) throw new Error(data.message||'L’envoi n’a pas abouti.');
+      if(!res.ok||data.ok!==true||!data.emailId) throw new Error(data.message||'L’envoi n’a pas abouti.');
       say('');
       if(shell) shell.classList.add('is-sent');
       if(success){success.setAttribute('aria-hidden','false');setTimeout(()=>success.focus(),120);}
