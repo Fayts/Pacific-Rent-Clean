@@ -65,8 +65,8 @@ module.exports = async function handler(req, res) {
 
   const honeypot = clean(data.website, 200);
   const loadedAt = Number(data.loadedAt || 0);
-  const ageMs = Date.now() - loadedAt;
-  if (honeypot || !Number.isFinite(loadedAt) || loadedAt <= 0 || ageMs < 3000) {
+  const ageMs = Object.hasOwn(data, 'formAgeMs') ? data.formAgeMs : Date.now() - loadedAt;
+  if (honeypot || !Number.isFinite(loadedAt) || loadedAt <= 0 || !Number.isFinite(ageMs) || ageMs < 3000) {
     return json(res, 400, { ok: false, message: 'La demande n’a pas été envoyée. Patientez quelques secondes puis réessayez.' });
   }
 

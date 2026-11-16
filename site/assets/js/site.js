@@ -173,6 +173,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
   const status=form.querySelector('[data-location-status]');
   const loaded=form.elements.loadedAt;
   const dateInput=form.elements.date;
+  const openedAt=performance.now();
   const commune=form.elements.commune;
   const address=form.elements.address;
   const landmark=form.elements.landmark;
@@ -254,6 +255,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     }
     const fd=new FormData(form);
     const payload=Object.fromEntries(fd.entries());
+    payload.formAgeMs=Math.floor(performance.now()-openedAt);
     form.classList.add('is-loading');
     if(submit){submit.disabled=true;submit.textContent='ENVOI…';}
     say('Envoi de votre demande en cours.');

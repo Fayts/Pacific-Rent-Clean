@@ -46,10 +46,15 @@ function request(t, receipt = { id: 'test-email-id' }) {
 
 test('une demande filtrée ne déclenche ni envoi ni confirmation', async t => {
   const { submit, messages } = request(t);
-  for (const overrides of [{ website: 'robot' }, { loadedAt: null }, { loadedAt: Date.now() }, { loadedAt: 'abc' }]) {
+  for (const overrides of [{ website: 'robot' }, { loadedAt: null }, { loadedAt: Date.now() }, { loadedAt: 'abc' }, { formAgeMs: 2999 }, { formAgeMs: 'abc' }]) {
     assert.equal(await submit(overrides), 400);
   }
   assert.equal(messages.length, 0);
+});
+
+test('le délai du formulaire supporte une horloge client en avance', async t => {
+  const { submit } = request(t);
+  assert.equal(await submit({ loadedAt: Date.now() + 60000, formAgeMs: 3100 }), 200);
 });
 
 test('une réponse Resend sans identifiant ne confirme pas la demande', async t => {
