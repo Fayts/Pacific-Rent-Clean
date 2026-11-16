@@ -841,3 +841,16 @@ body.menu-open .menu{opacity:1;visibility:visible}
 .crumb a{color:var(--sand);text-decoration:none;border-bottom:1px solid transparent;
   transition:border-color .4s var(--ease)}
 .crumb a:hover{border-bottom-color:var(--coral)}
+
+/* Panier des prestations à domicile */
+#prestation-form[hidden], #prestation-form [hidden] { display: none; }
+#prestation-form .cart-row {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  min-width: 0;
+  border: 1px solid rgba(92,107,102,.28);
+}
+#prestation-form .cart-row legend { padding: 0 .5rem; }
+#prestation-form .cart-row .field { min-width: 0; }
+#prestation-form .cart-row select { width: 100%; }
+#prestation-form .remove { justify-self: start; background: none; cursor: pointer; }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réserver une prestation · Pacific Rent&amp;Clean</title>
+<meta name="description" content="Demandez un nettoyage de matelas, canapés ou tapis à domicile à Tahiti.">
+<meta name="theme-color" content="#082F35">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23082F35'/%3E%3Cpath d='M8 40 L14 30 L20 38 L26 26 L32 36 L38 24 L44 34 L50 28 L56 36' stroke='%23E87961' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Réserver une prestation · Pacific Rent&amp;Clean">
+<meta property="og:description" content="Demandez un nettoyage de matelas, canapés ou tapis à domicile à Tahiti.">
+<meta property="og:url" content="REPLACE_AT_DEPLOY/demande-prestation.html">
+<meta property="og:image" content="REPLACE_AT_DEPLOY/assets/prest-matelas-clean.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Instrument+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Aller au contenu</a>
+
+<div class="env" aria-hidden="true">
+  <div class="env-glow"></div>
+  <div class="env-grain"></div>
+</div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="index.html">Pacific Rent<i>&amp;</i>Clean</a>
+  <div class="nav-links">
+    <a href="prestations.html">Prestations</a>
+    <a href="location.html">Location</a>
+    <a href="contact.html">Nous contacter</a>
+  </div>
+  <a class="btn btn-a" href="demande-prestation.html" aria-current="page">Réserver</a>
+  <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i></button>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true" aria-label="Menu principal">
+  <button class="menu-close" type="button" aria-label="Fermer le menu"></button>
+  <a href="index.html">Accueil</a>
+  <a href="prestations.html">Prestations</a>
+  <a href="location.html">Location</a>
+  <a href="contact.html">Nous contacter</a>
+  <a href="demande-prestation.html" aria-current="page">Réserver</a>
+</div>
+
+<main id="main" tabindex="-1">
+<span id="top" style="display:block;height:1px"></span>
+
+<header class="phero">
+  <div class="phero-bg" style="background-image:url('assets/prest-matelas-clean.webp')" aria-hidden="true"></div>
+  <div class="phero-in">
+    <p class="mono crumb"><a href="index.html">Accueil</a> <span aria-hidden="true">·</span> <span>Réserver une prestation</span></p>
+    <h1>Réserver une prestation.</h1>
+    <p>Composez votre demande de nettoyage à domicile et choisissez la date souhaitée.</p>
+  </div>
+</header>
+
+<section class="sec sec-foam booking-section">
+  <div class="wrap">
+    <div class="booking-shell">
+      <form class="booking-form" id="prestation-form">
+        <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <section class="booking-step" aria-labelledby="step-1">
+          <span class="mono booking-num">01 — Articles</span>
+          <h2 class="sub-t" id="step-1">Quels textiles souhaitez-vous nettoyer ?</h2>
+          <div id="articles"></div>
+          <template id="article-template">
+            <fieldset class="booking-grid cart-row">
+              <legend class="mono"></legend>
+              <label class="field">Article<select required class="product"><option value="">Sélectionner un article</option></select></label>
+              <label class="field">Quantité<input class="quantity" type="number" value="1" min="1" step="1" required></label>
+              <button class="svc-link remove" type="button">Supprimer</button>
+            </fieldset>
+          </template>
+          <button class="btn btn-b" type="button" id="add">Ajouter un article</button>
+          <p class="booking-note">Textile hors dimensions ? <a class="svc-link" href="contact.html#demande-devis">Demander un devis</a></p>
+        </section>
+        <section class="booking-step" aria-labelledby="step-2">
+          <span class="mono booking-num">02 — Date</span>
+          <h2 class="sub-t" id="step-2">Quand souhaitez-vous notre passage ?</h2>
+          <div class="booking-options">
+            <label class="booking-choice"><input type="radio" name="mode" value="standard" checked><span>Standard · À partir de J+2</span></label>
+            <label class="booking-choice"><input type="radio" name="mode" value="urgent"><span>Urgent · Demain · +1 500 XPF par demande, sous réserve d’acceptation</span></label>
+          </div>
+          <div class="booking-grid compact">            <div class="field"><label for="prest-date">Date souhaitée</label><input id="prest-date" name="date" type="date" required maxlength="500" ></div></div>
+        </section>
+        <section class="booking-step" aria-labelledby="step-3">
+          <span class="mono booking-num">03 — Intervention</span>
+          <h2 class="sub-t" id="step-3">Où intervenons-nous ?</h2>
+          <div class="booking-grid">
+            <div class="field"><label for="commune">Commune</label><select id="commune" name="commune" required><option value="">Sélectionner la commune</option></select></div>
+            <div class="field" id="other-field" hidden><label for="other">Précisez la commune</label><input id="other" name="otherCommune" maxlength="500" disabled></div>
+            <div class="field"><label for="prest-address">Adresse d’intervention</label><input id="prest-address" name="address" type="text" required maxlength="500" autocomplete="street-address"></div>
+          </div>
+        </section>
+        <section class="booking-step" aria-labelledby="step-4">
+          <span class="mono booking-num">04 — Coordonnées</span>
+          <h2 class="sub-t" id="step-4">Comment vous joindre ?</h2>
+          <div class="booking-grid">
+            <div class="field"><label for="prest-name">Nom et prénom</label><input id="prest-name" name="name" type="text" required maxlength="500" autocomplete="name"></div>
+            <div class="field"><label for="prest-email">E-mail</label><input id="prest-email" name="email" type="email" required maxlength="500" autocomplete="email"></div>
+            <div class="field"><label for="prest-mobile">Téléphone</label><input id="prest-mobile" name="mobile" type="tel" required maxlength="500" autocomplete="tel"></div>
+          </div>
+        </section>
+        <section class="booking-step" aria-labelledby="step-5">
+          <span class="mono booking-num">05 — Récapitulatif</span>
+          <h2 class="sub-t" id="step-5">Votre demande.</h2>
+          <dl class="summary-list" id="summary" aria-live="polite"></dl>
+          <p class="booking-note">Votre réservation sera confirmée après vérification manuelle de la disponibilité.</p>
+          <button class="btn btn-a" type="submit">Envoyer ma demande</button>
+          <p class="form-status" id="status" role="status"></p>
+        </section>
+      </form>
+      <div id="sent" hidden tabindex="-1">
+        <h2 class="title">Mauruuru, demande reçue !</h2>
+        <p class="booking-note">Nous vous contacterons pour valider la date et confirmer la prestation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-mark">Pacific Rent<i>&amp;</i>Clean</p>
+        <p style="margin:0;color:rgba(244,241,232,.7);max-width:32ch;font-size:.92rem;line-height:1.6">Nettoyage textile par injection extraction et location de machines professionnelles. Tahiti, Polynésie française.</p>
+      </div>
+      <div>
+        <h5>Prestations</h5>
+        <ul>
+          <li><a href="prestations.html#matelas">Matelas</a></li>
+          <li><a href="prestations.html#canapes">Canapés et fauteuils</a></li>
+          <li><a href="prestations.html#tapis">Tapis et moquettes</a></li>
+          <li><a href="prestations.html#prix">Les prix</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Location</h5>
+        <ul>
+          <li><a href="location.html">Kärcher Puzzi 10/1</a></li>
+          <li><a href="location.html#machine">La machine en détail</a></li>
+          <li><a href="location.html#forfaits">Forfaits et livraison</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="demande-prestation.html">Réserver</a></li>
+          <li><a href="contact.html">Nous contacter</a></li>
+          <li class="foot-contact-line"><span class="foot-zone">Tahiti · 7j/7</span><span class="foot-links"><a class="foot-mail" href="mailto:pacificrentclean@gmail.com">E-mail</a><span aria-hidden="true">·</span><a class="foot-mail" href="https://www.facebook.com/share/19Tx5juhpF/" target="_blank" rel="noopener noreferrer">Facebook ↗</a></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Pacific Rent&amp;Clean</span>
+      <span>Mentions légales · Politique de confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/location-dates.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/prestation-rules.js"></script>
+<script src="assets/js/prestation-form.js"></script>
+</body>
+</html>
