@@ -12,11 +12,16 @@ function json(res, status, payload) {
 }
 
 function clean(value, max = 1200) {
-  return String(value || '').replace(/[<>]/g, '').replace(/\s+$/g, '').slice(0, max);
+  return String(value || '').trimEnd().slice(0, max);
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function isEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
+  return /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(String(value || '').trim());
 }
 
 module.exports = async function handler(req, res) {
@@ -58,7 +63,7 @@ module.exports = async function handler(req, res) {
     message = [`Textile : ${data.textile}`, `Dimensions (cm) : ${dimensions}`, `Description : ${message}`].join('\n');
   }
 
-  if (!name || !isEmail(email) || !SUBJECTS.has(subject) || !message || message.length < 8) {
+  if (!name || /[\r\n]/.test(name) || !isEmail(email) || !SUBJECTS.has(subject) || !message || message.length < 8) {
     return json(res, 400, { ok: false, message: 'Merci de vérifier le nom, l’e-mail, le sujet et le message.' });
   }
 
@@ -76,12 +81,12 @@ module.exports = async function handler(req, res) {
 
   const html = `
     <h2>Nouvelle demande Pacific Rent&amp;Clean</h2>
-    <p><strong>Nom :</strong> ${name}</p>
-    <p><strong>E-mail :</strong> ${email}</p>
-    <p><strong>Téléphone :</strong> ${phone || 'non communiqué'}</p>
-    <p><strong>Sujet :</strong> ${subject}</p>
+    <p><strong>Nom :</strong> ${escapeHtml(name)}</p>
+    <p><strong>E-mail :</strong> ${escapeHtml(email)}</p>
+    <p><strong>Téléphone :</strong> ${escapeHtml(phone || 'non communiqué')}</p>
+    <p><strong>Sujet :</strong> ${escapeHtml(subject)}</p>
     <hr>
-    <p>${message.replace(/\n/g, '<br>')}</p>
+    <p>${escapeHtml(message).replace(/\r\n?|\n/g, '<br>')}</p>
   `;
 
   try {

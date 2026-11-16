@@ -12,7 +12,9 @@
   const groups = { matelas: 'Matelas', canapes: 'Canapés', tapis: 'Tapis' };
   const requestId = crypto.randomUUID();
   let acceptedAt;
+  let consentStamp;
   fields.acceptedCgs.addEventListener('change', () => {
+    consentStamp = undefined;
     acceptedAt = fields.acceptedCgs.checked ? new Date().toISOString() : undefined;
   });
   const quoteLink = form.querySelector('a[href*="demande=devis"]');
@@ -118,10 +120,20 @@
       submit.disabled = true;
       form.classList.add('is-loading');
       status.textContent = 'Envoi de votre demande…';
-      const response = await fetch('/api/prestation', { method: 'POST',
-        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-      const result = await response.json();
-      if (!response.ok || !result.ok || !result.emailId) throw new Error(result.message || 'L’envoi a échoué. Réessayez.');
+      async function post(data) {
+        const response = await fetch('/api/prestation', { method: 'POST',
+          headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.message || 'L’envoi a échoué. Réessayez.');
+        return result;
+      }
+      if (!consentStamp) {
+        const prepared = await post({ ...payload, prepareConsent: true });
+        if (!prepared.stamp) throw new Error('Rechargez le formulaire puis réessayez.');
+        consentStamp = prepared.stamp;
+      }
+      const result = await post({ ...payload, stamp: consentStamp });
+      if (!result.emailId) throw new Error('L’envoi a échoué. Réessayez.');
       form.hidden = true;
       const sent = document.querySelector('#sent');
       sent.hidden = false;

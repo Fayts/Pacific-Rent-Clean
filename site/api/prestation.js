@@ -1,4 +1,4 @@
-const { createHash } = require('node:crypto');
+const { createHash, createHmac } = require('node:crypto');
 const { quote, validDate, money } = require('../assets/js/prestation-rules');
 
 module.exports = async function handler(req, res) {
@@ -32,6 +32,19 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ ok: false, message: error instanceof SyntaxError ? 'Demande illisible.' : error.message });
   }
   if (!process.env.RESEND_API_KEY) return res.status(503).json({ ok: false, message: 'Le service e-mail est indisponible.' });
+  // La preuve signée conserve l'heure de première réception lors d'un renvoi du formulaire.
+  const signTime = utc => createHmac('sha256', process.env.RESEND_API_KEY)
+    .update(JSON.stringify(['prestations-cgs', data.requestId, data.acceptedCgs, data.acceptedAt, utc]))
+    .digest('base64url');
+  let receivedAt = new Date().toISOString();
+  if (data.prepareConsent === true) {
+    return res.status(200).json({ ok: true, stamp: { utc: receivedAt, signature: signTime(receivedAt) } });
+  }
+  if (data.stamp !== undefined) {
+    if (typeof data.stamp?.utc !== 'string' || data.stamp.signature !== signTime(data.stamp.utc))
+      return res.status(400).json({ ok: false, message: 'Horodatage invalide. Rechargez le formulaire.' });
+    receivedAt = data.stamp.utc;
+  }
   const text = [
     'Demande de prestation à valider manuellement',
     'Date souhaitée : ' + data.date + (data.mode === 'urgent' ? ' — Urgent, sous réserve d’acceptation' : ' — Standard'),
@@ -49,8 +62,9 @@ module.exports = async function handler(req, res) {
     text,
   };
   // Une nouvelle tentative du même panier ne doit pas envoyer un second courriel.
+  const key = createHash('sha256').update(data.requestId + JSON.stringify(message)).digest('hex');
+  message.text += '\nAcceptation reçue par le serveur (UTC) : ' + receivedAt;
   const body = JSON.stringify(message);
-  const key = createHash('sha256').update(data.requestId + body).digest('hex');
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST', body, headers: { 'Content-Type': 'application/json',

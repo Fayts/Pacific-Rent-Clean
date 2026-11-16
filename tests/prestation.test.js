@@ -76,6 +76,24 @@ test('l’API refuse un panier ou des coordonnées invalides avant tout envoi', 
   assert.equal(sent.length, 0);
 });
 
+test('les deux heures CGS sont distinctes et la preuve serveur est réutilisable', async t => {
+  const { submit, sent } = setup(t);
+  const acceptedAt = '2026-11-01T08:00:00.000Z';
+  const first = Date.now();
+  const prepared = await submit({ acceptedAt, prepareConsent: true });
+  assert.equal(prepared.code, 200);
+  const stamp = prepared.data.stamp;
+  assert.ok(Date.parse(stamp.utc) >= first && Date.parse(stamp.utc) <= Date.now());
+  assert.equal((await submit({ acceptedAt, stamp: { ...stamp, utc: acceptedAt } })).code, 400);
+  assert.equal((await submit({ stamp })).code, 400);
+  assert.equal(sent.length, 0);
+  for (let attempt = 0; attempt < 2; attempt++)
+    assert.equal((await submit({ acceptedAt, stamp })).code, 200);
+  assert.ok(sent[0].text.includes('Case cochée le ' + acceptedAt + ' (UTC, heure du navigateur).'));
+  assert.ok(sent[0].text.includes('Acceptation reçue par le serveur (UTC) : ' + stamp.utc));
+  assert.deepEqual(sent[1], sent[0]);
+});
+
 test('le devis exige le textile, les dimensions et la description et les transmet à Resend', async t => {
   process.env.RESEND_API_KEY = 'test';
   const contact = require('../site/api/contact');
@@ -100,4 +118,17 @@ test('le devis exige le textile, les dimensions et la description et les transme
     assert.ok(sent[0].text.includes(detail));
     assert.ok(sent[0].html.includes(detail));
   }
+  const hostile = {
+    name: 'TEST <b>Nom</b>', email: 'test&devis@example.invalid', phone: '"TEST"',
+    dimensions: '200 < 240 & 300', message: "L'essai\n<img src=x onerror=alert(1)> &lt;b&gt;",
+  };
+  assert.equal((await submit(hostile)).statusCode, 200);
+  const { html, text } = sent[1];
+  assert.ok(html.includes('TEST &lt;b&gt;Nom&lt;/b&gt;'));
+  assert.ok(html.includes('test&amp;devis@example.invalid'));
+  assert.ok(html.includes('&quot;TEST&quot;'));
+  assert.ok(html.includes('200 &lt; 240 &amp; 300'));
+  assert.ok(html.includes('L&#39;essai<br>&lt;img src=x onerror=alert(1)&gt; &amp;lt;b&amp;gt;'));
+  assert.ok(!html.includes('<img'));
+  assert.ok(text.includes(hostile.message));
 });
