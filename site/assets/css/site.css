@@ -854,3 +854,6 @@ body.menu-open .menu{opacity:1;visibility:visible}
 #prestation-form .cart-row .field { min-width: 0; }
 #prestation-form .cart-row select { width: 100%; }
 #prestation-form .remove { justify-self: start; background: none; cursor: pointer; }
+
+/* Accueil V2 : CTA de prestation et location identiques, sans toucher aux autres pages. */
+.home-unified-cta{width:min(100%,280px);min-height:50px;text-align:center}
