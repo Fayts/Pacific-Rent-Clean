@@ -99,7 +99,6 @@
     </article>
 
     <article class="svc svc-4 rev" id="tapis">
-      <div class="svc-fig"><img src="assets/prest-tapis-clean.webp" alt="Nettoyage en profondeur d’un tapis à l’aide d’un injecteur-extracteur Kärcher Puzzi 10/1." loading="lazy" decoding="async" width="1536" height="1024"></div>
       <div>
         <span class="svc-num">03</span>
         <h2 class="svc-word">Tapis</h2>
@@ -108,6 +107,7 @@
         <span class="svc-price">À partir de 2 000 F</span><br>
         <a class="svc-link" href="demande-prestation.html?categorie=tapis">Réserver un tapis <span aria-hidden="true">→</span></a>
       </div>
+      <div class="svc-fig"><img src="assets/prest-tapis-clean.webp" alt="Nettoyage en profondeur d’un tapis à l’aide d’un injecteur-extracteur Kärcher Puzzi 10/1." loading="lazy" decoding="async" width="1536" height="1024"></div>
     </article>
   </div>
 </section>
@@ -121,27 +121,38 @@
       <h2 class="title">Affichés.</h2>
       <p class="lede" style="margin-top:1.2rem;margin-left:auto">Pas de « contactez-nous pour un devis » sur des prestations dont le prix existe déjà.</p>
     </div>
-    <div class="tar rev">
-      <table class="tbl">
-        <caption class="mono">Prestation · on vient chez vous</caption>
-        <tbody>
-          <tr><th scope="row">Tapis petit (80x150)</th><td>2 000 F</td></tr>
-          <tr><th scope="row">Tapis moyen (160x230)</th><td>4 000 F</td></tr>
-          <tr><th scope="row">Tapis grand (240x330)</th><td>6 000 F</td></tr>
-          <tr><th scope="row">Matelas 1 place (90x190)</th><td>5 000 F</td></tr>
-          <tr><th scope="row">Matelas double (140x190)</th><td>10 000 F</td></tr>
-          <tr><th scope="row">Matelas queen (160x200)</th><td>11 000 F</td></tr>
-          <tr><th scope="row">Matelas king (180x200)</th><td>12 000 F</td></tr>
-          <tr><th scope="row">Fauteuil</th><td>5 000 F</td></tr>
-          <tr><th scope="row">Canapé 2 places</th><td>10 000 F</td></tr>
-          <tr><th scope="row">Canapé 3 places</th><td>12 000 F</td></tr>
-          <tr><th scope="row">Canapé d’angle</th><td>15 000 F</td></tr>
-          <tr><th scope="row">Canapé clic clac</th><td>20 000 F</td></tr>
-        </tbody>
-      </table>
-      <div>
-        <p class="lede" style="margin-top:1.6rem;font-size:.95rem">Textile hors dimensions ou volume inhabituel ? <a href="contact.html?demande=devis#demande-devis">Demander un devis</a>.</p>
-        <a class="btn btn-a" href="location.html" style="margin-top:22px">Ou louez la machine</a>
+    <div class="prest-tariffs rev">
+      <div class="prest-tariff-grid">
+        <article class="prest-tariff-card">
+          <h3>Tapis</h3>
+          <dl><div><dt>80 × 150 cm</dt><dd>2 000 F</dd></div>
+          <div><dt>160 × 230 cm</dt><dd>4 000 F</dd></div>
+          <div><dt>240 × 330 cm</dt><dd>6 000 F</dd></div></dl>
+        </article>
+        <article class="prest-tariff-card">
+          <h3>Matelas</h3>
+          <dl><div><dt>90 × 190 cm</dt><dd>5 000 F</dd></div>
+          <div><dt>140 × 190 cm</dt><dd>10 000 F</dd></div>
+          <div><dt>160 × 200 cm</dt><dd>11 000 F</dd></div>
+          <div><dt>180 × 200 cm</dt><dd>12 000 F</dd></div></dl>
+        </article>
+        <article class="prest-tariff-card">
+          <h3>Canapés</h3>
+          <dl><div><dt>Fauteuil 1 place</dt><dd>5 000 F</dd></div>
+          <div><dt>Canapé 2 places</dt><dd>10 000 F</dd></div>
+          <div><dt>Canapé 3 places</dt><dd>12 000 F</dd></div>
+          <div><dt>Canapé d’angle +3 places</dt><dd>15 000 F</dd></div>
+          <div><dt>Canapé clic-clac</dt><dd>20 000 F</dd></div></dl>
+        </article>
+      </div>
+      <div class="prest-quote">
+        <h3>Votre textile ne figure pas dans cette liste ?</h3>
+        <p>Autre dimension, autre meuble textile ou volume inhabituel : nous établissons un devis personnalisé.</p>
+        <a class="btn btn-a" href="contact.html?demande=devis#demande-devis">Demander un devis →</a>
+      </div>
+      <div class="prest-rental-cta">
+        <p>Vous préférez nettoyer vous-même ?</p>
+        <a class="btn btn-a" href="location.html">Ou louez la machine</a>
       </div>
     </div>
   </div>
@@ -170,12 +181,11 @@
   <div class="close-bg" style="background-image:url('assets/hero-ending.jpg')" aria-hidden="true"></div>
   <div class="close-in">
     <div class="rev">
-      <span class="mono" style="display:block;margin-bottom:1.4rem;color:var(--sand)">À vous</span>
       <h2 class="title">À vous de choisir<br>le moment.</h2>
       <p class="lede close-note" style="margin:1.4rem auto 0">Sur rendez-vous, 7 jours sur 7 à Tahiti.</p>
       <div class="cta-row" style="justify-content:center">
-        <a class="btn btn-a" href="demande-prestation.html">Réserver une prestation</a>
-        <a class="btn btn-b" href="contact.html">Nous contacter</a>
+        <a class="btn btn-a prest-final-btn" href="demande-prestation.html">Réserver une prestation</a>
+        <a class="btn btn-a prest-final-btn" href="contact.html">Nous contacter</a>
       </div>
       <div class="contact">
         <span>Tahiti, 7j/7</span>
