@@ -868,3 +868,9 @@ body.menu-open .menu{opacity:1;visibility:visible}
 .location-pack-btn,.location-bottom-btn{width:min(100%,260px);min-height:50px;text-align:center}
 @media(max-width:860px){.location-pack-pair{min-height:0}.location-pack-pair .location-pack-card{min-height:570px}.location-pack-pair .voie-body{inset:auto 22px 28px}}
 @media(max-width:480px){.location-pack-pair .location-pack-card{min-height:610px}.location-pack-pair .voie-body h3{font-size:2.3rem}.location-pack-pair .voie-body ul{font-size:.91rem}.location-bottom-btn{width:100%}}
+
+/* Aligner uniquement les en-têtes et prix des deux forfaits. */
+@media (min-width:861px){
+  .location-pack-pair .voie-body{height:390px;display:flex;flex-direction:column;justify-content:flex-start}
+  .location-pack-pair .voie-body ul{flex:1}
+}
