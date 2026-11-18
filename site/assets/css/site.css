@@ -874,3 +874,9 @@ body.menu-open .menu{opacity:1;visibility:visible}
   .location-pack-pair .voie-body{height:390px;display:flex;flex-direction:column;justify-content:flex-start}
   .location-pack-pair .voie-body ul{flex:1}
 }
+
+/* Location : alignement strict des boutons en bas des deux cartes (ordinateur). */
+@media (min-width:861px){
+  .location-pack-pair .location-pack-card .voie-body{padding-bottom:72px}
+  .location-pack-pair .location-pack-btn{position:absolute;bottom:0;left:0;margin:0}
+}
