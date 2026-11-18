@@ -869,14 +869,22 @@ body.menu-open .menu{opacity:1;visibility:visible}
 @media(max-width:860px){.location-pack-pair{min-height:0}.location-pack-pair .location-pack-card{min-height:570px}.location-pack-pair .voie-body{inset:auto 22px 28px}}
 @media(max-width:480px){.location-pack-pair .location-pack-card{min-height:610px}.location-pack-pair .voie-body h3{font-size:2.3rem}.location-pack-pair .voie-body ul{font-size:.91rem}.location-bottom-btn{width:100%}}
 
-/* Aligner uniquement les en-têtes et prix des deux forfaits. */
+/* Location : titres et prix au même niveau, boutons en bas avec un espace lisible. */
 @media (min-width:861px){
-  .location-pack-pair .voie-body{height:390px;display:flex;flex-direction:column;justify-content:flex-start}
-  .location-pack-pair .voie-body ul{flex:1}
-}
-
-/* Location : alignement strict des boutons en bas des deux cartes (ordinateur). */
-@media (min-width:861px){
-  .location-pack-pair .location-pack-card .voie-body{padding-bottom:72px}
-  .location-pack-pair .location-pack-btn{position:absolute;bottom:0;left:0;margin:0}
+  .location-pack-pair .location-pack-card .voie-body{
+    height:430px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+  .location-pack-pair .location-pack-card .voie-body ul{
+    flex:1 1 auto;
+    margin-bottom:22px;
+  }
+  .location-pack-pair .location-pack-btn{
+    position:static;
+    align-self:flex-start;
+    flex-shrink:0;
+    margin:0;
+  }
 }
