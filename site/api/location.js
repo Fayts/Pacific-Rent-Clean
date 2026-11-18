@@ -82,9 +82,10 @@ module.exports = async function handler(req, res) {
   const email = clean(data.email, 160).trim();
   const mobile = clean(data.mobile, 80);
   const payment = clean(data.payment, 40);
+  const extraTablets = data.extraTablets === undefined ? 0 : Number(data.extraTablets);
   const accepted = data.acceptedCgs === true || data.acceptedCgs === 'true' || data.acceptedCgs === 'on';
 
-  if (!selectedPackage || !locationDates.isAllowed(date) || !HANDOFFS.has(handoff) || !commune || !lastName || !firstName || !isEmail(email) || !mobile || !PAYMENTS.has(payment) || !accepted) {
+  if (!selectedPackage || !locationDates.isAllowed(date) || !HANDOFFS.has(handoff) || !commune || !lastName || !firstName || !isEmail(email) || !mobile || !PAYMENTS.has(payment) || !accepted || !Number.isInteger(extraTablets) || extraTablets < 0 || extraTablets > 10) {
     return json(res, 400, { ok: false, message: 'Merci de vérifier les champs obligatoires.' });
   }
 
@@ -93,7 +94,8 @@ module.exports = async function handler(req, res) {
   }
 
   const fee = deliveryFee(handoff, commune);
-  const total = selectedPackage.price + fee;
+  const extraTabletsPrice = extraTablets * 500;
+  const total = selectedPackage.price + fee + extraTabletsPrice;
   const consentRecord = `CGS Location acceptées : oui — reçu le ${new Date().toISOString()}`;
 
   const lines = [
@@ -101,6 +103,8 @@ module.exports = async function handler(req, res) {
     '',
     `Forfait : ${selectedPackage.label} — ${xpf(selectedPackage.price)}`,
     `Date demandée : ${date}`,
+    `Pastilles RM 760 incluses : 2`,
+    `Pastilles supplémentaires : ${extraTablets} × 500 XPF = ${xpf(extraTabletsPrice)}`,
     'Remise : entre 8h et 18h — horaire à fixer après validation',
     `Mode de remise : ${handoff}`,
     `Commune : ${commune}`,
@@ -127,6 +131,8 @@ module.exports = async function handler(req, res) {
     <h3>Récapitulatif</h3>
     <p><strong>Forfait :</strong> ${escapeHtml(selectedPackage.label)} — ${xpf(selectedPackage.price)}</p>
     <p><strong>Date demandée :</strong> ${escapeHtml(date)}</p>
+    <p><strong>Pastilles RM 760 incluses :</strong> 2</p>
+    <p><strong>Pastilles supplémentaires :</strong> ${extraTablets} × 500 XPF = ${xpf(extraTabletsPrice)}</p>
     <p><strong>Remise :</strong> ${escapeHtml(handoff)} · entre 8h et 18h · horaire à fixer après validation</p>
     <p><strong>Commune :</strong> ${escapeHtml(commune)}</p>
     <p><strong>Adresse :</strong> ${escapeHtml(address || 'non applicable')}</p>
