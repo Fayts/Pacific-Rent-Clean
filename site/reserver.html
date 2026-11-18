@@ -80,8 +80,31 @@
             <label class="booking-card">
               <input type="radio" name="package" value="auto-home" required data-package-price="7990">
               <span class="booking-card-top"><strong>Auto-Home</strong><em>7 990 XPF</em></span>
-              <span>Puzzi + 2 pastilles + brosse rotative</span>
+              <span>Puzzi + 2 pastilles + brosse rotative, perceuse et TASKI Tapi Extract</span>
             </label>
+          </div>
+        </section>
+
+        <section class="booking-step" aria-labelledby="step-pastilles">
+          <span class="mono booking-num">Option — Consommables</span>
+          <h2 class="sub-t" id="step-pastilles">Pastilles supplémentaires.</h2>
+          <p class="booking-note">Les deux forfaits incluent déjà 2 pastilles RM 760. Ajoutez-en uniquement si vous en avez besoin : 500 F par pastille supplémentaire.</p>
+          <div class="booking-grid compact" style="margin-top:16px">
+            <div class="field"><label for="loc-extra-tablets">Pastilles supplémentaires — facultatif</label>
+              <select id="loc-extra-tablets" name="extraTablets">
+                <option value="0">Aucune — 0 F</option>
+                <option value="1">1 pastille — 500 F</option>
+                <option value="2">2 pastilles — 1 000 F</option>
+                <option value="3">3 pastilles — 1 500 F</option>
+                <option value="4">4 pastilles — 2 000 F</option>
+                <option value="5">5 pastilles — 2 500 F</option>
+                <option value="6">6 pastilles — 3 000 F</option>
+                <option value="7">7 pastilles — 3 500 F</option>
+                <option value="8">8 pastilles — 4 000 F</option>
+                <option value="9">9 pastilles — 4 500 F</option>
+                <option value="10">10 pastilles — 5 000 F</option>
+              </select>
+            </div>
           </div>
         </section>
 
@@ -142,10 +165,11 @@
 
         <section class="booking-step booking-summary" aria-labelledby="step-recap">
           <span class="mono booking-num">06 — Récapitulatif</span>
-          <h2 class="sub-t" id="step-recap">Votre demande.</h2>
+          <h2 class="sub-t" id="step-recap">Votre réservation.</h2>
           <dl class="summary-list" data-location-summary>
             <div><dt>Forfait</dt><dd data-summary="package">—</dd></div>
             <div><dt>Date</dt><dd data-summary="date">—</dd></div>
+            <div><dt>Pastilles supplémentaires</dt><dd data-summary="extraTablets">Aucune</dd></div>
             <div><dt>Remise</dt><dd data-summary="handoff">—</dd></div>
             <div><dt>Commune</dt><dd data-summary="commune">—</dd></div>
             <div><dt>Frais de remise</dt><dd data-summary="delivery">0 XPF</dd></div>
