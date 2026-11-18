@@ -854,3 +854,30 @@ body.menu-open .menu{opacity:1;visibility:visible}
 #prestation-form .cart-row .field { min-width: 0; }
 #prestation-form .cart-row select { width: 100%; }
 #prestation-form .remove { justify-self: start; background: none; cursor: pointer; }
+
+/* Prestations V2 : prix et tarifs lisibles, zigzag tablette. */
+#prestations .svc-price{font-family:Archivo,sans-serif;font-size:clamp(1rem,1.65vw,1.35rem);font-weight:800;letter-spacing:0;background:var(--coral);color:var(--basalt);padding:12px 18px;margin-top:1.5rem}
+.prest-tariff-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,26px)}
+.prest-tariff-card{border:1px solid rgba(244,241,232,.23);background:rgba(244,241,232,.05);padding:clamp(18px,2.4vw,30px);min-width:0}
+.prest-tariff-card h3{font-family:Archivo,sans-serif;text-transform:uppercase;font-size:clamp(1.35rem,2.3vw,2.15rem);color:var(--sand);margin:0 0 1.4rem}
+.prest-tariff-card dl{margin:0}
+.prest-tariff-card dl>div{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-top:1px solid rgba(244,241,232,.16);padding:13px 0}
+.prest-tariff-card dt{color:var(--on-deep);font-size:.9rem}
+.prest-tariff-card dd{margin:0;color:var(--coral);font-weight:800;font-size:clamp(.96rem,1.3vw,1.14rem);white-space:nowrap}
+.prest-quote{text-align:center;border:1px solid rgba(232,121,97,.55);background:rgba(232,121,97,.09);padding:clamp(24px,4vw,50px);margin-top:clamp(24px,4vw,48px)}
+.prest-quote h3{font-family:Archivo,sans-serif;font-size:clamp(1.5rem,3vw,2.6rem);margin:0;color:var(--sand)}
+.prest-quote p{color:var(--on-deep);margin:12px auto 22px;max-width:58ch;line-height:1.6}
+.prest-rental-cta{text-align:center;margin-top:clamp(28px,4vw,50px)}
+.prest-rental-cta p{color:var(--on-deep);margin-bottom:14px}
+.prest-final-btn{width:min(100%,280px);min-height:50px;text-align:center}
+@media (min-width:701px) and (max-width:860px){
+  #prestations .svc,#prestations .svc-1,#prestations .svc-2,#prestations .svc-4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  #prestations .svc-2 .svc-fig{order:-1}
+  #prestations .svc-4 .svc-fig{order:0}
+  #prestations .svc-4 > div:first-child{order:0}
+}
+#prestations .svc-4 .svc-fig{order:0}
+@media (max-width:900px){.prest-tariff-grid{grid-template-columns:1fr}}
+@media (max-width:700px){#prestations .svc-4 > div:first-child{order:-1}}
+
+@media (min-width:701px) and (max-width:860px){#prestations .svc-4 > div:last-child{order:0}}
