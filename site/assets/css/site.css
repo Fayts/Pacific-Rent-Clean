@@ -854,3 +854,17 @@ body.menu-open .menu{opacity:1;visibility:visible}
 #prestation-form .cart-row .field { min-width: 0; }
 #prestation-form .cart-row select { width: 100%; }
 #prestation-form .remove { justify-self: start; background: none; cursor: pointer; }
+
+/* Location V2 : deux forfaits immersifs, dans l'esprit du choix Accueil. */
+.location-pack-pair{min-height:clamp(590px,65vw,790px)}
+.location-pack-pair .location-pack-card{min-height:560px}
+.location-pack-pair .voie-fig::after{background:linear-gradient(180deg,rgba(4,18,20,.20) 0%,rgba(4,18,20,.58) 35%,rgba(4,18,20,.94) 100%)}
+.location-pack-pair .voie:hover .voie-fig::after{background:linear-gradient(180deg,rgba(4,18,20,.16) 0%,rgba(4,18,20,.50) 35%,rgba(4,18,20,.92) 100%)}
+.location-pack-pair .voie-body{max-width:none;inset:auto clamp(20px,3vw,46px) clamp(24px,3vw,42px)}
+.location-pack-pair .voie-body h3{white-space:normal;font-size:clamp(2rem,3.6vw,3.6rem)}
+.location-pack-price{display:block;color:var(--coral);font-family:Archivo,sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;margin:0 0 14px}
+.location-pack-pair .voie-body ul{color:var(--foam);margin:0 0 22px;padding-left:1.2em;line-height:1.55;font-size:clamp(.88rem,1.05vw,1rem)}
+.location-pack-pair .voie-body li{margin-bottom:5px}
+.location-pack-btn,.location-bottom-btn{width:min(100%,260px);min-height:50px;text-align:center}
+@media(max-width:860px){.location-pack-pair{min-height:0}.location-pack-pair .location-pack-card{min-height:570px}.location-pack-pair .voie-body{inset:auto 22px 28px}}
+@media(max-width:480px){.location-pack-pair .location-pack-card{min-height:610px}.location-pack-pair .voie-body h3{font-size:2.3rem}.location-pack-pair .voie-body ul{font-size:.91rem}.location-bottom-btn{width:100%}}
