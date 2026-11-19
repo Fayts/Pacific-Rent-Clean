@@ -12,6 +12,7 @@ const PAYMENTS = new Set(['Virement', 'Deblock', 'Espèces']);
 const HANDOFFS = new Set(['Livraison à domicile', 'Retrait à un point convenu']);
 const FREE_COMMUNES = new Set(['Papeete', 'Pirae', 'Arue', 'Mahina']);
 const MID_COMMUNES = new Set(["Faa’a", 'Papenoo']);
+const ALLOWED_COMMUNES = new Set([...FREE_COMMUNES, ...MID_COMMUNES, 'Autre commune']);
 
 function json(res, status, payload) {
   res.statusCode = status;
@@ -85,7 +86,7 @@ module.exports = async function handler(req, res) {
   const extraTablets = data.extraTablets === undefined ? 0 : Number(data.extraTablets);
   const accepted = data.acceptedCgs === true || data.acceptedCgs === 'true' || data.acceptedCgs === 'on';
 
-  if (!selectedPackage || !locationDates.isAllowed(date) || !HANDOFFS.has(handoff) || !commune || !lastName || !firstName || !isEmail(email) || !mobile || !PAYMENTS.has(payment) || !accepted || !Number.isInteger(extraTablets) || extraTablets < 0 || extraTablets > 10) {
+  if (!selectedPackage || !locationDates.isAllowed(date) || !HANDOFFS.has(handoff) || !ALLOWED_COMMUNES.has(commune) || !lastName || !firstName || !isEmail(email) || !mobile || !PAYMENTS.has(payment) || !accepted || !Number.isInteger(extraTablets) || extraTablets < 0 || extraTablets > 10) {
     return json(res, 400, { ok: false, message: 'Merci de vérifier les champs obligatoires.' });
   }
 
