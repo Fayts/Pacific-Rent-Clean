@@ -96,8 +96,11 @@
   add.addEventListener('click', () => addRow().focus());
   form.addEventListener('input', update);
   form.addEventListener('change', event => {
-    if (event.target.name === 'mode' && fields.mode.value === 'urgent')
-      fields.date.value = rules.dateRange('urgent').min;
+    if (event.target.name === 'mode') {
+      const range = rules.dateRange(fields.mode.value);
+      if (fields.mode.value === 'urgent') fields.date.value = range.min;
+      else if (fields.date.value && !rules.validDate(fields.date.value, 'standard')) fields.date.value = '';
+    }
     update();
   });
   fields.date.addEventListener('focus', update);
