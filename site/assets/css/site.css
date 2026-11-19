@@ -948,3 +948,34 @@ body.menu-open .menu{opacity:1;visibility:visible}
 .prestation-booking-section .prest-date-choice .prest-date-sub{font-weight:600;font-size:.96rem;color:#254D50}
 .prestation-booking-section .prest-date-choice .prest-date-foot{font-size:.78rem;color:#455F5D}
 @media(max-width:760px){.prestation-booking-section .prest-date-choice{min-height:130px}}
+
+/* Correctif contraste des actions dans le panier Prestations. */
+.prestation-booking-section #add{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  margin-top:18px;
+  padding:13px 24px;
+  background:var(--coral);
+  color:var(--basalt);
+  border:1px solid var(--coral);
+  border-radius:4px;
+  font-weight:700;
+  text-shadow:none;
+}
+.prestation-booking-section #add:hover{
+  background:var(--coral-hover);
+  border-color:var(--coral-hover);
+}
+.prestation-booking-section #prestation-form .remove{
+  color:#254D50;
+  border:1px solid #8CAFAA;
+  border-radius:4px;
+  padding:8px 12px;
+  font-weight:600;
+}
+.prestation-booking-section #prestation-form .remove:hover{
+  color:#0E6670;
+  border-color:#0E6670;
+}
