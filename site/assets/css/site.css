@@ -1032,3 +1032,11 @@ body.menu-open .menu{opacity:1;visibility:visible}
 
 /* Les CTA du dernier panneau vidéo doivent recevoir les clics. */
 .hero .b5 .cta-row,.hero .b5 .cta-row .btn{pointer-events:auto}
+
+/* Espacement ciblé des libellés sous les sélections, sans déplacer les autres champs. */
+.prestation-booking-section #step-2 + .booking-options + .booking-grid{
+  margin-top:24px;
+}
+#location-reservation #step-remise + .booking-options + .booking-grid.delivery-fields{
+  margin-top:24px;
+}
