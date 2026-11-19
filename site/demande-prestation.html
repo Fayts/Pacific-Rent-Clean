@@ -60,7 +60,7 @@
   </div>
 </header>
 
-<section class="sec sec-foam booking-section">
+<section class="sec sec-foam booking-section prestation-booking-section">
   <div class="wrap">
     <div class="booking-shell">
       <form class="booking-form" id="prestation-form">
@@ -84,8 +84,8 @@
           <span class="mono booking-num">02 — Date</span>
           <h2 class="sub-t" id="step-2">Quand souhaitez-vous notre passage ?</h2>
           <div class="booking-options">
-            <label class="booking-choice"><input type="radio" name="mode" value="standard" checked><span>Standard · À partir de J+2</span></label>
-            <label class="booking-choice"><input type="radio" name="mode" value="urgent"><span>Urgent · Demain · +1 500 XPF par demande, sous réserve d’acceptation</span></label>
+            <label class="booking-choice prest-date-choice"><input type="radio" name="mode" value="standard" checked><span class="prest-date-title">Standard</span><span class="prest-date-sub">À partir de J+2</span></label>
+            <label class="booking-choice prest-date-choice"><input type="radio" name="mode" value="urgent"><span class="prest-date-title">Intervention urgente <span aria-hidden="true">·</span> Demain</span><span class="prest-date-sub">Supplément de 1 500 F*</span><span class="prest-date-foot">*Sous réserve de disponibilité</span></label>
           </div>
           <div class="booking-grid compact">            <div class="field"><label for="prest-date">Date souhaitée</label><input id="prest-date" name="date" type="date" required maxlength="500" ></div></div>
         </section>
@@ -109,7 +109,7 @@
         </section>
         <section class="booking-step" aria-labelledby="step-5">
           <span class="mono booking-num">05 — Récapitulatif</span>
-          <h2 class="sub-t" id="step-5">Votre demande.</h2>
+          <h2 class="sub-t" id="step-5">Votre réservation.</h2>
           <dl class="summary-list" id="summary" aria-live="polite"></dl>
           <p class="booking-note">Votre réservation sera confirmée après vérification manuelle de la disponibilité.</p>
           <details id="cgs-prestations" class="booking-note">
