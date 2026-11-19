@@ -1040,3 +1040,41 @@ body.menu-open .menu{opacity:1;visibility:visible}
 #location-reservation #step-remise + .booking-options + .booking-grid.delivery-fields{
   margin-top:24px;
 }
+
+/* Contact V2 : même palette claire et mêmes champs que les tunnels validés. */
+.contact-section .contact-form-shell{
+  background:#E6F2F0;
+  border:1px solid #A9C8C5;
+}
+.contact-section .contact-form .field input,
+.contact-section .contact-form .field select,
+.contact-section .contact-form .field textarea{
+  width:100%;
+  min-height:54px;
+  background:#FFFFFF;
+  border:1.5px solid #8CAFAA;
+  border-radius:5px;
+  color:#203D40;
+  box-shadow:none;
+}
+.contact-section .contact-form .field textarea{min-height:150px}
+.contact-section .contact-form .field input:focus,
+.contact-section .contact-form .field select:focus,
+.contact-section .contact-form .field textarea:focus{
+  background:#FFFFFF;
+  border-color:#0E6670;
+  outline:2px solid #0E6670;
+  outline-offset:1px;
+}
+.contact-section .contact-form .field label{
+  display:block;
+  color:#254D50;
+  font-weight:600;
+  margin-bottom:7px;
+}
+.contact-section .contact-form .field input::placeholder,
+.contact-section .contact-form .field textarea::placeholder{
+  color:#667C7D;
+  opacity:1;
+}
+.contact-section .contact-form .form-status{color:#455F5D}
