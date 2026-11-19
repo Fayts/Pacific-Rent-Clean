@@ -86,7 +86,7 @@
       for (const item of price.lines) line(item.quantity + ' × ' + item.label, rules.money(item.amount));
       line('Date souhaitée', fields.date.value ? fields.date.value.split('-').reverse().join('/') : 'À choisir');
       line('Articles', rules.money(price.subtotal));
-      line('Urgence', rules.money(price.urgent));
+      line('Supplément intervention urgente', rules.money(price.urgent));
       line('Déplacement', commune ? rules.money(price.travel) : 'Commune à choisir');
       line('Total', commune ? rules.money(price.total) : 'À préciser', 'summary-total');
     } catch (error) {
