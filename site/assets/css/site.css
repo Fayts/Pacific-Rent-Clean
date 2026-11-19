@@ -918,3 +918,6 @@ body.menu-open .menu{opacity:1;visibility:visible}
     margin:0;
   }
 }
+
+/* Les CTA du dernier panneau vidéo doivent recevoir les clics. */
+.hero .b5 .cta-row,.hero .b5 .cta-row .btn{pointer-events:auto}
