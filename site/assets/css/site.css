@@ -918,3 +918,117 @@ body.menu-open .menu{opacity:1;visibility:visible}
     margin:0;
   }
 }
+
+/* Location — formulaire clair, homogène et lisible. Aucun impact sur les autres formulaires. */
+#location-reservation .booking-shell{
+  background:#E6F2F0;
+  border:1px solid #A9C8C5;
+}
+#location-reservation .booking-card,
+#location-reservation .booking-choice{
+  background:#FFFFFF;
+  border:1.5px solid #A6C2BF;
+  border-radius:5px;
+  color:var(--basalt);
+}
+#location-reservation .booking-card:hover,
+#location-reservation .booking-choice:hover{background:#F4FBFA;border-color:var(--lagoon)}
+#location-reservation .booking-card:has(input:checked),
+#location-reservation .booking-choice:has(input:checked){
+  background:#D9F0EB;
+  border-color:var(--lagoon);
+  box-shadow:inset 0 0 0 1px var(--lagoon);
+}
+#location-reservation .booking-card em{color:#A94C37}
+#location-reservation .booking-card span:last-child,
+#location-reservation .booking-choice span{color:#334D4D}
+#location-reservation .field input:not([type="radio"]),
+#location-reservation .field select,
+#location-reservation .field textarea,
+#location-reservation .date-picker-shell{
+  min-height:54px;
+  background:#FFFFFF;
+  border:1.5px solid #8CAFAA;
+  border-radius:5px;
+  color:#203D40;
+  box-shadow:none;
+}
+#location-reservation .field input:focus,
+#location-reservation .field select:focus,
+#location-reservation .field textarea:focus,
+#location-reservation .date-picker-shell:focus-within{
+  background:#FFFFFF;
+  border-color:#0E6670;
+  outline:2px solid #0E6670;
+  outline-offset:1px;
+}
+#location-reservation .field label{display:block;color:#254D50;font-weight:600;margin-bottom:7px}
+#location-reservation .field input::placeholder{color:#667C7D;opacity:1}
+#location-reservation .booking-note{color:#455F5D}
+#location-reservation .booking-num{color:#A94C37}
+#location-reservation .date-picker-shell{padding:0 16px}
+#location-reservation .date-picker-shell [data-date-readable]{font-weight:600;color:#203D40}
+
+/* Tunnel Prestations : cohérence avec le tunnel Location validé. */
+.prestation-booking-section .booking-shell{background:#E6F2F0;border:1px solid #A9C8C5}
+.prestation-booking-section .booking-choice,
+.prestation-booking-section .cart-row{background:#FFFFFF;border:1.5px solid #A6C2BF;border-radius:5px;color:var(--basalt)}
+.prestation-booking-section .booking-choice:hover{background:#F4FBFA;border-color:var(--lagoon)}
+.prestation-booking-section .booking-choice:has(input:checked){background:#D9F0EB;border-color:var(--lagoon);box-shadow:inset 0 0 0 1px var(--lagoon)}
+.prestation-booking-section .field input,
+.prestation-booking-section .field select,
+.prestation-booking-section .field textarea{
+  min-height:54px;background:#FFFFFF;border:1.5px solid #8CAFAA;border-radius:5px;color:#203D40;box-shadow:none
+}
+.prestation-booking-section .field input:focus,
+.prestation-booking-section .field select:focus,
+.prestation-booking-section .field textarea:focus{background:#FFFFFF;border-color:#0E6670;outline:2px solid #0E6670;outline-offset:1px}
+.prestation-booking-section .field label{color:#254D50;font-weight:600}
+.prestation-booking-section .booking-note{color:#455F5D}
+.prestation-booking-section .booking-num{color:#A94C37}
+.prestation-booking-section .prest-date-choice{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:152px;gap:5px;text-align:center;padding:18px 22px
+}
+.prestation-booking-section .prest-date-choice input{position:absolute;top:16px;left:16px}
+.prestation-booking-section .prest-date-choice .prest-date-title{
+  font-family:Archivo,sans-serif;font-weight:800;font-size:clamp(1.05rem,1.6vw,1.3rem);
+  line-height:1.25;color:#203D40
+}
+.prestation-booking-section .prest-date-choice .prest-date-sub{font-weight:600;font-size:.96rem;color:#254D50}
+.prestation-booking-section .prest-date-choice .prest-date-foot{font-size:.78rem;color:#455F5D}
+@media(max-width:760px){.prestation-booking-section .prest-date-choice{min-height:130px}}
+
+/* Correctif contraste des actions dans le panier Prestations. */
+.prestation-booking-section #add{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  margin-top:18px;
+  padding:13px 24px;
+  background:var(--coral);
+  color:var(--basalt);
+  border:1px solid var(--coral);
+  border-radius:4px;
+  font-weight:700;
+  text-shadow:none;
+}
+.prestation-booking-section #add:hover{
+  background:var(--coral-hover);
+  border-color:var(--coral-hover);
+}
+.prestation-booking-section #prestation-form .remove{
+  color:#254D50;
+  border:1px solid #8CAFAA;
+  border-radius:4px;
+  padding:8px 12px;
+  font-weight:600;
+}
+.prestation-booking-section #prestation-form .remove:hover{
+  color:#0E6670;
+  border-color:#0E6670;
+}
+
+/* Les CTA du dernier panneau vidéo doivent recevoir les clics. */
+.hero .b5 .cta-row,.hero .b5 .cta-row .btn{pointer-events:auto}
