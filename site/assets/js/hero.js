@@ -112,6 +112,7 @@ function updateCaptions(p){
     let k=clamp((p-b.a)/ramp,0,1);
     if(isFirst) k=Math.max(k,loadK);
     if(Math.abs(op-b.op)>0.004){b.op=op;b.el.style.opacity=op.toFixed(3);}
+    if(isLast){b.el.style.pointerEvents=(op>0.5&&k>0.76)?'auto':'none';}
     if(Math.abs(k-b.k)>0.008){b.k=k;b.el.style.setProperty('--k',k.toFixed(3));}
   }
 }
