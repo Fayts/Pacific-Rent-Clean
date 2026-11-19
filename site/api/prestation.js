@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
       throw new Error('Patientez quelques secondes puis réessayez.');
     if (!validDate(data.date, data.mode)) throw new Error('Vérifiez la date souhaitée à Tahiti.');
     const instant = new Date(data.acceptedAt);
-    if (data.acceptedCgs !== 'prestations-2026-11-16' || !Number.isFinite(instant.getTime()) ||
+    if (data.acceptedCgs !== 'prestations-2026-11-18' || !Number.isFinite(instant.getTime()) ||
         instant.toISOString() !== data.acceptedAt) throw new Error('Veuillez accepter les CGS Prestations.');
     prices = quote(data.items, data.mode, data.commune);
     const required = ['name', 'email', 'mobile', 'address'];
@@ -51,7 +51,7 @@ module.exports = async function handler(req, res) {
     ...prices.lines.map(line => line.quantity + ' × ' + line.label + ' à ' + money(line.price) + ' = ' + money(line.amount)),
     'Articles : ' + money(prices.subtotal), 'Urgence : ' + money(prices.urgent),
     'Déplacement : ' + money(prices.travel), 'Total : ' + money(prices.total),
-    'CGS Prestations acceptées — version du 16/11/2026.',
+    'CGS Prestations acceptées — version du 18/11/2026.',
     'Case cochée le ' + data.acceptedAt + ' (UTC, heure du navigateur).',
     details.name, details.email, details.mobile, details.address, details.otherCommune || data.commune,
   ].join('\n');
