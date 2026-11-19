@@ -918,3 +918,33 @@ body.menu-open .menu{opacity:1;visibility:visible}
     margin:0;
   }
 }
+
+/* Tunnel Prestations : cohérence avec le tunnel Location validé. */
+.prestation-booking-section .booking-shell{background:#E6F2F0;border:1px solid #A9C8C5}
+.prestation-booking-section .booking-choice,
+.prestation-booking-section .cart-row{background:#FFFFFF;border:1.5px solid #A6C2BF;border-radius:5px;color:var(--basalt)}
+.prestation-booking-section .booking-choice:hover{background:#F4FBFA;border-color:var(--lagoon)}
+.prestation-booking-section .booking-choice:has(input:checked){background:#D9F0EB;border-color:var(--lagoon);box-shadow:inset 0 0 0 1px var(--lagoon)}
+.prestation-booking-section .field input,
+.prestation-booking-section .field select,
+.prestation-booking-section .field textarea{
+  min-height:54px;background:#FFFFFF;border:1.5px solid #8CAFAA;border-radius:5px;color:#203D40;box-shadow:none
+}
+.prestation-booking-section .field input:focus,
+.prestation-booking-section .field select:focus,
+.prestation-booking-section .field textarea:focus{background:#FFFFFF;border-color:#0E6670;outline:2px solid #0E6670;outline-offset:1px}
+.prestation-booking-section .field label{color:#254D50;font-weight:600}
+.prestation-booking-section .booking-note{color:#455F5D}
+.prestation-booking-section .booking-num{color:#A94C37}
+.prestation-booking-section .prest-date-choice{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:152px;gap:5px;text-align:center;padding:18px 22px
+}
+.prestation-booking-section .prest-date-choice input{position:absolute;top:16px;left:16px}
+.prestation-booking-section .prest-date-choice .prest-date-title{
+  font-family:Archivo,sans-serif;font-weight:800;font-size:clamp(1.05rem,1.6vw,1.3rem);
+  line-height:1.25;color:#203D40
+}
+.prestation-booking-section .prest-date-choice .prest-date-sub{font-weight:600;font-size:.96rem;color:#254D50}
+.prestation-booking-section .prest-date-choice .prest-date-foot{font-size:.78rem;color:#455F5D}
+@media(max-width:760px){.prestation-booking-section .prest-date-choice{min-height:130px}}
