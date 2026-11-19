@@ -166,8 +166,8 @@ document.querySelectorAll('form[data-contact-form]').forEach(form=>{
     if(form.classList.contains('is-loading')) return;
     const fd=new FormData(form);
     const payload=Object.fromEntries(fd.entries());
+    if (!form.reportValidity()) return;
     if (payload.subject === quoteSubject) {
-      if (!form.reportValidity()) return;
       payload.formAgeMs = Math.floor(performance.now() - openedAt);
     }
     if(!payload.name||!payload.email||!payload.message){say('Merci de compléter le nom, l’e-mail et le message.');return;}
