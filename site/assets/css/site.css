@@ -1078,3 +1078,17 @@ body.menu-open .menu{opacity:1;visibility:visible}
   opacity:1;
 }
 .contact-section .contact-form .form-status{color:#455F5D}
+
+/* Contact : étendre la palette validée à tout le fond de la zone formulaire. */
+.contact-section.sec-foam{
+  background:#E6F2F0;
+}
+.contact-section .contact-form-shell{
+  background:#E6F2F0;
+  border-color:#A9C8C5;
+}
+.contact-practical .practical-card .cta-row .btn{
+  min-width:220px;
+  text-align:center;
+  justify-content:center;
+}
