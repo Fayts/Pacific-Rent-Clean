@@ -198,6 +198,7 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
   const status=form.querySelector('[data-location-status]');
   const loaded=form.elements.loadedAt;
   const dateInput=form.elements.date;
+  const extraTablets=form.elements.extraTablets;
   const openedAt=performance.now();
   const commune=form.elements.commune;
   const address=form.elements.address;
@@ -223,8 +224,9 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     if(!value) return '';
     const parts=value.split('-').map(Number);
     if(parts.length!==3||parts.some(Number.isNaN)) return value;
-    const label=new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(parts[0],parts[1]-1,parts[2]));
-    return label.charAt(0).toUpperCase()+label.slice(1);
+    const date=new Date(parts[0],parts[1]-1,parts[2]);
+    const weekday=new Intl.DateTimeFormat('fr-FR',{weekday:'short'}).format(date);
+    return weekday.charAt(0).toUpperCase()+weekday.slice(1)+' '+String(parts[2]).padStart(2,'0')+'/'+String(parts[1]).padStart(2,'0')+'/'+parts[0];
   };
   if(loaded) loaded.value=String(Date.now());
   const params=new URLSearchParams(location.search);
@@ -240,6 +242,8 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     if(dateInput) dateInput.min=locationDates.minimumDate();
     const pack=packageMeta[selected('package')];
     const fee=deliveryFee();
+    const extraCount=extraTablets?Number(extraTablets.value)||0:0;
+    const extraPrice=extraCount*500;
     const handoff=selected('handoff');
     if(address){
       const needsAddress=handoff==='Livraison à domicile';
@@ -259,11 +263,12 @@ document.querySelectorAll('form[data-location-form]').forEach(form=>{
     }
     setSummary('package',pack?pack.label+' — '+fmt(pack.price):'—');
     setSummary('date',dateInput&&dateInput.value?readableDate(dateInput.value):'—');
+    setSummary('extraTablets',extraCount?extraCount+' × 500 F — '+fmt(extraPrice):'Aucune — 0 XPF');
     setSummary('handoff',handoff||'—');
     setSummary('commune',commune&&commune.value?commune.value:'—');
     setSummary('delivery',fmt(fee));
     setSummary('payment',selected('payment')||'—');
-    setSummary('total',fmt((pack?pack.price:0)+fee));
+    setSummary('total',fmt((pack?pack.price:0)+fee+extraPrice));
   }
   form.addEventListener('input',update);
   form.addEventListener('change',update);
