@@ -1,1 +1,10 @@
-{"sections":{"main":{"type":"prc-location-request"}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "prc-location-request"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

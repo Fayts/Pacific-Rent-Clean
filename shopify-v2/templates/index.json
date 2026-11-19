@@ -1,1 +1,10 @@
-{"sections":{"main":{"type":"prc-home"}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "prc-home"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

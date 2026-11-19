@@ -1,2 +1,190 @@
-<section class="prc-intro"><h1>Réserver une location</h1><p>Prototype en préparation. Le formulaire de réservation n'est pas encore connecté ; aucune demande ne peut être envoyée depuis cette page.</p></section>
-{% schema %}{"name":"Tunnel Location (socle)","settings":[],"presets":[{"name":"Tunnel Location (socle)"}]}{% endschema %}
+{% if template.suffix != blank or page.handle == 'reserver' %}
+<span id="top" style="display:block;height:1px"></span>
+
+<header class="phero">
+  <div class="phero-bg" style="background-image:url('{{ 'hero-ending.jpg' | asset_url }}')" aria-hidden="true"></div>
+  <div class="phero-in">
+    <p class="mono crumb"><a href="{{ routes.root_url }}">Accueil</a> <span aria-hidden="true">·</span> <span>Réserver une location</span></p>
+    <h1>Louer le Kärcher.</h1>
+    <p>Choisissez votre forfait, votre date et votre mode de remise. Nous vérifions la disponibilité et revenons vers vous pour confirmer la réservation.</p>
+  </div>
+</header>
+
+<section class="sec sec-foam booking-section" id="location-reservation">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="booking-shell rev" data-location-shell>
+      <form method="post" class="booking-form" id="locationRequest" data-location-form novalidate>
+        <p class="booking-note field-full">Mode test. Utilisez des coordonnées fictives.</p>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <input type="hidden" name="loadedAt" value="">
+
+        <section class="booking-step" aria-labelledby="step-forfait">
+          <span class="mono booking-num">01 — Forfait</span>
+          <h2 class="sub-t" id="step-forfait">Choisissez la formule.</h2>
+          <div class="booking-options booking-options-plans">
+            <label class="booking-card">
+              <input type="radio" name="package" value="standard" required data-package-price="6390">
+              <span class="booking-card-top"><strong>Standard</strong><em>6 390 XPF</em></span>
+              <span>Puzzi + 2 pastilles</span>
+            </label>
+            <label class="booking-card">
+              <input type="radio" name="package" value="auto-home" required data-package-price="7990">
+              <span class="booking-card-top"><strong>Auto-Home</strong><em>7 990 XPF</em></span>
+              <span>Puzzi + 2 pastilles + brosse rotative, perceuse et TASKI Tapi Extract</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="booking-step" aria-labelledby="step-pastilles">
+          <span class="mono booking-num">Option — Consommables</span>
+          <h2 class="sub-t" id="step-pastilles">Pastilles supplémentaires.</h2>
+          <p class="booking-note">Les deux forfaits incluent déjà 2 pastilles RM 760. Ajoutez-en uniquement si vous en avez besoin.</p>
+          <div class="booking-grid compact" style="margin-top:16px">
+            <div class="field"><label for="loc-extra-tablets">Pastilles supplémentaires — facultatif</label>
+              <select id="loc-extra-tablets" name="extraTablets">
+                <option value="0">Aucune — 0 F</option>
+                <option value="1">1 pastille — 500 F</option>
+                <option value="2">2 pastilles — 1 000 F</option>
+                <option value="3">3 pastilles — 1 500 F</option>
+                <option value="4">4 pastilles — 2 000 F</option>
+                <option value="5">5 pastilles — 2 500 F</option>
+                <option value="6">6 pastilles — 3 000 F</option>
+                <option value="7">7 pastilles — 3 500 F</option>
+                <option value="8">8 pastilles — 4 000 F</option>
+                <option value="9">9 pastilles — 4 500 F</option>
+                <option value="10">10 pastilles — 5 000 F</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="booking-step" aria-labelledby="step-date">
+          <span class="mono booking-num">02 — Date</span>
+          <h2 class="sub-t" id="step-date">Date de location.</h2>
+          <div class="booking-grid compact">
+            <div class="field date-field"><label for="loc-date">Date souhaitée</label><div class="date-picker-shell"><span data-date-readable>Choisir une date</span><span class="date-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span><input id="loc-date" name="date" type="date" required></div></div>
+          </div>
+          <p class="booking-note">Réservation possible à partir de J+2. La remise s’effectue entre 8h et 18h ; nous vous contactons après confirmation pour convenir de l’heure.</p>
+        </section>
+
+        <section class="booking-step" aria-labelledby="step-remise">
+          <span class="mono booking-num">03 — Remise</span>
+          <h2 class="sub-t" id="step-remise">Livraison ou retrait.</h2>
+          <div class="booking-options">
+            <label class="booking-choice"><input type="radio" name="handoff" value="Livraison à domicile" required checked><span>Livraison à domicile</span></label>
+            <label class="booking-choice"><input type="radio" name="handoff" value="Retrait à un point convenu" required><span>Retrait à un point convenu</span></label>
+          </div>
+          <div class="booking-grid delivery-fields">
+            <div class="field"><label for="loc-commune">Commune</label><select id="loc-commune" name="commune" required>
+              <option value="">Sélectionner</option>
+              <option value="Papeete">Papeete — gratuit</option>
+              <option value="Pirae">Pirae — gratuit</option>
+              <option value="Arue">Arue — gratuit</option>
+              <option value="Mahina">Mahina — gratuit</option>
+              <option value="Faa’a">Faa’a — 1 500 XPF</option>
+              <option value="Papenoo">Papenoo — 1 500 XPF</option>
+              <option value="Autre commune">Autre commune — 2 500 XPF</option>
+            </select></div>
+            <div class="field delivery-address"><label for="loc-address">Adresse</label><input id="loc-address" name="address" type="text" autocomplete="street-address"></div>
+            <div class="field full delivery-landmark"><label for="loc-landmark">Repère / lien de localisation — facultatif</label><input id="loc-landmark" name="landmark" type="text" placeholder="Maison, portail, commerce proche, lien Maps…"></div>
+          </div>
+          <p class="booking-note" data-handoff-note>Pour une livraison, indiquez la commune et l’adresse. La localisation ou le repère reste facultatif.</p>
+        </section>
+
+        <section class="booking-step" aria-labelledby="step-coordonnees">
+          <span class="mono booking-num">04 — Coordonnées</span>
+          <h2 class="sub-t" id="step-coordonnees">Vos coordonnées.</h2>
+          <div class="booking-grid">
+            <div class="field"><label for="loc-last-name">Nom</label><input id="loc-last-name" name="lastName" type="text" autocomplete="family-name" required></div>
+            <div class="field"><label for="loc-first-name">Prénom</label><input id="loc-first-name" name="firstName" type="text" autocomplete="given-name" required></div>
+            <div class="field"><label for="loc-email">E-mail</label><input id="loc-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="loc-mobile">Mobile</label><input id="loc-mobile" name="mobile" type="tel" autocomplete="tel" required></div>
+          </div>
+        </section>
+
+        <section class="booking-step" aria-labelledby="step-paiement">
+          <span class="mono booking-num">05 — Paiement</span>
+          <h2 class="sub-t" id="step-paiement">Mode de paiement.</h2>
+          <div class="booking-options payment-options">
+            <label class="booking-choice"><input type="radio" name="payment" value="Virement" required><span>Virement</span></label>
+            <label class="booking-choice"><input type="radio" name="payment" value="Deblock" required><span>Deblock</span></label>
+            <label class="booking-choice"><input type="radio" name="payment" value="Espèces" required><span>Espèces</span></label>
+          </div>
+          <p class="booking-note">Aucun paiement en ligne. Aucune caution.</p>
+        </section>
+
+        <section class="booking-step booking-summary" aria-labelledby="step-recap">
+          <span class="mono booking-num">06 — Récapitulatif</span>
+          <h2 class="sub-t" id="step-recap">Votre réservation.</h2>
+          <dl class="summary-list" data-location-summary>
+            <div><dt>Forfait</dt><dd data-summary="package">—</dd></div>
+            <div><dt>Date</dt><dd data-summary="date">—</dd></div>
+            <div><dt>Pastilles supplémentaires</dt><dd data-summary="extraTablets">Aucune</dd></div>
+            <div><dt>Remise</dt><dd data-summary="handoff">—</dd></div>
+            <div><dt>Commune</dt><dd data-summary="commune">—</dd></div>
+            <div><dt>Frais de remise</dt><dd data-summary="delivery">0 XPF</dd></div>
+            <div><dt>Paiement</dt><dd data-summary="payment">—</dd></div>
+            <div class="summary-total"><dt>TOTAL</dt><dd data-summary="total">0 XPF</dd></div>
+          </dl>
+          <details id="cgs-location" class="booking-note">
+            <summary>Lire les conditions générales de service (CGS Location)</summary>
+            <p>Conditions générales de service — Location de matériel · Version du 19 novembre 2026.</p>
+            <div class="cgs-list">
+              <h3>1. Objet</h3>
+              <p>Les présentes conditions régissent la réservation, la location, l'utilisation et la restitution du Kärcher Puzzi 10/1 et de ses accessoires, proposés par Pacific Rent&amp;Clean dans les forfaits Standard et Auto-Home.</p>
+              <h3>2. Réservation et confirmation</h3>
+              <p>Les demandes sont soumises à la disponibilité du matériel. L'envoi du formulaire ne vaut pas confirmation. La location est confirmée expressément par Pacific Rent&amp;Clean, après accord sur les modalités de remise.</p>
+              <h3>3. Forfaits, tarifs et durée</h3>
+              <p>Chaque forfait couvre une location de <strong>24 heures à compter de l'heure de remise convenue</strong>. Standard : 6 390 F CFP, avec Kärcher Puzzi 10/1 et deux pastilles RM 760. Auto-Home : 7 990 F CFP, avec Kärcher Puzzi 10/1, deux pastilles RM 760, brosse rotative, perceuse et TASKI Tapi Extract. Les pastilles supplémentaires coûtent 500 F CFP l'unité. Les frais de remise sont ceux affichés selon la commune. Le montant total est communiqué avant confirmation. Toute prolongation nécessite l'accord préalable de Pacific Rent&amp;Clean, sous réserve de disponibilité.</p>
+              <h3>4. Paiement et caution</h3>
+              <p>Le règlement s'effectue par virement, Deblock ou espèces, selon les modalités convenues. Aucun paiement en ligne n'est exigé lors de la demande. <strong>Aucune caution n'est demandée.</strong> L'absence de caution ne dispense pas le locataire de ses obligations.</p>
+              <h3>5. Remise du matériel</h3>
+              <p>La remise intervient entre 8 h et 18 h, à l'heure convenue, par livraison à domicile ou retrait à un point convenu. Le locataire est invité à vérifier l'état apparent de la machine et des accessoires et à signaler toute anomalie.</p>
+              <h3>6. Utilisation</h3>
+              <p>Le locataire respecte les instructions d'utilisation et d'entretien, emploie uniquement des produits compatibles et autorisés, et conserve soigneusement la machine et ses accessoires. Toute modification, réparation sans accord ou sous-location sans autorisation préalable est interdite. Les réservoirs doivent être utilisés, vidés et entretenus conformément aux consignes.</p>
+              <h3>7. Panne et dysfonctionnement</h3>
+              <p>En cas de panne, de fuite, de bruit inhabituel ou de dysfonctionnement, le locataire cesse immédiatement l'utilisation et prévient Pacific Rent&amp;Clean. Il n'entreprend aucune réparation sans accord. Les défauts préexistants et l'usure normale ne lui sont pas automatiquement imputables.</p>
+              <h3>8. Responsabilité et dommages</h3>
+              <p>Le locataire répond des dommages qui lui sont imputables du fait d'une mauvaise utilisation, d'une négligence ou d'un manquement à ses obligations. Pacific Rent&amp;Clean peut demander une réparation proportionnée au préjudice effectivement subi, sur présentation de justificatifs. Le locataire ne répond pas des défauts préexistants, de l'usure normale ni des dommages qui ne lui sont pas imputables.</p>
+              <h3>9. Restitution</h3>
+              <p>La machine et tous ses accessoires doivent être restitués à la date, à l'heure et au lieu convenus, dans leur état initial hors usure normale, avec les réservoirs vidés et sans résidus d'utilisation. Tout dommage, accessoire manquant ou dysfonctionnement constaté peut faire l'objet d'un examen contradictoire.</p>
+              <h3>10. Retard de restitution</h3>
+              <p>Le locataire prévient Pacific Rent&amp;Clean dès qu'il anticipe un retard. Toute prolongation nécessite un accord préalable. Selon les circonstances et à son appréciation, Pacific Rent&amp;Clean peut appliquer des frais supplémentaires justifiés et proportionnés, notamment si le retard prolonge la location ou perturbe une réservation ultérieure. Toute facturation éventuelle est communiquée au locataire et respecte les dispositions légales applicables.</p>
+              <h3>11. Annulation et report</h3>
+              <p>Les demandes d'annulation ou de report doivent être signalées dans les meilleurs délais. Plus de 24 heures avant la remise prévue, l'annulation ou le report est sans frais. Dans les 24 heures précédant la remise, Pacific Rent&amp;Clean se réserve la possibilité, selon les circonstances et à son appréciation, d'appliquer des frais d'annulation d'un montant maximal de <strong>1 500 F CFP</strong>. L'entreprise peut y renoncer, notamment en présence de circonstances particulières ou d'un motif légitime. Si Pacific Rent&amp;Clean annule la location, un report sans frais ou le remboursement intégral des sommes déjà versées pour la réservation concernée est proposé. Ces dispositions s'appliquent sous réserve des droits impératifs du consommateur.</p>
+              <h3>12. Nettoyage des textiles</h3>
+              <p>Avant toute utilisation, le locataire vérifie les consignes d'entretien et la compatibilité des textiles avec l'injection-extraction et les produits utilisés. L'élimination de toutes les taches ou un résultat identique sur tous les textiles ne sont pas garantis. Les responsabilités sont appréciées selon l'origine du dommage et les règles applicables.</p>
+              <h3>13. Réclamations et litiges</h3>
+              <p>Les réclamations peuvent être adressées à <a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a>. Les parties privilégient une solution amiable. À défaut, les règles de droit et de compétence juridictionnelle applicables en Polynésie française s'appliquent.</p>
+              <h3>14. Acceptation</h3>
+              <p>Le client reconnaît avoir pris connaissance des présentes conditions et les accepter en cochant la case prévue au formulaire. L'acceptation ne constitue pas une confirmation de disponibilité ou de réservation.</p>
+            </div>
+          </details>
+          <label class="cgs-check"><input type="checkbox" name="acceptedCgs" required> <span>J’accepte les CGS Location ci-dessus.</span></label>
+          <button class="btn btn-a" type="submit" disabled>ENVOYER MA DEMANDE</button>
+          <p class="form-status" data-location-status role="status" aria-live="polite"></p>
+        </section>
+      </form>
+      <noscript><p>Activez JavaScript pour tester ce formulaire.</p></noscript>
+
+      <div class="booking-success" data-location-success tabindex="-1" aria-hidden="true">
+        <span class="mono">Location</span>
+        <h2 class="title">MAURUURU, SIMULATION TERMINÉE !</h2>
+        <p>Le formulaire de location a été testé. Aucune réservation n’a été transmise.</p>
+        <div class="cta-row">
+          <a class="btn btn-a" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location">Découvrir la location →</a>
+          <a class="btn btn-b" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact">Nous contacter →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Réservation Location",
+  "settings": []
+}
+{% endschema %}

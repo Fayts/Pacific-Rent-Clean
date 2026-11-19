@@ -1,2 +1,42 @@
-<header class="prc-header"><a class="prc-brand" href="{{ routes.root_url }}">Pacific Rent&amp;Clean</a><nav aria-label="Navigation principale"><a href="{{ routes.root_url }}">Accueil</a><a href="/pages/prestations">Prestations</a><a href="/pages/location">Location</a><a href="/pages/contact">Contact</a></nav></header>
-{% schema %}{"name":"En-tête Pacific","settings":[],"presets":[{"name":"En-tête Pacific"}]}{% endschema %}
+<div class="env" aria-hidden="true">
+  <div class="env-glow"></div>
+  <div class="env-grain"></div>
+  {% if template.name == 'index' %}
+  <div class="drop" style="left:12%;animation-delay:-4s"></div>
+  <div class="drop" style="left:31%;animation-delay:-14s"></div>
+  <div class="drop" style="left:57%;animation-delay:-9s"></div>
+  <div class="drop" style="left:74%;animation-delay:-19s"></div>
+  <div class="drop" style="left:88%;animation-delay:-2s"></div>
+  {% endif %}
+</div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="{{ routes.root_url }}">Pacific Rent<i>&amp;</i>Clean</a>
+  <div class="nav-links">
+    <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations"{% if template.name == 'page' and page.handle == 'prestations' %} aria-current="page"{% endif %}>Prestations</a>
+    <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location"{% if template.name == 'page' and page.handle == 'location' %} aria-current="page"{% endif %}>Location</a>
+    <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact"{% if template.name == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Nous contacter</a>
+  </div>
+  <a class="btn btn-a" href="{{ routes.root_url }}#voies">Réserver</a>
+  <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i></button>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true" aria-label="Menu principal">
+  <button class="menu-close" type="button" aria-label="Fermer le menu"></button>
+  <a href="{{ routes.root_url }}"{% if template.name == 'index' %} aria-current="page"{% endif %}>Accueil</a>
+  <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations"{% if template.name == 'page' and page.handle == 'prestations' %} aria-current="page"{% endif %}>Prestations</a>
+  <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location"{% if template.name == 'page' and page.handle == 'location' %} aria-current="page"{% endif %}>Location</a>
+  <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact"{% if template.name == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Nous contacter</a>
+  <a href="{{ routes.root_url }}#voies">Réserver</a>
+</div>
+{% schema %}
+{
+  "name": "En-tête Pacific",
+  "settings": [],
+  "enabled_on": {
+    "groups": [
+      "header"
+    ]
+  }
+}
+{% endschema %}
