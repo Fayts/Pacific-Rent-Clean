@@ -5,7 +5,7 @@
 <header class="phero">
   <div class="phero-bg" style="background-image:url('{{ 'voie-location.jpg' | asset_url }}');background-position:56% 52%" aria-hidden="true"></div>
   <div class="phero-in">
-    <p class="mono crumb"><a href="{{ routes.root_url }}">Accueil</a> <span aria-hidden="true">·</span> <span>Location</span></p>
+    <p class="mono crumb"><a href="{% render 'prc-home-url' %}">Accueil</a> <span aria-hidden="true">·</span> <span>Location</span></p>
     <h1>À vous de jouer.</h1>
     <p>Vous louez le Kärcher Puzzi 10/1, vous tenez la machine, vous faites le passage. Elle arrive chez vous avec tout ce qu’il faut, et vous l’avez 24 heures à partir de la livraison. Si vous préférez qu’on s’en charge, c’est la <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations" style="color:var(--sand)">prestation</a>.</p>
     <nav class="jump" aria-label="Sur cette page">

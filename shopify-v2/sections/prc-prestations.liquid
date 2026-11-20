@@ -5,7 +5,7 @@
 <header class="phero">
   <div class="phero-bg" style="background-image:url('{{ 'voie-domicile.jpg' | asset_url }}')" aria-hidden="true"></div>
   <div class="phero-in">
-    <p class="mono crumb"><a href="{{ routes.root_url }}">Accueil</a> <span aria-hidden="true">·</span> <span>Prestations</span></p>
+    <p class="mono crumb"><a href="{% render 'prc-home-url' %}">Accueil</a> <span aria-hidden="true">·</span> <span>Prestations</span></p>
     <h1>Ce qu’on remet à neuf.</h1>
     <p>Trois familles de textile, une seule méthode. Un professionnel vient chez vous : on injecte la solution au fond de la fibre, et on la reprend dans le même geste. Si vous préférez tenir la machine vous-même, c’est la <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location" style="color:var(--sand)">location</a>.</p>
     <nav class="jump" aria-label="Sur cette page">

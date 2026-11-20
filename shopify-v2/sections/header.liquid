@@ -11,23 +11,23 @@
 </div>
 
 <nav class="nav" id="nav">
-  <a class="brand" href="{{ routes.root_url }}">Pacific Rent<i>&amp;</i>Clean</a>
+  <a class="brand" href="{% render 'prc-home-url' %}">Pacific Rent<i>&amp;</i>Clean</a>
   <div class="nav-links">
     <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations"{% if template.name == 'page' and page.handle == 'prestations' %} aria-current="page"{% endif %}>Prestations</a>
     <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location"{% if template.name == 'page' and page.handle == 'location' %} aria-current="page"{% endif %}>Location</a>
     <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact"{% if template.name == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Nous contacter</a>
   </div>
-  <a class="btn btn-a" href="{{ routes.root_url }}#voies">Réserver</a>
+  <a class="btn btn-a" href="{% render 'prc-home-url' %}#voies">Réserver</a>
   <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><i></i></button>
 </nav>
 
 <div class="menu" id="menu" aria-hidden="true" aria-label="Menu principal">
   <button class="menu-close" type="button" aria-label="Fermer le menu"></button>
-  <a href="{{ routes.root_url }}"{% if template.name == 'index' %} aria-current="page"{% endif %}>Accueil</a>
+  <a href="{% render 'prc-home-url' %}"{% if template.name == 'index' %} aria-current="page"{% endif %}>Accueil</a>
   <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations"{% if template.name == 'page' and page.handle == 'prestations' %} aria-current="page"{% endif %}>Prestations</a>
   <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location"{% if template.name == 'page' and page.handle == 'location' %} aria-current="page"{% endif %}>Location</a>
   <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact"{% if template.name == 'page' and page.handle == 'contact' %} aria-current="page"{% endif %}>Nous contacter</a>
-  <a href="{{ routes.root_url }}#voies">Réserver</a>
+  <a href="{% render 'prc-home-url' %}#voies">Réserver</a>
 </div>
 {% schema %}
 {
