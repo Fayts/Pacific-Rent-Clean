@@ -1,0 +1,90 @@
+{% if template.suffix != blank or page.handle == 'contact' %}
+<span id="top" style="display:block;height:1px"></span>
+<header class="phero contact-hero">
+  <div class="phero-bg" aria-hidden="true"></div>
+  <div class="phero-in">
+    <p class="mono crumb"><a href="{% render 'prc-home-url' %}">Accueil</a> <span aria-hidden="true">·</span> <span>Nous contacter</span></p>
+    <h1>Parlons<br>de vos textiles.</h1>
+    <p>Une question avant de réserver ? Besoin d’aide pour choisir une prestation ou une location ? Contactez-nous.</p>
+  </div>
+</header>
+
+<section class="sec sec-foam contact-section" id="message">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap contact-wrap">
+    <div class="contact-editorial rev">
+      <span class="mono">Moyens de contact</span>
+      <h2 class="title">Un message clair,<br>une réponse utile.</h2>
+      <div class="contact-lines" aria-label="Moyens de contact Pacific Rent&Clean">
+        <a href="mailto:pacificrentclean@gmail.com">
+          <span>E-mail Pacific Rent&amp;Clean</span>
+          <strong>pacificrentclean@gmail.com</strong>
+        </a>
+        <a href="https://www.facebook.com/share/19Tx5juhpF/" target="_blank" rel="noopener noreferrer">
+          <span>Réseaux sociaux</span>
+          <strong>Facebook</strong>
+        </a>
+      </div>
+    </div>
+
+    <div id="demande-devis" class="contact-form-shell rev" data-contact-shell>
+      <form method="post" class="contact-form" data-contact-form novalidate>
+        <p class="booking-note field-full">Mode test. Utilisez des coordonnées fictives.</p>
+        <input type="hidden" name="loadedAt" value="">
+        <p class="hp-field" aria-hidden="true"><label>Site web <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field"><label for="contact-name">Nom</label><input id="contact-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="contact-email">E-mail</label><input id="contact-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="contact-phone">Téléphone</label><input id="contact-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="contact-subject">Sujet</label><select id="contact-subject" name="subject" required><option>Prestation</option><option>Devis hors dimensions</option><option>Location</option><option>Autre</option></select></div>
+        <div id="quote-fields" class="field-full" hidden>
+          <div class="field"><label for="quote-textile">Type de textile</label>
+            <select name="textile" id="quote-textile" disabled><option value="">Choisir le textile</option><option>Matelas</option><option>Canapé ou fauteuil</option><option>Tapis</option></select>
+          </div>
+          <div class="field"><label for="quote-size">Dimensions réelles (en cm)</label>
+            <input name="dimensions" id="quote-size" maxlength="100" placeholder="Longueur × largeur, par exemple 210 × 180" disabled>
+          </div>
+        </div>
+        <div class="field field-full"><label for="contact-message">Message</label><textarea id="contact-message" name="message" rows="6" required></textarea></div>
+        <div class="form-actions field-full">
+          <button class="btn btn-a" type="submit" disabled>Envoyer</button>
+          <p class="form-status" data-contact-status role="status" aria-live="polite"></p>
+        </div>
+      </form>
+      <noscript><p>Activez JavaScript pour tester ce formulaire.</p></noscript>
+
+      <div class="contact-success" data-contact-success aria-hidden="true" tabindex="-1">
+        <span class="mono">Simulation terminée</span>
+        <h2 class="title">Mauruuru pour<br>votre message&nbsp;!</h2>
+        <p>Le formulaire de contact a été testé. Aucun message n’a été envoyé.</p>
+        <p>En attendant, vous pouvez continuer à découvrir nos prestations ou nos offres de location.</p>
+        <div class="cta-row">
+          <a class="btn btn-a" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations">Découvrir nos prestations →</a>
+          <a class="btn btn-b" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location">Découvrir la location →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-deep2 contact-practical" id="pratique">
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="practical-card rev">
+      <span class="mono">Pacific Rent&amp;Clean</span>
+      <h2 class="title">Tahiti</h2>
+      <p>7j/7 · 8h–18h</p>
+      <div class="cta-row">
+        <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation">Réserver une prestation</a>
+        <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/reserver?type=location">Louer le Kärcher</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Contact",
+  "settings": []
+}
+{% endschema %}

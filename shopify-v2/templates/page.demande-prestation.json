@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "prc-prestation-request"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

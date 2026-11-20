@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | escape }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title | escape }}{% unless page_title contains shop.name %} · {{ shop.name | escape }}{% endunless %}</title>
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% if page_description != blank %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23082F35'/%3E%3Cpath d='M8 40 L14 30 L20 38 L26 26 L32 36 L38 24 L44 34 L50 28 L56 36' stroke='%23E87961' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Instrument+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  {{ content_for_header }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <style>:root { --prc-contact-image: url("{{ 'hero-ending.jpg' | asset_url }}"); }</style>
+  <script src="{{ 'location-dates.js' | asset_url }}" defer></script>
+  <script src="{{ 'prestation-rules.js' | asset_url }}" defer></script>
+  <script src="{{ 'request-transport.js' | asset_url }}" defer></script>
+  <script src="{{ 'site.js' | asset_url }}" defer></script>
+  {% if template.name == 'index' %}
+    <script src="{{ 'hero.js' | asset_url }}" defer></script>
+  {% elsif template.suffix == 'demande-prestation' or page.handle == 'demande-prestation' %}
+    <script src="{{ 'prestation-form.js' | asset_url }}" defer></script>
+  {% endif %}
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  {% sections 'header-group' %}
+  <main id="main" tabindex="-1">{{ content_for_layout }}</main>
+  {% sections 'footer-group' %}
+</body>
+</html>

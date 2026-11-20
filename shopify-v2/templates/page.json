@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "prc-page"
+    },
+    "prestations": {
+      "type": "prc-prestations"
+    },
+    "location": {
+      "type": "prc-location"
+    },
+    "contact": {
+      "type": "prc-contact"
+    },
+    "reserver": {
+      "type": "prc-location-request"
+    },
+    "demandePrestation": {
+      "type": "prc-prestation-request"
+    }
+  },
+  "order": [
+    "main",
+    "prestations",
+    "location",
+    "contact",
+    "reserver",
+    "demandePrestation"
+  ]
+}
