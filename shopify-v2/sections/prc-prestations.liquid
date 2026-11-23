@@ -1,0 +1,152 @@
+{% if template.suffix != blank or page.handle == 'prestations' %}
+<span id="top" style="display:block;height:1px"></span>
+
+<!-- ========== L'EN-TÊTE ========== -->
+<header class="phero">
+  <div class="phero-bg" style="background-image:url('{{ 'voie-domicile.jpg' | asset_url }}')" aria-hidden="true"></div>
+  <div class="phero-in">
+    <p class="mono crumb"><a href="{% render 'prc-home-url' %}">Accueil</a> <span aria-hidden="true">·</span> <span>Prestations</span></p>
+    <h1>Ce qu’on remet à neuf.</h1>
+    <p>Trois familles de textile, une seule méthode. Un professionnel vient chez vous : on injecte la solution au fond de la fibre, et on la reprend dans le même geste. Si vous préférez tenir la machine vous-même, c’est la <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location" style="color:var(--sand)">location</a>.</p>
+    <nav class="jump" aria-label="Sur cette page">
+      <a href="#matelas">Matelas</a>
+      <a href="#canapes">Canapés et fauteuils</a>
+      <a href="#tapis">Tapis et moquettes</a>
+      <a href="#prix">Les prix</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== LES TROIS PRESTATIONS ========== -->
+<section class="sec sec-foam" id="prestations">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+
+    <article class="svc svc-1 rev" id="matelas">
+      <div>
+        <span class="svc-num">01</span>
+        <h2 class="svc-word">Matelas</h2>
+        <p class="svc-txt">Un entretien régulier aide à garder une literie fraîche et confortable. L’extraction nettoie les fibres en profondeur, pour repartir sur une base plus saine.</p>
+        <p class="svc-txt" style="margin-top:1rem">Une place, deux places, queen ou king : le prix dépend de la taille. On travaille sur le dessus, puis sur le dessous si le matelas peut être retourné.</p>
+        <span class="svc-price">À partir de 5 000 F</span><br>
+        <a class="svc-link" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation?categorie=matelas">Réserver un matelas <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="svc-fig"><img src="{{ 'prest-matelas-clean.webp' | asset_url }}" alt="Nettoyage en profondeur d’un matelas par injection-extraction dans une chambre lumineuse." loading="lazy" decoding="async" width="1536" height="1024"></div>
+    </article>
+
+    <article class="svc svc-2 rev" id="canapes">
+      <div>
+        <span class="svc-num">02</span>
+        <h2 class="svc-word">Canapés</h2>
+        <p class="svc-txt">Un entretien régulier aide à garder le tissu frais et agréable au quotidien. L’extraction nettoie les fibres en profondeur, pour retrouver une assise plus nette et confortable.</p>
+        <p class="svc-txt" style="margin-top:1rem">Fauteuil, deux places, trois places, angle, clic clac : chaque format a son prix affiché.</p>
+        <span class="svc-price">À partir de 5 000 F</span><br>
+        <a class="svc-link" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation?categorie=canapes">Réserver un canapé <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="svc-fig"><img src="{{ 'prest-canape-clean.webp' | asset_url }}" alt="Nettoyage en profondeur d’un canapé en tissu par injection-extraction dans un salon lumineux." loading="lazy" decoding="async" width="1536" height="1024"></div>
+    </article>
+
+    <article class="svc svc-4 rev" id="tapis">
+      <div>
+        <span class="svc-num">03</span>
+        <h2 class="svc-word">Tapis</h2>
+        <p class="svc-txt">Le poil long garde tout. C’est aussi ce qui rend le passage si visible.</p>
+        <p class="svc-txt" style="margin-top:1rem">Tapis et moquettes, du petit format au grand : trois tailles, trois prix affichés. Sur une moquette posée, le suceur sol de 240 mm travaille debout, dans le sens du poil.</p>
+        <span class="svc-price">À partir de 2 000 F</span><br>
+        <a class="svc-link" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation?categorie=tapis">Réserver un tapis <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="svc-fig"><img src="{{ 'prest-tapis-clean.webp' | asset_url }}" alt="Nettoyage en profondeur d’un tapis à l’aide d’un injecteur-extracteur Kärcher Puzzi 10/1." loading="lazy" decoding="async" width="1536" height="1024"></div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== LES PRIX ========== -->
+<section class="sec sec-deep" id="prix">
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="rev" style="margin-bottom:clamp(28px,3.6vw,52px);max-width:56ch;text-align:right;margin-left:auto">
+      <span class="mono" style="display:block;margin-bottom:1rem">Les prix</span>
+      <h2 class="title">Affichés.</h2>
+      <p class="lede" style="margin-top:1.2rem;margin-left:auto">Pas de « contactez-nous pour un devis » sur des prestations dont le prix existe déjà.</p>
+    </div>
+    <div class="prest-tariffs rev">
+      <div class="prest-tariff-grid">
+        <article class="prest-tariff-card">
+          <h3>Tapis</h3>
+          <dl><div><dt>80 × 150 cm</dt><dd>2 000 F</dd></div>
+          <div><dt>160 × 230 cm</dt><dd>4 000 F</dd></div>
+          <div><dt>240 × 330 cm</dt><dd>6 000 F</dd></div></dl>
+        </article>
+        <article class="prest-tariff-card">
+          <h3>Matelas</h3>
+          <dl><div><dt>90 × 190 cm</dt><dd>5 000 F</dd></div>
+          <div><dt>140 × 190 cm</dt><dd>10 000 F</dd></div>
+          <div><dt>160 × 200 cm</dt><dd>11 000 F</dd></div>
+          <div><dt>180 × 200 cm</dt><dd>12 000 F</dd></div></dl>
+        </article>
+        <article class="prest-tariff-card">
+          <h3>Canapés</h3>
+          <dl><div><dt>Fauteuil 1 place</dt><dd>5 000 F</dd></div>
+          <div><dt>Canapé 2 places</dt><dd>10 000 F</dd></div>
+          <div><dt>Canapé 3 places</dt><dd>12 000 F</dd></div>
+          <div><dt>Canapé d’angle +3 places</dt><dd>15 000 F</dd></div>
+          <div><dt>Canapé clic-clac</dt><dd>20 000 F</dd></div></dl>
+        </article>
+      </div>
+      <div class="prest-quote">
+        <h3>Votre textile ne figure pas dans cette liste ?</h3>
+        <p>Autre dimension, autre meuble textile ou volume inhabituel : nous établissons un devis personnalisé.</p>
+        <a class="btn btn-a" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact?demande=devis#demande-devis">Demander un devis →</a>
+      </div>
+      <div class="prest-rental-cta">
+        <p>Vous préférez nettoyer vous-même ?</p>
+        <a class="btn btn-a" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location">Ou louez la machine</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-deep2" id="faq-prestations">
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap faq">
+    <div class="rev" style="margin-bottom:clamp(26px,3.4vw,48px)">
+      <span class="mono" style="display:block;margin-bottom:1rem;color:var(--sand)">Questions prestations</span>
+      <h2 class="title">Avant de réserver.</h2>
+      <p class="lede" style="margin-top:1.1rem;max-width:52ch">Les réponses essentielles avant de faire intervenir Pacific Rent&amp;Clean chez vous.</p>
+    </div>
+    <div id="faqPrestationsList" class="rev">
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="prest-a1">Combien de temps faut-il pour sécher ?</button><div class="a" id="prest-a1" role="region"><p>Ça dépend de la météo, de l’aération et de l’endroit où se trouve le mobilier. Au soleil dehors, c’est rapide ; dans une pièce fermée et peu aérée, cela prend plus de temps.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="prest-a2">Toutes les taches peuvent-elles disparaître ?</button><div class="a" id="prest-a2" role="region"><p>On nettoie la fibre en profondeur, pas seulement la surface. Les taches très anciennes ou incrustées peuvent toutefois ne pas partir complètement.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="prest-a3">Quels tissus nécessitent un avis préalable ?</button><div class="a" id="prest-a3" role="region"><p>Nous vérifions le textile avant de commencer. Les tissus marqués « nettoyage à sec », le velours et la soie demandent un avis préalable. Envoyez-nous une photo de l’étiquette si vous avez un doute.</p></div></div>
+      <div class="q"><button type="button" aria-expanded="false" aria-controls="prest-a4">Quel entretien prévoir après le nettoyage ?</button><div class="a" id="prest-a4" role="region"><p>Une aération régulière et un entretien doux permettent de conserver plus longtemps la fraîcheur des textiles. Nous vous indiquons les précautions utiles selon le support nettoyé.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LA CLÔTURE ========== -->
+<section class="close" id="conversion">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="close-bg" style="background-image:url('{{ 'hero-ending.jpg' | asset_url }}')" aria-hidden="true"></div>
+  <div class="close-in">
+    <div class="rev">
+      <h2 class="title">À vous de choisir<br>le moment.</h2>
+      <p class="lede close-note" style="margin:1.4rem auto 0">Sur rendez-vous, 7 jours sur 7 à Tahiti.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn btn-a prest-final-btn" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation">Réserver une prestation</a>
+        <a class="btn btn-a prest-final-btn" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact">Nous contacter</a>
+      </div>
+      <div class="contact">
+        <span>Tahiti, 7j/7</span>
+        <span><a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Prestations",
+  "settings": []
+}
+{% endschema %}

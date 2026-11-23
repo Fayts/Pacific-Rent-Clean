@@ -1,0 +1,236 @@
+{% assign hero_mp4 = 'hero-scrub-web.mp4' | asset_url %}
+{% for source in section.settings.hero_video.sources %}
+  {% if source.format == 'mp4' %}
+    {% assign hero_mp4 = source.url %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+<script type="application/json" id="prc-hero-media">
+{
+  "mode": {{ section.settings.scrub_mode | json }},
+  "video": {{ hero_mp4 | json }},
+  "poster": {{ 'hero-poster.jpg' | asset_url | json }},
+  "ending": {{ 'hero-ending.jpg' | asset_url | json }},
+  "frames": [
+    {% for index in (1..181) %}
+      {% assign frame_number = index | prepend: '0000' | slice: -4, 4 %}
+      {% assign frame_name = 'frame-' | append: frame_number | append: '.webp' %}
+      {{ frame_name | asset_url | json }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+<noscript><style>
+  .hero { height: auto; }
+  .hero .stage { position: relative; background: center / cover url("{{ 'hero-ending.jpg' | asset_url }}"); }
+  .hero .band { display: none; }
+  .hero .b5 { display: flex; opacity: 1; }
+  .hero .b5 .line, .hero .b5 .sub, .hero .b5 .cta-row { opacity: 1; transform: none; }
+  .hero .ring { display: none; }
+</style></noscript>
+<span id="top" style="display:block;height:1px"></span>
+
+<!-- ========== ACTE 1 · LE PASSAGE ========== -->
+<section class="hero" id="hero" aria-label="Le passage">
+  <div class="stage" id="stage">
+    <div class="poster" id="poster" aria-hidden="true"></div>
+    <video id="heroVideo" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="vig" aria-hidden="true"></div>
+
+    <svg class="ring" id="ring" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"
+              transform="rotate(-90 24 24)"/>
+    </svg>
+
+    <div class="bands" id="bands">
+      <div class="band b1" data-a="0" data-b="0.24">
+        <div class="in-b">
+          <h2 class="d line e-drift" data-split="word" data-seed="11">Ce que l’aspirateur laisse derrière lui.</h2>
+        </div>
+      </div>
+      <div class="band b2" data-a="0.30" data-b="0.42">
+        <div class="in-b">
+          <h2 class="d line hero-word e-rise" data-split="word" data-seed="23">Injecté.</h2>
+        </div>
+      </div>
+      <div class="band b3" data-a="0.46" data-b="0.58">
+        <div class="in-b">
+          <h2 class="d line hero-word e-rise" data-split="word" data-seed="37">Décollé.</h2>
+        </div>
+      </div>
+      <div class="band b4" data-a="0.62" data-b="0.74">
+        <div class="in-b">
+          <h2 class="d line hero-word e-rise" data-split="word" data-seed="41">Extrait.</h2>
+        </div>
+      </div>
+      <div class="band b5" data-a="0.80" data-b="1">
+        <div class="in-b">
+          <h1 class="d line e-rise">Ce qu’aucun aspirateur n’atteint. On l’enlève.</h1>
+          <p class="sub">Nettoyage textile professionnel par injection-extraction à Tahiti.</p>
+          <div class="cta-row">
+            <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation">RÉSERVER UNE PRESTATION</a>
+            <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/reserver?type=location">LOUER LE KÄRCHER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- le héros fixe réutilise le contenu final existant, sans duplication DOM -->
+    <div class="static-hero" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ========== le bandeau d'instrument ========== -->
+<div class="strip" aria-label="En bref">
+  <div class="track mono" id="track" aria-hidden="true"></div>
+  <p class="sr">Injection extraction. Matériel professionnel. Intervention à domicile. Location disponible. Produits professionnels. Tahiti. Ouvert 7j/7.</p>
+</div>
+
+<!-- ========== DEUX FAÇONS DE RETROUVER LE PROPRE ========== -->
+<section class="sec sec-deep" id="voies">
+  <div class="pass" style="--from:var(--basalt)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="fork-head rev">
+      <span class="mono" style="display:block;margin-bottom:1.2rem">Réserver</span>
+      <h2 class="title">Deux façons<br>de retrouver le propre.</h2>
+    </div>
+    <div class="fork voie-pair">
+      <article class="voie voie-home">
+        <div class="voie-fig"><img src="{{ 'voie-domicile-immersive.webp' | asset_url }}" alt="Professionnel en train de nettoyer un canapé par injection-extraction dans un intérieur lumineux ouvert sur un paysage tropical." loading="lazy" decoding="async" width="1536" height="1024"></div>
+        <div class="voie-body">
+          <span class="mono">Prestation</span>
+          <h3>On s’en occupe.</h3>
+          <p>On réalise le nettoyage pour vous.</p>
+          <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation">Réserver une prestation</a>
+        </div>
+      </article>
+      <article class="voie voie-rental">
+        <div class="voie-fig"><img src="{{ 'voie-location-immersive.webp' | asset_url }}" alt="Kärcher Puzzi 10/1 installé dans un intérieur lumineux, prêt à être utilisé." loading="lazy" decoding="async" width="1536" height="1024"></div>
+        <div class="voie-body">
+          <span class="mono">Location</span>
+          <h3>À vous<br>de jouer.</h3>
+          <p>Louez le Kärcher Puzzi 10/1 et nettoyez vous-même.</p>
+          <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/reserver?type=location">Réserver une location</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== APERÇU DES PRESTATIONS + LA MÉTHODE EN BREF ========== -->
+<section class="sec sec-foam" id="prestations">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="mono">Les prestations</span>
+      <h2 class="title">Ce qu’on remet à neuf.</h2>
+    </div>
+
+    <div class="pv pv-overview stag" aria-label="Aperçu des prestations">
+      <a class="pv-card" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#matelas">
+        <div class="pv-fig"><img src="{{ 'prest-matelas-clean.webp' | asset_url }}" alt="Nettoyage en profondeur d’un matelas par injection-extraction." loading="lazy" decoding="async" width="1536" height="1024"></div>
+        <div class="pv-body"><span class="pv-num mono">01</span><h3>Matelas</h3><span class="pv-link">Découvrir <span aria-hidden="true">→</span></span></div>
+      </a>
+      <a class="pv-card" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#canapes">
+        <div class="pv-fig"><img src="{{ 'prest-canape-clean.webp' | asset_url }}" alt="Nettoyage en profondeur d’un canapé par injection-extraction." loading="lazy" decoding="async" width="1536" height="1024"></div>
+        <div class="pv-body"><span class="pv-num mono">02</span><h3>Canapés</h3><span class="pv-link">Découvrir <span aria-hidden="true">→</span></span></div>
+      </a>
+      <a class="pv-card" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#tapis">
+        <div class="pv-fig"><img src="{{ 'prest-tapis-clean.webp' | asset_url }}" alt="Nettoyage en profondeur d’un tapis par injection-extraction." loading="lazy" decoding="async" width="1536" height="1024"></div>
+        <div class="pv-body"><span class="pv-num mono">03</span><h3>Tapis</h3><span class="pv-link">Découvrir <span aria-hidden="true">→</span></span></div>
+      </a>
+    </div>
+
+    <p class="sec-cta rev"><a class="next" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations">Voir toutes nos prestations <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<!-- ========== APERÇU DE LA MACHINE, EN VOLUME ========== -->
+<section class="sec sec-deep2" id="machine">
+  <div class="pass" style="--from:var(--foam)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="mono">L’outil</span>
+      <h2 class="title">La puissance professionnelle,<br>entre vos mains.</h2>
+    </div>
+
+    <div class="machine-2d">
+      <div class="machine-stage">
+        <img src="{{ 'machine-puzzi-2d.webp' | asset_url }}" alt="Kärcher Puzzi 10/1 professionnel" class="machine-img" loading="lazy" decoding="async" width="1100" height="900">
+        <div class="callout-grid" aria-label="Caractéristiques du Kärcher Puzzi 10/1">
+          <div class="callout-line" data-id="01">
+            <div class="label">01 — INJECTION</div>
+            <div class="value">1 bar</div>
+          </div>
+          <div class="callout-line" data-id="02">
+            <div class="label">02 — EAU PROPRE</div>
+            <div class="value">Réservoir 10 L</div>
+          </div>
+          <div class="callout-line" data-id="03">
+            <div class="label">03 — EXTRACTION</div>
+            <div class="value">Aspire l’eau et les saletés des fibres</div>
+          </div>
+          <div class="callout-line" data-id="04">
+            <div class="label">04 — EAU RÉCUPÉRÉE</div>
+            <div class="value">Réservoir 9 L</div>
+          </div>
+        </div>
+      </div>
+      <p class="machine-note">Le même équipement professionnel utilisé pour nos prestations et disponible à la location.</p>
+      <div class="machine-ctas">
+        <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations" class="btn btn-a home-unified-cta">Découvrir nos prestations →</a>
+        <a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location" class="btn btn-a home-unified-cta">Découvrir la location →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LA CLÔTURE ========== -->
+<section class="close" id="reserver">
+  <div class="pass" style="--from:var(--deep)" aria-hidden="true"><span class="fill"></span><span class="edge"></span></div>
+  <div class="close-bg" style="background-image:url('{{ 'hero-ending.jpg' | asset_url }}')" aria-hidden="true"></div>
+  <div class="close-in">
+    <div class="rev">
+      <span class="mono" style="display:block;margin-bottom:1.4rem;color:var(--sand)">À vous</span>
+      <h2 class="title">Prêt à voir<br><span style="white-space:nowrap">la différence ?</span></h2>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/demande-prestation">Réserver une prestation</a>
+        <a class="btn btn-a home-unified-cta" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/reserver?type=location">Louer le Kärcher</a>
+      </div>
+      <div class="contact">
+        <span>Tahiti · 7j/7</span>
+        <span><a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Accueil",
+  "settings": [
+    {
+      "type": "select",
+      "id": "scrub_mode",
+      "label": "Animation sur ordinateur",
+      "default": "frames",
+      "options": [
+        {
+          "value": "frames",
+          "label": "Séquence WebP"
+        },
+        {
+          "value": "mp4",
+          "label": "Vidéo MP4"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "id": "hero_video",
+      "label": "Vidéo du héros (optionnelle)"
+    }
+  ]
+}
+{% endschema %}

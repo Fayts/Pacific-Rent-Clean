@@ -1,0 +1,3 @@
+{%- assign home_path = routes.root_url | split: '?' | first | default: '/' -%}
+{{- home_path | append: '/' | replace: '//', '/' -}}
+{%- if theme.role == 'unpublished' -%}?preview_theme_id={{ theme.id }}{%- endif -%}

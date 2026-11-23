@@ -1,0 +1,12 @@
+{% assign pacific_pages = 'prestations,location,contact,reserver,demande-prestation' | split: ',' %}
+{% unless pacific_pages contains page.handle %}
+<span id="top"></span>
+<section class="sec sec-foam"><div class="wrap"><h1 class="title">{{ page.title | escape }}</h1>{{ page.content }}</div></section>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Page Pacific",
+  "settings": []
+}
+{% endschema %}

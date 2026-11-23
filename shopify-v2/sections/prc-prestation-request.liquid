@@ -1,0 +1,104 @@
+{% if template.suffix != blank or page.handle == 'demande-prestation' %}
+<span id="top" style="display:block;height:1px"></span>
+
+<header class="phero">
+  <div class="phero-bg" style="background-image:url('{{ 'prest-matelas-clean.webp' | asset_url }}')" aria-hidden="true"></div>
+  <div class="phero-in">
+    <p class="mono crumb"><a href="{% render 'prc-home-url' %}">Accueil</a> <span aria-hidden="true">·</span> <span>Réserver une prestation</span></p>
+    <h1>Réserver une prestation.</h1>
+    <p>Composez votre demande de nettoyage à domicile et choisissez la date souhaitée.</p>
+  </div>
+</header>
+
+<section class="sec sec-foam booking-section prestation-booking-section">
+  <div class="wrap">
+    <div class="booking-shell">
+      <form method="post" class="booking-form" id="prestation-form">
+        <p class="booking-note field-full">Mode test. Utilisez des coordonnées fictives.</p>
+        <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <section class="booking-step" aria-labelledby="step-1">
+          <span class="mono booking-num">01 — Articles</span>
+          <h2 class="sub-t" id="step-1">Quels textiles souhaitez-vous nettoyer ?</h2>
+          <div id="articles"></div>
+          <template id="article-template">
+            <fieldset class="booking-grid cart-row">
+              <legend class="mono"></legend>
+              <label class="field">Article<select required class="product"><option value="">Sélectionner un article</option></select></label>
+              <label class="field">Quantité<input class="quantity" type="number" value="1" min="1" step="1" required></label>
+              <button class="svc-link remove" type="button">Supprimer</button>
+            </fieldset>
+          </template>
+          <button class="btn btn-b" type="button" id="add">Ajouter un article</button>
+          <p class="booking-note">Textile hors dimensions ? <a class="svc-link" href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact?demande=devis#demande-devis">Demander un devis</a></p>
+        </section>
+        <section class="booking-step" aria-labelledby="step-2">
+          <span class="mono booking-num">02 — Date</span>
+          <h2 class="sub-t" id="step-2">Quand souhaitez-vous notre passage ?</h2>
+          <div class="booking-options">
+            <label class="booking-choice prest-date-choice"><input type="radio" name="mode" value="standard" checked><span class="prest-date-title">Standard</span><span class="prest-date-sub">À partir de J+2</span></label>
+            <label class="booking-choice prest-date-choice"><input type="radio" name="mode" value="urgent"><span class="prest-date-title">Intervention urgente <span aria-hidden="true">·</span> Demain</span><span class="prest-date-sub">Supplément de 1 500 F*</span><span class="prest-date-foot">*Sous réserve de disponibilité</span></label>
+          </div>
+          <div class="booking-grid compact">            <div class="field"><label for="prest-date">Date souhaitée</label><input id="prest-date" name="date" type="date" required maxlength="500" ></div></div>
+        </section>
+        <section class="booking-step" aria-labelledby="step-3">
+          <span class="mono booking-num">03 — Intervention</span>
+          <h2 class="sub-t" id="step-3">Où intervenons-nous ?</h2>
+          <div class="booking-grid">
+            <div class="field"><label for="commune">Commune</label><select id="commune" name="commune" required><option value="">Sélectionner la commune</option></select></div>
+            <div class="field" id="other-field" hidden><label for="other">Précisez la commune</label><input id="other" name="otherCommune" maxlength="500" disabled></div>
+            <div class="field"><label for="prest-address">Adresse d’intervention</label><input id="prest-address" name="address" type="text" required maxlength="500" autocomplete="street-address"></div>
+          </div>
+        </section>
+        <section class="booking-step" aria-labelledby="step-4">
+          <span class="mono booking-num">04 — Coordonnées</span>
+          <h2 class="sub-t" id="step-4">Comment vous joindre ?</h2>
+          <div class="booking-grid">
+            <div class="field"><label for="prest-name">Nom et prénom</label><input id="prest-name" name="name" type="text" required maxlength="500" autocomplete="name"></div>
+            <div class="field"><label for="prest-email">E-mail</label><input id="prest-email" name="email" type="email" required maxlength="500" autocomplete="email"></div>
+            <div class="field"><label for="prest-mobile">Téléphone</label><input id="prest-mobile" name="mobile" type="tel" required maxlength="500" autocomplete="tel"></div>
+          </div>
+        </section>
+        <section class="booking-step" aria-labelledby="step-5">
+          <span class="mono booking-num">05 — Récapitulatif</span>
+          <h2 class="sub-t" id="step-5">Votre réservation.</h2>
+          <dl class="summary-list" id="summary" aria-live="polite"></dl>
+          <p class="booking-note">Votre réservation sera confirmée après vérification manuelle de la disponibilité.</p>
+          <details id="cgs-prestations" class="booking-note">
+            <summary>Lire les conditions générales de service (CGS Prestations)</summary>
+            <p><strong>Conditions générales de service — Prestations de nettoyage · Version du 18 novembre 2026.</strong></p>
+            <p><strong>1. Objet.</strong> Ces conditions encadrent les réservations et les prestations de nettoyage textile à domicile réalisées par Pacific Rent&amp;Clean, notamment sur les matelas, canapés, fauteuils et tapis, ainsi que sur les autres textiles acceptés après examen.</p>
+            <p><strong>2. Réservation.</strong> Toute demande reste soumise à disponibilité. L'envoi du formulaire ne vaut pas confirmation. La prestation est confirmée après accord sur la date, les articles concernés et le montant.</p>
+            <p><strong>3. Tarifs et déplacement.</strong> Le tarif dépend de la nature, des dimensions et des quantités des articles. Déplacement gratuit à Papeete, Pirae, Arue et Mahina ; 1 500 F CFP à Faa'a et Papenoo ; 2 500 F CFP dans les autres communes. Toute modification du périmètre ou du prix est communiquée au client et soumise à son accord avant intervention.</p>
+            <p><strong>4. Délais.</strong> Une prestation standard peut être demandée à partir de J+2. Une intervention urgente le lendemain est possible, sous réserve d'acceptation et de disponibilité, avec un supplément unique de 1 500 F CFP. Le formulaire ne propose aucune intervention le jour même.</p>
+            <p><strong>5. État initial des textiles.</strong> Le client signale les défauts connus : déchirures, coutures fragiles, usure, décolorations ou réparations antérieures. Pacific Rent&amp;Clean peut procéder à un examen visuel et documenter les fragilités par des photographies lorsque cela est nécessaire.</p>
+            <p><strong>6. Textiles fragiles.</strong> Le client communique les consignes d'entretien du fabricant et les particularités connues des textiles. Pacific Rent&amp;Clean peut refuser, adapter ou interrompre une intervention lorsqu'un risque de détérioration est identifié, après information du client.</p>
+            <p><strong>7. Résultat du nettoyage.</strong> Pacific Rent&amp;Clean réalise la prestation avec soin et selon des méthodes adaptées. Le résultat dépend du textile, de son état, de l'ancienneté des taches et des traitements antérieurs. La disparition complète des taches, odeurs ou auréoles n'est pas garantie, sans préjudice des obligations légales et contractuelles de l'entreprise.</p>
+            <p><strong>8. Responsabilité.</strong> Pacific Rent&amp;Clean répond des dommages qui lui sont imputables conformément au droit applicable. Les défauts préexistants, l'usure normale et les détériorations sans lien avec l'intervention ne lui sont pas automatiquement imputés. En cas de contestation, les parties examinent les circonstances et les éléments disponibles, notamment l'état initial documenté. Les droits légaux du client demeurent préservés.</p>
+            <p><strong>9. Intervention à domicile.</strong> Le client permet l'accès aux textiles et signale les contraintes particulières. L'espace doit permettre une intervention dans des conditions adaptées et sûres. Dans le cas contraire, Pacific Rent&amp;Clean peut proposer un report ou une adaptation.</p>
+            <p><strong>10. Séchage.</strong> L'injection-extraction peut laisser une humidité résiduelle. Le temps de séchage varie selon le textile, la ventilation et les conditions ambiantes. Le client est invité à respecter les recommandations de séchage communiquées après intervention.</p>
+            <p><strong>11. Paiement.</strong> Le règlement s'effectue par espèces, virement bancaire ou Deblock, selon le moyen convenu. Les modalités de règlement sont communiquées lors de la confirmation. Aucun paiement en ligne n'est exigé lors de l'envoi du formulaire.</p>
+            <p><strong>12. Annulation et report.</strong> Toute demande doit être signalée dans les meilleurs délais. Plus de 24 heures avant l'intervention prévue, l'annulation ou le report est sans frais. Dans les 24 heures précédant l'intervention, Pacific Rent&amp;Clean peut, selon les circonstances et à son appréciation, appliquer des frais d'annulation plafonnés à 1 500 F CFP, ou y renoncer notamment en cas de motif légitime. Si Pacific Rent&amp;Clean annule, un report sans frais ou le remboursement des sommes déjà versées pour la prestation concernée est proposé. Les droits impératifs du consommateur restent applicables.</p>
+            <p><strong>13. Réclamations.</strong> Toute réclamation peut être adressée à <a href="mailto:pacificrentclean@gmail.com">pacificrentclean@gmail.com</a>, en précisant la date, le textile et le motif. Les parties privilégient une solution amiable, dans le respect des règles applicables.</p>
+            <p><strong>14. Acceptation.</strong> Le client reconnaît avoir pris connaissance des présentes CGS et les accepter en cochant la case prévue au formulaire. Cette acceptation ne constitue pas une confirmation de réservation.</p>
+          </details>
+          <label class="cgs-check"><input type="checkbox" name="acceptedCgs" value="prestations-2026-11-18" required> <span>J’accepte les CGS Prestations ci-dessus.</span></label>
+          <button class="btn btn-a" type="submit" disabled>Envoyer ma demande</button>
+          <p class="form-status" id="status" role="status"></p>
+        </section>
+      </form>
+      <noscript><p>Activez JavaScript pour tester ce formulaire.</p></noscript>
+      <div id="sent" hidden tabindex="-1">
+        <h2 class="title">Mauruuru, simulation terminée !</h2>
+        <p class="booking-note">Le formulaire de prestation a été testé. Aucune réservation n’a été transmise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Réservation Prestations",
+  "settings": []
+}
+{% endschema %}

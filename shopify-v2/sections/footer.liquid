@@ -1,0 +1,50 @@
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-mark">Pacific Rent<i>&amp;</i>Clean</p>
+        <p style="margin:0;color:rgba(244,241,232,.7);max-width:32ch;font-size:.92rem;line-height:1.6">Nettoyage textile par injection extraction et location de machines professionnelles. Tahiti, Polynésie française.</p>
+      </div>
+      <div>
+        <h5>Prestations</h5>
+        <ul>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#matelas">Matelas</a></li>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#canapes">Canapés et fauteuils</a></li>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#tapis">Tapis et moquettes</a></li>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/prestations#prix">Les prix</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Location</h5>
+        <ul>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location">Kärcher Puzzi 10/1</a></li>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location#kit">La machine en détail</a></li>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/location#forfaits">Forfaits et livraison</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="{% render 'prc-home-url' %}#voies">Réserver</a></li>
+          <li><a href="{{ routes.root_url | append: '/' | replace: '//', '/' }}pages/contact">Nous contacter</a></li>
+          <li class="foot-contact-line"><span class="foot-zone">Tahiti · 7j/7</span><span class="foot-links"><a class="foot-mail" href="mailto:pacificrentclean@gmail.com">E-mail</a><span aria-hidden="true">·</span><a class="foot-mail" href="https://www.facebook.com/share/19Tx5juhpF/" target="_blank" rel="noopener noreferrer">Facebook ↗</a></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Pacific Rent&amp;Clean</span>
+      <span>Mentions légales · Politique de confidentialité</span>
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Pied de page Pacific",
+  "settings": [],
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  }
+}
+{% endschema %}
